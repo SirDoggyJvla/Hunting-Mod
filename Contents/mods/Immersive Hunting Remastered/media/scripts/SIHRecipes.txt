@@ -1,0 +1,376 @@
+module ImmersiveHunting
+{
+
+	imports
+	{
+		Base
+	}
+	
+	/****************************** INVESTIGATING ******************************/
+	
+	recipe Investigate the animal traces
+    {
+		destroy SIHTrackSmall,
+		
+        Result:Twigs,
+        Time:500,
+		OnCreate:SIHTrackSpawnSmall_OnCreate,
+        AnimNode:VehicleWorkOnTire,
+		CanBeDoneFromFloor :TRUE,
+    }
+	
+	recipe Investigate the animal traces
+    {
+		destroy SIHTrackBig,
+		
+        Result:Twigs,
+        Time:500,
+		OnCreate:SIHTrackSpawnBig_OnCreate,
+        AnimNode:VehicleWorkOnTire,
+		CanBeDoneFromFloor :TRUE,
+    }
+	
+	/****************************** BUTCHERING ******************************/
+	
+	recipe Butcher a Deer
+    {
+        keep [Recipe.GetItemTypes.SharpKnife]/MeatCleaver/Machete,
+		SIHDeerCorpse,
+		
+        Result:Steak=5,
+        Sound:SliceMeat,
+        Time:800.0,
+		Category:Cooking,
+		OnGiveXP:Recipe.OnGiveXP.Cooking10,
+		OnCreate: SIHButcherDeer_OnCreate,
+		CanBeDoneFromFloor      : TRUE,
+    }
+	
+	recipe Butcher a Wild Pig
+    {
+		keep [Recipe.GetItemTypes.SharpKnife]/MeatCleaver/Machete,
+		SIHPigCorpse,
+		
+        Result:Steak=5,
+        Sound:SliceMeat,
+        Time:800.0,
+        Category:Cooking,
+		OnGiveXP:Recipe.OnGiveXP.Cooking10,
+		OnCreate: SIHButcherPig_OnCreate,
+		CanBeDoneFromFloor      : TRUE,
+    }
+	
+	/****************************** HUNTING WITH VARMINT RIFLE ******************************/
+
+	recipe Hunt Rabbit with Varmint Rifle
+    {
+		keep VarmintRifle,
+        223Bullets=1,
+		SIHTrackRabbit,
+		
+		Result				:Twigs,
+		Category			:Hunting,
+		Time				:50.0,
+		OnCreate			:SIHSpawnRabbit_OnCreate,
+		OnGiveXP			:Recipe.OnGiveXP.HuntingSmall,
+		AnimNode			:BlowTorch,
+		Sound				:varmintShot,
+		Prop1				:VarmintRifle,
+		CanBeDoneFromFloor 	:TRUE,
+    }
+	
+	recipe Hunt Birds with Varmint Rifle
+    {
+		keep VarmintRifle,
+        223Bullets=1,
+		SIHTrackBird,
+		
+		Result				:Twigs,
+		Category			:Hunting,
+		Time				:50.0,
+		OnCreate			:SIHSpawnBird_OnCreate,
+		OnGiveXP			:Recipe.OnGiveXP.HuntingSmall,
+		AnimNode			:BlowTorch,
+		Sound				:varmintShot,
+		Prop1				:VarmintRifle,
+		CanBeDoneFromFloor 	:TRUE,
+    }
+	
+	recipe Hunt Deer with Varmint Rifle
+    {
+		keep VarmintRifle,
+        223Bullets=1,
+		SIHTrackDeer,
+		
+		Result				:Twigs,
+		Category			:Hunting,
+		Time				:50.0,
+		OnCreate			:SIHSpawnDeer_OnCreate,
+		OnGiveXP			:Recipe.OnGiveXP.HuntingBig,
+		AnimNode			:BlowTorch,
+		Sound				:varmintShot,
+		Prop1				:VarmintRifle,
+		CanBeDoneFromFloor 	:TRUE,
+    }
+	
+	recipe Hunt Pig with Varmint Rifle
+    {
+		keep VarmintRifle,
+        223Bullets=1,
+		SIHTrackPig,
+		
+		Result				:Twigs,
+		Category			:Hunting,
+		Time				:50.0,
+		OnCreate			:SIHSpawnPig_OnCreate,
+		OnGiveXP			:Recipe.OnGiveXP.HuntingBig,
+		AnimNode			:BlowTorch,
+		Sound				:varmintShot,
+		Prop1				:VarmintRifle,
+		CanBeDoneFromFloor 	:TRUE,
+    }
+	
+	/****************************** HUNTING WITH HUNTING RIFLE ******************************/
+	
+	recipe Hunt Rabbit with Hunting Rifle
+    {
+		keep HuntingRifle,
+        308Bullets=1,
+		SIHTrackRabbit,
+		
+		Result				:Twigs,
+		Category			:Hunting,
+		Time				:50.0,
+		OnCreate			:SIHSpawnRabbit_OnCreate,
+		OnGiveXP			:Recipe.OnGiveXP.HuntingSmall,
+		AnimNode			:BlowTorch,
+		Sound				:hunterShot,
+		Prop1				:HuntingRifle,
+		CanBeDoneFromFloor 	:TRUE,
+    }
+	
+	recipe Hunt Birds with Hunting Rifle
+    {
+		keep HuntingRifle,
+        308Bullets=1,
+		SIHTrackBird,
+		
+		Result				:Twigs,
+		Category			:Hunting,
+		Time				:50.0,
+		OnCreate			:SIHSpawnBird_OnCreate,
+		OnGiveXP			:Recipe.OnGiveXP.HuntingSmall,
+		AnimNode			:BlowTorch,
+		Sound				:hunterShot,
+		Prop1				:HuntingRifle,
+		CanBeDoneFromFloor 	:TRUE,
+    }
+	
+	recipe Hunt Deer with Hunting Rifle
+    {
+		keep HuntingRifle,
+        308Bullets=1,
+		SIHTrackDeer,
+		
+		Result				:Twigs,
+		Category			:Hunting,
+		Time				:50.0,
+		OnCreate			:SIHSpawnDeer_OnCreate,
+		OnGiveXP			:Recipe.OnGiveXP.HuntingBig,
+		AnimNode			:BlowTorch,
+		Sound				:hunterShot,
+		Prop1				:HuntingRifle,
+		CanBeDoneFromFloor 	:TRUE,
+    }
+	
+	recipe Hunt Pig with Hunting Rifle
+    {
+		keep HuntingRifle,
+        308Bullets=1,
+		SIHTrackPig,
+		
+		Result				:Twigs,
+		Category			:Hunting,
+		Time				:50.0,
+		OnCreate			:SIHSpawnPig_OnCreate,
+		OnGiveXP			:Recipe.OnGiveXP.HuntingBig,
+		AnimNode			:BlowTorch,
+		Sound				:hunterShot,
+		Prop1				:HuntingRifle,
+		CanBeDoneFromFloor 	:TRUE,
+    }
+	
+	/****************************** HUNTING WITH SHOTGUN ******************************/
+	
+	recipe Hunt Rabbit with Shotgun
+    {
+		keep Shotgun,
+        ShotgunShells=1,
+		SIHTrackRabbit,
+		
+		Result				:Twigs,
+		Category			:Hunting,
+		Time				:50.0,
+		OnCreate			:SIHSpawnRabbitShotty_OnCreate,
+		OnGiveXP			:Recipe.OnGiveXP.HuntingSmall,
+		AnimNode			:BlowTorch,
+		Sound				:shotgun2,
+		Prop1				:Shotgun,
+		CanBeDoneFromFloor 	:TRUE,
+    }
+	
+	recipe Hunt Birds with Shotgun
+    {
+		keep Shotgun,
+        ShotgunShells=1,
+		SIHTrackBird,
+		
+		Result				:Twigs,
+		Category			:Hunting,
+		Time				:50.0,
+		OnCreate			:SIHSpawnBirdShotty_OnCreate,
+		OnGiveXP			:Recipe.OnGiveXP.HuntingSmall,
+		AnimNode			:BlowTorch,
+		Sound				:shotgun2,
+		Prop1				:Shotgun,
+		CanBeDoneFromFloor 	:TRUE,
+    }
+	
+	recipe Hunt Deer with Shotgun
+    {
+		keep Shotgun,
+        ShotgunShells=1,
+		SIHTrackDeer,
+		
+		Result				:Twigs,
+		Category			:Hunting,
+		Time				:50.0,
+		OnCreate			:SIHSpawnDeerShotty_OnCreate,
+		OnGiveXP			:Recipe.OnGiveXP.HuntingBig,
+		AnimNode			:BlowTorch,
+		Sound				:shotgun2,
+		Prop1				:Shotgun,
+		CanBeDoneFromFloor 	:TRUE,
+    }
+	
+	recipe Hunt Pig with Shotgun
+    {
+		keep Shotgun,
+        ShotgunShells=1,
+		SIHTrackPig,
+		
+		Result				:Twigs,
+		Category			:Hunting,
+		Time				:50.0,
+		OnCreate			:SIHSpawnPigShotty_OnCreate,
+		OnGiveXP			:Recipe.OnGiveXP.HuntingBig,
+		AnimNode			:BlowTorch,
+		Sound				:shotgun2,
+		Prop1				:Shotgun,
+		CanBeDoneFromFloor 	:TRUE,
+    }
+	
+	/****************************** HUNTING WITH SHOTGUN x2 ******************************/
+	
+	recipe Hunt Rabbit with Shotgun
+    {
+		keep DoubleBarrelShotgun,
+        ShotgunShells=1,
+		SIHTrackRabbit,
+		
+		Result				:Twigs,
+		Category			:Hunting,
+		Time				:50.0,
+		OnCreate			:SIHSpawnRabbitShotty_OnCreate,
+		OnGiveXP			:Recipe.OnGiveXP.HuntingSmall,
+		AnimNode			:BlowTorch,
+		Sound				:shotgun2,
+		Prop1				:DoubleBarrelShotgun,
+		CanBeDoneFromFloor 	:TRUE,
+    }
+	
+	recipe Hunt Birds with Shotgun
+    {
+		keep DoubleBarrelShotgun,
+        ShotgunShells=1,
+		SIHTrackBird,
+		
+		Result				:Twigs,
+		Category			:Hunting,
+		Time				:50.0,
+		OnCreate			:SIHSpawnBirdShotty_OnCreate,
+		OnGiveXP			:Recipe.OnGiveXP.HuntingSmall,
+		AnimNode			:BlowTorch,
+		Sound				:shotgun2,
+		Prop1				:DoubleBarrelShotgun,
+		CanBeDoneFromFloor 	:TRUE,
+    }
+	
+	recipe Hunt Deer with Shotgun
+    {
+		keep DoubleBarrelShotgun,
+        ShotgunShells=1,
+		SIHTrackDeer,
+		
+		Result				:Twigs,
+		Category			:Hunting,
+		Time				:50.0,
+		OnCreate			:SIHSpawnDeerShotty_OnCreate,
+		OnGiveXP			:Recipe.OnGiveXP.HuntingBig,
+		AnimNode			:BlowTorch,
+		Sound				:shotgun2,
+		Prop1				:DoubleBarrelShotgun,
+		CanBeDoneFromFloor 	:TRUE,
+    }
+	
+	recipe Hunt Pig with Shotgun
+    {
+		keep DoubleBarrelShotgun,
+        ShotgunShells=1,
+		SIHTrackPig,
+		
+		Result				:Twigs,
+		Category			:Hunting,
+		Time				:50.0,
+		OnCreate			:SIHSpawnPigShotty_OnCreate,
+		OnGiveXP			:Recipe.OnGiveXP.HuntingBig,
+		AnimNode			:BlowTorch,
+		Sound				:shotgun2,
+		Prop1				:DoubleBarrelShotgun,
+		CanBeDoneFromFloor 	:TRUE,
+    }
+	
+	/****************************** HUNTING WITH SPEAR ******************************/
+	
+
+	recipe Hunt Deer with Spear
+    {
+		keep WoodenLance/SpearHuntingKnife/SpearMachete/SpearCrafted/SpearKnife,
+		SIHTrackDeer,
+		
+		Result				:Twigs,
+		Category			:Hunting,
+		Time				:500.0,
+		OnCreate			:SIHSpawnDeerSpear_OnCreate,
+		OnGiveXP			:Recipe.OnGiveXP.SpearBig,
+		AnimNode			:BlowTorch,
+		Prop1				:Spear,
+		CanBeDoneFromFloor 	:TRUE,
+    }
+	
+	recipe Hunt Pig with Spear
+    {
+		keep WoodenLance/SpearHuntingKnife/SpearMachete/SpearCrafted/SpearKnife,
+		SIHTrackPig,
+		
+		Result				:Twigs,
+		Category			:Hunting,
+		Time				:500.0,
+		OnCreate			:SIHSpawnPigSpear_OnCreate,
+		OnGiveXP			:Recipe.OnGiveXP.SpearBig,
+		AnimNode			:BlowTorch,
+		Prop1				:Spear,
+		CanBeDoneFromFloor 	:TRUE,
+    }
+	
+}

@@ -1,0 +1,126 @@
+module ImmersiveHunting
+{
+
+	imports
+	{
+		Base
+	}
+
+	item SIHTraceSmall
+    {
+        DisplayCategory = Literature,
+        Weight	=	15,
+        Type	=	Literature,
+        DisplayName	= **You find small animal traces**,
+        Icon	=	SIHTrackTrace,
+		ScaleWorldIcon = 0.01,
+		WorldStaticModel = Needle,
+    }
+	
+	item SIHTraceBig
+    {
+        DisplayCategory = Literature,
+        Weight	=	15,
+        Type	=	Literature,
+        DisplayName	= **You find big animal traces**,
+        Icon	=	SIHTrackTrace,
+		ScaleWorldIcon = 0.01,
+		WorldStaticModel = Needle,
+    }
+	
+	item SIHSpottedBird
+    {
+        DisplayCategory = Literature,
+        Weight	=	15,
+        Type	=	Literature,
+        DisplayName	= **You spotted a small bird**,
+        Icon	=	SIHBirdIcon,
+		ScaleWorldIcon = 0.01,
+		WorldStaticModel = Needle,
+    }
+	
+	item SIHTrackSmall
+	{
+		DisplayCategory = Food,
+		Type			= Food,
+		Icon			= SIHTrackTrace,
+		Weight		  	= 10000,
+		DisplayName		= Animal traces (SMALL),
+		CantBeFrozen 		= TRUE,
+		ReplaceOnRotten 	= Twigs,
+		DaysFresh 			=		1,
+		DaysTotallyRotten 	=	 	3,
+		Tooltip = Tooltip_Recipe_TrackSmall,
+	}
+	
+	item SIHTrackBig
+	{
+		DisplayCategory = Food,
+		Type			= Food,
+		Icon			= SIHTrackTrace,
+		Weight		  	= 10000,
+		DisplayName		= Animal traces (BIG),
+		CantBeFrozen 		= TRUE,
+		ReplaceOnRotten 	= Twigs,
+		DaysFresh 			=		1,
+		DaysTotallyRotten 	=	 	3,
+		Tooltip = Tooltip_Recipe_TrackBig,
+	}
+	
+	item SIHTrackRabbit
+	{
+		DisplayCategory = Food,
+		Type			= Food,
+		Icon			= SIHTrackTrace,
+		Weight		  	= 10000,
+		DisplayName		= Animal tracks (RABBIT),
+		CantBeFrozen 		= TRUE,
+		ReplaceOnRotten 	= Twigs,
+		DaysFresh 			=		1,
+		DaysTotallyRotten 	=	 	3,
+		Tooltip = Tooltip_Recipe_Hunt,
+	}
+	
+	item SIHTrackBird
+	{
+		DisplayCategory = Food,
+		Type			= Food,
+		Icon			= SIHTrackTrace,
+		Weight		  	= 10000,
+		DisplayName		= Animal tracks (BIRD),
+		CantBeFrozen 		= TRUE,
+		ReplaceOnRotten 	= Twigs,
+		DaysFresh 			=		1,
+		DaysTotallyRotten 	=	 	3,
+		Tooltip = Tooltip_Recipe_Hunt,
+	}
+	
+	item SIHTrackDeer
+	{
+		DisplayCategory = Food,
+		Type			= Food,
+		Icon			= SIHTrackTrace,
+		Weight		  	= 10000,
+		DisplayName		= Animal tracks (DEER),
+		CantBeFrozen 		= TRUE,
+		ReplaceOnRotten 	= Twigs,
+		DaysFresh 			=		1,
+		DaysTotallyRotten 	=	 	3,
+		Tooltip = Tooltip_Recipe_Hunt,
+	}
+	
+	item SIHTrackPig
+	{
+		DisplayCategory = Food,
+		Type			= Food,
+		Icon			= SIHTrackTrace,
+		Weight		  	= 10000,
+		DisplayName		= Animal tracks (PIG),
+		CantBeFrozen 		= TRUE,
+		ReplaceOnRotten 	= Twigs,
+		DaysFresh 			=		1,
+		DaysTotallyRotten 	=	 	3,
+		Tooltip = Tooltip_Recipe_Hunt,
+	}
+	
+}

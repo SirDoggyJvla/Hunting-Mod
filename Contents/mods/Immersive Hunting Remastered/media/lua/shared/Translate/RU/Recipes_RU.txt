@@ -1,0 +1,45 @@
+Recipes_RU = {
+
+-- SIHRecipes.txt
+	Recipe_Investigate_the_animal_traces		= "Изучить след животного",
+	Recipe_Investigate_the_animal_traces		= "Изучить след животного",
+	Recipe_Butcher_a_Deer						= "Разделать оленью тушу",
+	Recipe_Butcher_a_Wild_Pig					= "Разделать свиную тушу",
+	Recipe_Hunt_Rabbit_with_Varmint_Rifle		= "Охотиться с винтовкой Варминт на кролика",
+	Recipe_Hunt_Birds_with_Varmint_Rifle		= "Охотиться с винтовкой Варминт на птиц",
+	Recipe_Hunt_Deer_with_Varmint_Rifle			= "Охотиться с винтовкой Варминт на оленя",
+	Recipe_Hunt_Pig_with_Varmint_Rifle			= "Охотиться с винтовкой Варминт на свинью",
+	Recipe_Hunt_Rabbit_with_Hunting_Rifle		= "Охотиться с охотничьей винтовкой на кролика",
+	Recipe_Hunt_Birds_with_Hunting_Rifle		= "Охотиться с охотничьей винтовкой на птиц",
+	Recipe_Hunt_Deer_with_Hunting_Rifle			= "Охотиться с охотничьей винтовкой на оленя",
+	Recipe_Hunt_Pig_with_Hunting_Rifle			= "Охотиться с охотничьей винтовкой на свинью",
+	Recipe_Hunt_Rabbit_with_Shotgun				= "Охотиться с дробовиком на кролика",
+	Recipe_Hunt_Birds_with_Shotgun				= "Охотиться с дробовиком на птиц",
+	Recipe_Hunt_Deer_with_Shotgun				= "Охотиться с дробовиком на оленя",
+	Recipe_Hunt_Pig_with_Shotgun				= "Охотиться с дробовиком на свинью",
+	Recipe_Hunt_Deer_with_Spear					= "Охотиться с копьём на оленя",
+	Recipe_Hunt_Pig_with_Spear					= "Охотиться с копьём на свинью",
+	
+-- SIHRecipesBAA.txt
+	Recipe_Hunt_Rabbit_with_a_Bow				= "Охотиться с луком на кролика",
+	Recipe_Hunt_Birds_with_a_Bow				= "Охотиться с луком на птиц",
+	
+-- SIHRecipesF41.txt
+	Recipe_Hunt_Rabbit_with_M1Garand_Rifle		= "Охотиться с M1 Garand на кролика",
+	Recipe_Hunt_Birds_with_M1Garand_Rifle		= "Охотиться с M1 Garand на птиц",
+	Recipe_Hunt_Deer_with_M1Garand_Rifle		= "Охотиться с M1 Garand на оленя",
+	Recipe_Hunt_Pig_with_M1Garand_Rifle			= "Охотиться с M1 Garand на свинью",
+	Recipe_Hunt_Rabbit_with_M24_Rifle			= "Охотиться с M24 на кролика",
+	Recipe_Hunt_Birds_with_M24_Rifle			= "Охотиться с M24 на птиц",
+	Recipe_Hunt_Deer_with_M24_Rifle				= "Охотиться с M24 на оленя",
+	Recipe_Hunt_Pig_with_M24_Rifle				= "Охотиться с M24 на свинью",
+	Recipe_Hunt_Rabbit_with_Rugerm7722_Rifle	= "Охотиться с Ruger M77/22 на кролика",
+	Recipe_Hunt_Birds_with_Rugerm7722_Rifle		= "Охотиться с Ruger M77/22 на птиц",
+	Recipe_Hunt_Deer_with_Rugerm7722_Rifle		= "Охотиться с Ruger M77/22 на оленя",
+	Recipe_Hunt_Pig_with_Rugerm7722_Rifle		= "Охотиться с Ruger M77/22 на свинью",
+	Recipe_Hunt_Rabbit_with_Shotgun_(B41)		= "Охотиться с дробовиком на кролика",
+	Recipe_Hunt_Birds_with_Shotgun_(B41)		= "Охотиться с дробовиком на птиц",
+	Recipe_Hunt_Deer_with_Shotgun_(B41)			= "Охотиться с дробовиком на оленя",
+	Recipe_Hunt_Pig_with_Shotgun_(B41)			= "Охотиться с дробовиком на свинью",
+
+}

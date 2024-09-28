@@ -1,0 +1,7 @@
+Tooltip_EN = {
+	-- Item tooltip
+	Tooltip_Recipe_TrackSmall = "Can be various indications of a small animal passing through this area.",
+	Tooltip_Recipe_TrackBig = "Can be various indications of a big animal passing through this area.",
+	Tooltip_Recipe_Hunt = "Animals can be hunted with several different guns.<br>Hunt success is determined by your skills, traits, weather and gun type.<br>Having a scope helps too.",
+	Tooltip_Recipe_Corpse = "Dead animal corpse.<br>Can be cut up to obtain meat.<br>Make sure you have plenty of room for it and means to preserve it.",
+}

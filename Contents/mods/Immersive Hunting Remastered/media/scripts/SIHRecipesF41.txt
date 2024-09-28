@@ -1,0 +1,289 @@
+module ImmersiveHunting
+{
+
+	imports
+	{
+		Base
+	}
+
+	/****************************** HUNTING WITH M1Garand ******************************/
+
+	recipe Hunt Rabbit with M1Garand Rifle
+    {
+		keep M1Garand,
+        Bullets3006=1,
+		SIHTrackRabbit,
+		
+		Result				:Twigs,
+		Category			:Hunting,
+		Time				:50.0,
+		OnCreate			:SIHSpawnRabbit_OnCreate,
+		OnGiveXP			:Recipe.OnGiveXP.HuntingSmall,
+		AnimNode			:BlowTorch,
+		Sound				:varmintShot,
+		Prop1				:M1Garand,
+		CanBeDoneFromFloor 	:TRUE,
+    }
+	
+	recipe Hunt Birds with M1Garand Rifle
+    {
+		keep M1Garand,
+        Bullets3006=1,
+		SIHTrackBird,
+		
+		Result				:Twigs,
+		Category			:Hunting,
+		Time				:50.0,
+		OnCreate			:SIHSpawnBird_OnCreate,
+		OnGiveXP			:Recipe.OnGiveXP.HuntingSmall,
+		AnimNode			:BlowTorch,
+		Sound				:varmintShot,
+		Prop1				:M1Garand,
+		CanBeDoneFromFloor 	:TRUE,
+    }
+	
+	recipe Hunt Deer with M1Garand Rifle
+    {
+		keep M1Garand,
+        Bullets3006=1,
+		SIHTrackDeer,
+		
+		Result				:Twigs,
+		Category			:Hunting,
+		Time				:50.0,
+		OnCreate			:SIHSpawnDeer_OnCreate,
+		OnGiveXP			:Recipe.OnGiveXP.HuntingBig,
+		AnimNode			:BlowTorch,
+		Sound				:varmintShot,
+		Prop1				:M1Garand,
+		CanBeDoneFromFloor 	:TRUE,
+    }
+	
+	recipe Hunt Pig with M1Garand Rifle
+    {
+		keep M1Garand,
+        Bullets3006=1,
+		SIHTrackPig,
+		
+		Result				:Twigs,
+		Category			:Hunting,
+		Time				:50.0,
+		OnCreate			:SIHSpawnPig_OnCreate,
+		OnGiveXP			:Recipe.OnGiveXP.HuntingBig,
+		AnimNode			:BlowTorch,
+		Sound				:varmintShot,
+		Prop1				:M1Garand,
+		CanBeDoneFromFloor 	:TRUE,
+    }
+	
+	/****************************** HUNTING WITH M24Rifle ******************************/
+	
+	recipe Hunt Rabbit with M24 Rifle
+    {
+		keep M24Rifle,
+        762x51Bullets=1,
+		SIHTrackRabbit,
+		
+		Result				:Twigs,
+		Category			:Hunting,
+		Time				:50.0,
+		OnCreate			:SIHSpawnRabbit_OnCreate,
+		OnGiveXP			:Recipe.OnGiveXP.HuntingSmall,
+		AnimNode			:BlowTorch,
+		Sound				:hunterShot,
+		Prop1				:Model700,
+		CanBeDoneFromFloor 	:TRUE,
+    }
+	
+	recipe Hunt Birds with M24 Rifle
+    {
+		keep M24Rifle,
+        762x51Bullets=1,
+		SIHTrackBird,
+		
+		Result				:Twigs,
+		Category			:Hunting,
+		Time				:50.0,
+		OnCreate			:SIHSpawnBird_OnCreate,
+		OnGiveXP			:Recipe.OnGiveXP.HuntingSmall,
+		AnimNode			:BlowTorch,
+		Sound				:hunterShot,
+		Prop1				:Model700,
+		CanBeDoneFromFloor 	:TRUE,
+    }
+	
+	recipe Hunt Deer with M24 Rifle
+    {
+		keep M24Rifle,
+        762x51Bullets=1,
+		SIHTrackDeer,
+		
+		Result				:Twigs,
+		Category			:Hunting,
+		Time				:50.0,
+		OnCreate			:SIHSpawnDeer_OnCreate,
+		OnGiveXP			:Recipe.OnGiveXP.HuntingBig,
+		AnimNode			:BlowTorch,
+		Sound				:hunterShot,
+		Prop1				:Model700,
+		CanBeDoneFromFloor 	:TRUE,
+    }
+	
+	recipe Hunt Pig with M24 Rifle
+    {
+		keep M24Rifle,
+        762x51Bullets=1,
+		SIHTrackPig,
+		
+		Result				:Twigs,
+		Category			:Hunting,
+		Time				:50.0,
+		OnCreate			:SIHSpawnPig_OnCreate,
+		OnGiveXP			:Recipe.OnGiveXP.HuntingBig,
+		AnimNode			:BlowTorch,
+		Sound				:hunterShot,
+		Prop1				:Model700,
+		CanBeDoneFromFloor 	:TRUE,
+    }
+	
+	/****************************** HUNTING WITH Ruger ******************************/
+
+	recipe Hunt Rabbit with Rugerm7722 Rifle
+    {
+		keep Rugerm7722,
+        Bullets22=1,
+		SIHTrackRabbit,
+		
+		Result				:Twigs,
+		Category			:Hunting,
+		Time				:50.0,
+		OnCreate			:SIHSpawnRabbit_OnCreate,
+		OnGiveXP			:Recipe.OnGiveXP.HuntingSmall,
+		AnimNode			:BlowTorch,
+		Sound				:varmintShot,
+		Prop1				:Model788,
+		CanBeDoneFromFloor 	:TRUE,
+    }
+	
+	recipe Hunt Birds with Rugerm7722 Rifle
+    {
+		keep Rugerm7722,
+        Bullets22=1,
+		SIHTrackBird,
+		
+		Result				:Twigs,
+		Category			:Hunting,
+		Time				:50.0,
+		OnCreate			:SIHSpawnBird_OnCreate,
+		OnGiveXP			:Recipe.OnGiveXP.HuntingSmall,
+		AnimNode			:BlowTorch,
+		Sound				:varmintShot,
+		Prop1				:Model788,
+		CanBeDoneFromFloor 	:TRUE,
+    }
+	
+	recipe Hunt Deer with Rugerm7722 Rifle
+    {
+		keep Rugerm7722,
+        Bullets22=1,
+		SIHTrackDeer,
+		
+		Result				:Twigs,
+		Category			:Hunting,
+		Time				:50.0,
+		OnCreate			:SIHSpawnDeer_OnCreate,
+		OnGiveXP			:Recipe.OnGiveXP.HuntingBig,
+		AnimNode			:BlowTorch,
+		Sound				:varmintShot,
+		Prop1				:Model788,
+		CanBeDoneFromFloor 	:TRUE,
+    }
+	
+	recipe Hunt Pig with Rugerm7722 Rifle
+    {
+		keep Rugerm7722,
+        Bullets22=1,
+		SIHTrackPig,
+		
+		Result				:Twigs,
+		Category			:Hunting,
+		Time				:50.0,
+		OnCreate			:SIHSpawnPig_OnCreate,
+		OnGiveXP			:Recipe.OnGiveXP.HuntingBig,
+		AnimNode			:BlowTorch,
+		Sound				:varmintShot,
+		Prop1				:Model788,
+		CanBeDoneFromFloor 	:TRUE,
+    }
+	
+	/****************************** HUNTING WITH F41 SHOTGUNS ******************************/
+	
+	recipe Hunt Rabbit with Shotgun (B41)
+    {
+		keep LAW12/SPAS12/M37/Remington870Wood/Mossberg500Tactical/Mossberg500,
+        ShotgunShells=1,
+		SIHTrackRabbit,
+		
+		Result				:Twigs,
+		Category			:Hunting,
+		Time				:50.0,
+		OnCreate			:SIHSpawnRabbitShotty_OnCreate,
+		OnGiveXP			:Recipe.OnGiveXP.HuntingSmall,
+		AnimNode			:BlowTorch,
+		Sound				:shotgun2,
+		Prop1				:Shotgun,
+		CanBeDoneFromFloor 	:TRUE,
+    }
+	
+	recipe Hunt Birds with Shotgun (B41)
+    {
+		keep LAW12/SPAS12/M37/Remington870Wood/Mossberg500Tactical/Mossberg500,
+        ShotgunShells=1,
+		SIHTrackBird,
+		
+		Result				:Twigs,
+		Category			:Hunting,
+		Time				:50.0,
+		OnCreate			:SIHSpawnBirdShotty_OnCreate,
+		OnGiveXP			:Recipe.OnGiveXP.HuntingSmall,
+		AnimNode			:BlowTorch,
+		Sound				:shotgun2,
+		Prop1				:Shotgun,
+		CanBeDoneFromFloor 	:TRUE,
+    }
+	
+	recipe Hunt Deer with Shotgun (B41)
+    {
+		keep LAW12/SPAS12/M37/Remington870Wood/Mossberg500Tactical/Mossberg500,
+        ShotgunShells=1,
+		SIHTrackDeer,
+		
+		Result				:Twigs,
+		Category			:Hunting,
+		Time				:50.0,
+		OnCreate			:SIHSpawnDeerShotty_OnCreate,
+		OnGiveXP			:Recipe.OnGiveXP.HuntingBig,
+		AnimNode			:BlowTorch,
+		Sound				:shotgun2,
+		Prop1				:Shotgun,
+		CanBeDoneFromFloor 	:TRUE,
+    }
+	
+	recipe Hunt Pig with Shotgun (B41)
+    {
+		keep LAW12/SPAS12/M37/Remington870Wood/Mossberg500Tactical/Mossberg500,
+        ShotgunShells=1,
+		SIHTrackPig,
+		
+		Result				:Twigs,
+		Category			:Hunting,
+		Time				:50.0,
+		OnCreate			:SIHSpawnPigShotty_OnCreate,
+		OnGiveXP			:Recipe.OnGiveXP.HuntingBig,
+		AnimNode			:BlowTorch,
+		Sound				:shotgun2,
+		Prop1				:Shotgun,
+		CanBeDoneFromFloor 	:TRUE,
+    }
+	
+}

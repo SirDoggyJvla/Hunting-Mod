@@ -1,0 +1,51 @@
+module ImmersiveHunting
+{
+
+	imports
+	{
+		Base
+	}
+
+    item SIHDeerCorpse
+    {
+        HungerChange    =   -800,
+        Weight  =   40.0,
+        Type    =   Food,
+        DisplayName =   Deer Corpse,
+        Icon    =   SIHDeerCorpse,
+        IsCookable  =   TRUE,
+        DangerousUncooked   =   TRUE,
+        DaysTotallyRotten   =   12,
+        MinutesToBurn   =   180,
+        MinutesToCook   =   90,
+        DaysFresh   =   5,
+		Carbohydrates   = 0,
+		Proteins    = 4000,
+		Lipids      = 1700,
+		Calories    = 17000,
+		ScaleWorldIcon = 1.5,
+		Tooltip = Tooltip_Recipe_Corpse,
+    }
+ 
+    item SIHPigCorpse
+    {
+        HungerChange    =   -1200,
+        Weight  =   60.0,
+        Type    =   Food,
+        DisplayName =   Wild Pig Corpse,
+        Icon    =   SIHPigCorpse,
+        IsCookable  =   TRUE,
+        DangerousUncooked   =   TRUE,
+        DaysTotallyRotten   =   12,
+        MinutesToBurn   =   200,
+        MinutesToCook   =   100,
+        DaysFresh   =   5,
+		Carbohydrates   = 0,
+		Proteins    = 2000,
+		Lipids      = 1000,
+		Calories    = 10000,
+		ScaleWorldIcon = 1.5,
+		Tooltip = Tooltip_Recipe_Corpse,
+	}
+	
+}

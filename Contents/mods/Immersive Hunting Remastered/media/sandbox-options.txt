@@ -1,0 +1,9 @@
+VERSION = 1,
+
+option ImmersiveHunting.YearsLater
+{
+	type = boolean,
+	default = false,
+	page = ImmersiveHunting,
+	translation = ImmersiveHunting_YearsLater,
+}

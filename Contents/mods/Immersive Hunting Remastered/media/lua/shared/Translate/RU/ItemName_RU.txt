@@ -1,0 +1,18 @@
+ItemName_RU = {
+
+-- SIHAnimals.txt
+	ItemName_ImmersiveHunting.SIHDeerCorpse				= "Туша оленя",
+	ItemName_ImmersiveHunting.SIHPigCorpse				= "Туша свиньи",
+
+-- SIHMain.txt
+	ItemName_ImmersiveHunting.SIHTraceSmall				= "**Кажется, здесь прошёл небольшой зверь**",
+	ItemName_ImmersiveHunting.SIHTraceBig				= "**Кажется, здесь прошёл крупный зверь**",
+	ItemName_ImmersiveHunting.SIHSpottedBird			= "**Кажется, здесь были птицы**",
+	ItemName_ImmersiveHunting.SIHTrackSmall				= "Приметы оставленные небольшим животным",
+	ItemName_ImmersiveHunting.SIHTrackBig				= "Приметы оставленные крупным животным",
+	ItemName_ImmersiveHunting.SIHTrackRabbit			= "Следы кролика",
+	ItemName_ImmersiveHunting.SIHTrackBird				= "Следы птиц",
+	ItemName_ImmersiveHunting.SIHTrackDeer				= "Следы оленя",
+	ItemName_ImmersiveHunting.SIHTrackPig				= "Следы свиньи",
+
+}

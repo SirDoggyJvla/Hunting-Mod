@@ -1,0 +1,43 @@
+module ImmersiveHunting
+{
+
+	imports
+	{
+		Base
+	}
+
+	/****************************** HUNTING WITH BOW ******************************/
+
+	recipe Hunt Rabbit with a Bow
+    {
+		keep MandelaBowWoodLong/MandelaBowWoodLongUnstrung/CompoundBowScorpion/MandelaBow/MandelaBowUnstrung,
+		SIHTrackRabbit,
+		
+		Result				:Twigs,
+		Category			:Hunting,
+		Time				:50.0,
+		OnCreate			:SIHSpawnRabbitBow_OnCreate,
+		OnGiveXP			:Recipe.OnGiveXP.HuntingSmall,
+		AnimNode			:BlowTorch,
+		Prop1				:MandelaBowAndArrow.MandelaBow,
+		CanBeDoneFromFloor 	:TRUE,
+		Override			:true
+    }
+	
+	recipe Hunt Birds with a Bow
+    {
+		keep MandelaBowWoodLong/MandelaBowWoodLongUnstrung/CompoundBowScorpion/MandelaBow/MandelaBowUnstrung,
+		SIHTrackBird,
+		
+		Result				:Twigs,
+		Category			:Hunting,
+		Time				:50.0,
+		OnCreate			:SIHSpawnBirdBow_OnCreate,
+		OnGiveXP			:Recipe.OnGiveXP.HuntingSmall,
+		AnimNode			:BlowTorch,
+		Prop1				:MandelaBowAndArrow.MandelaBow,
+		CanBeDoneFromFloor 	:TRUE,
+		Override			:true
+    }
+	
+}

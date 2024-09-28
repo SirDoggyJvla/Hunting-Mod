@@ -1,0 +1,149 @@
+module ImmersiveHunting
+{
+
+	imports
+	{
+		Base
+	}
+
+	/****************************** HUNTING WITH 308 RIFLES ******************************/
+
+	recipe Hunt Rabbit with a 308 Rifle (Brita)
+    {
+		keep MSG90/PSG1/M14/M14EBR/MAS36/MAS44/MAS49/M40/M40A1/M40A2/M40A3/Ruger_No1_308/Savage12/Thompson_Center_308/Type38/Type99/WA2000/AK308/Galil_Sniper/L96/K14/Win_1895,
+        308Bullets=1,
+		SIHTrackRabbit,
+		
+		Result				:Twigs,
+		Category			:Hunting,
+		Time				:50.0,
+		OnCreate			:SIHSpawnRabbit_OnCreate,
+		OnGiveXP			:Recipe.OnGiveXP.HuntingSmall,
+		AnimNode			:BlowTorch,
+		Sound				:varmintShot,
+		Prop1				:VarmintRifle,
+		CanBeDoneFromFloor 	:TRUE,
+    }
+	
+	recipe Hunt Birds with a 308 Rifle (Brita)
+    {
+		keep MSG90/PSG1/M14/M14EBR/MAS36/MAS44/MAS49/M40/M40A1/M40A2/M40A3/Ruger_No1_308/Savage12/Thompson_Center_308/Type38/Type99/WA2000/AK308/Galil_Sniper/L96/K14/Win_1895,
+        308Bullets=1,
+		SIHTrackBird,
+		
+		Result				:Twigs,
+		Category			:Hunting,
+		Time				:50.0,
+		OnCreate			:SIHSpawnBird_OnCreate,
+		OnGiveXP			:Recipe.OnGiveXP.HuntingSmall,
+		AnimNode			:BlowTorch,
+		Sound				:varmintShot,
+		Prop1				:VarmintRifle,
+		CanBeDoneFromFloor 	:TRUE,
+    }
+	
+	recipe Hunt Deer with a 308 Rifle (Brita)
+    {
+		keep MSG90/PSG1/M14/M14EBR/MAS36/MAS44/MAS49/M40/M40A1/M40A2/M40A3/Ruger_No1_308/Savage12/Thompson_Center_308/Type38/Type99/WA2000/AK308/Galil_Sniper/L96/K14/Win_1895,
+        308Bullets=1,
+		SIHTrackDeer,
+		
+		Result				:Twigs,
+		Category			:Hunting,
+		Time				:50.0,
+		OnCreate			:SIHSpawnDeer_OnCreate,
+		OnGiveXP			:Recipe.OnGiveXP.HuntingBig,
+		AnimNode			:BlowTorch,
+		Sound				:varmintShot,
+		Prop1				:VarmintRifle,
+		CanBeDoneFromFloor 	:TRUE,
+    }
+	
+	recipe Hunt Pig with a 308 Rifle (Brita)
+    {
+		keep MSG90/PSG1/M14/M14EBR/MAS36/MAS44/MAS49/M40/M40A1/M40A2/M40A3/Ruger_No1_308/Savage12/Thompson_Center_308/Type38/Type99/WA2000/AK308/Galil_Sniper/L96/K14/Win_1895,
+        308Bullets=1,
+		SIHTrackPig,
+		
+		Result				:Twigs,
+		Category			:Hunting,
+		Time				:50.0,
+		OnCreate			:SIHSpawnPig_OnCreate,
+		OnGiveXP			:Recipe.OnGiveXP.HuntingBig,
+		AnimNode			:BlowTorch,
+		Sound				:varmintShot,
+		Prop1				:VarmintRifle,
+		CanBeDoneFromFloor 	:TRUE,
+    }
+	
+	/****************************** HUNTING WITH SHOTGUN BRITA ******************************/
+	
+	recipe Hunt Rabbit with a Shotty (Brita)
+    {
+		keep MP133/M1014_Stock/M1014/A400/DT11/AUTO_5/Triple_Crown/SPAS12_Fixed/SPAS12_Stock/Ithaca_M37/M1014_Wick/KSG25/M870_Express/M870_MCS/M870/M870_Police/M870_Wingmaster/R11_87/M1216/Saiga12_Long/M1887/M1897,
+        Shotgunshells=1,
+		SIHTrackRabbit,
+		
+		Result				:Twigs,
+		Category			:Hunting,
+		Time				:50.0,
+		OnCreate			:SIHSpawnRabbitShotty_OnCreate,
+		OnGiveXP			:Recipe.OnGiveXP.HuntingSmall,
+		AnimNode			:BlowTorch,
+		Sound				:shotgun2,
+		Prop1				:Shotgun,
+		CanBeDoneFromFloor 	:TRUE,
+    }
+	
+	recipe Hunt Birds with a Shotty (Brita)
+    {
+		keep MP133/M1014_Stock/M1014/A400/DT11/AUTO_5/Triple_Crown/SPAS12_Fixed/SPAS12_Stock/Ithaca_M37/M1014_Wick/KSG25/M870_Express/M870_MCS/M870/M870_Police/M870_Wingmaster/R11_87/M1216/Saiga12_Long/M1887/M1897,
+        Shotgunshells=1,
+		SIHTrackBird,
+		
+		Result				:Twigs,
+		Category			:Hunting,
+		Time				:50.0,
+		OnCreate			:SIHSpawnBirdShotty_OnCreate,
+		OnGiveXP			:Recipe.OnGiveXP.HuntingSmall,
+		AnimNode			:BlowTorch,
+		Sound				:shotgun2,
+		Prop1				:Shotgun,
+		CanBeDoneFromFloor 	:TRUE,
+    }
+	
+	recipe Hunt Deer with a Shotty (Brita)
+    {
+		keep MP133/M1014_Stock/M1014/A400/DT11/AUTO_5/Triple_Crown/SPAS12_Fixed/SPAS12_Stock/Ithaca_M37/M1014_Wick/KSG25/M870_Express/M870_MCS/M870/M870_Police/M870_Wingmaster/R11_87/M1216/Saiga12_Long/M1887/M1897,
+        Shotgunshells=1,
+		SIHTrackDeer,
+		
+		Result				:Twigs,
+		Category			:Hunting,
+		Time				:50.0,
+		OnCreate			:SIHSpawnDeerShotty_OnCreate,
+		OnGiveXP			:Recipe.OnGiveXP.HuntingBig,
+		AnimNode			:BlowTorch,
+		Sound				:shotgun2,
+		Prop1				:Shotgun,
+		CanBeDoneFromFloor 	:TRUE,
+    }
+	
+	recipe Hunt Pig with a Shotty (Brita)
+    {
+		keep MP133/M1014_Stock/M1014/A400/DT11/AUTO_5/Triple_Crown/SPAS12_Fixed/SPAS12_Stock/Ithaca_M37/M1014_Wick/KSG25/M870_Express/M870_MCS/M870/M870_Police/M870_Wingmaster/R11_87/M1216/Saiga12_Long/M1887/M1897,
+        Shotgunshells=1,
+		SIHTrackPig,
+		
+		Result				:Twigs,
+		Category			:Hunting,
+		Time				:50.0,
+		OnCreate			:SIHSpawnPigShotty_OnCreate,
+		OnGiveXP			:Recipe.OnGiveXP.HuntingBig,
+		AnimNode			:BlowTorch,
+		Sound				:shotgun2,
+		Prop1				:Shotgun,
+		CanBeDoneFromFloor 	:TRUE,
+    }
+	
+}
