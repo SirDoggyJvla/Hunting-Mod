@@ -208,6 +208,10 @@ ImmersiveHunting.Hunt = function(player,huntTarget,baseIcon,weapon,square)
         also timed action to rack, reload etc
 
         shooting sound when hunting, based on weapon sound, or melee hit (strong attack ?)
+    
+        chanceToHit is multiplied by the skill of the player in this field (done in weapon stats)
+        this value is a percentage which can be calculated with other values like day time value
+        weather, lighting (don't take into account flashlight), fog, rain...
     ]]
 
     square:getModData().HuntInformation = nil
