@@ -47,11 +47,15 @@ end
 ---@return boolean
 ---@return boolean
 ---@return boolean
+---@return number
+---@return string|nil
 ImmersiveHunting.GetWeaponStats = function(weapon,huntTarget)
     -- default values
     local kill = false
     local mightKill = false
     local shred = false
+    local reason = nil
+    local chanceToHit = 0
 
     -- get data related to hunting type
     local huntingConditions = ImmersiveHunting.HuntingConditions[huntTarget]
@@ -60,11 +64,11 @@ ImmersiveHunting.GetWeaponStats = function(weapon,huntTarget)
     if weapon:isRanged() then
         -- check ammo type
         local ammo = weapon:getAmmoType()
-        if not ammo then return false, true, false end
+        if not ammo then return false, true, false, chanceToHit, "No ammo type" end
 
         -- default to mightKill for non-compatible calibers
         local bulletData = ImmersiveHunting.AmmoTypes[ammo]
-        if not bulletData then return false, true, false end
+        if not bulletData then return false, true, false, chanceToHit, "Not recognized" end
 
         -- get huntingCaliber data
         local ammoType = bulletData.AmmoType
@@ -76,6 +80,7 @@ ImmersiveHunting.GetWeaponStats = function(weapon,huntTarget)
             if bulletData.Emin > huntingCaliberData.Emin then
                 kill = true
                 mightKill = true
+                chanceToHit = 100
             elseif bulletData.Emax > huntingCaliberData.Emin then
                 mightKill = true
             end
@@ -119,10 +124,6 @@ ImmersiveHunting.GetWeaponStats = function(weapon,huntTarget)
                 mightKill = true
             end
 
-        -- else default to mightKill true for whoever fucked with the tables
-        else
-            mightKill = true
-
         end
 
     -- handle as melee weapon
@@ -146,28 +147,30 @@ ImmersiveHunting.GetWeaponStats = function(weapon,huntTarget)
             if melee_noMeleeTwoHanded and twoHanded then
                 -- if weapon can't be used to hunt bcs two handed, skip
                 if melee_noMeleeTwoHanded[category] then
-                    print("two handed")
-                    return false, false, false
+                    return false, false, false, 0, "Two handed "..category
                 end
 
-            -- else if kill is already set, skip everything
-            elseif kill then
-                break
             end
 
             -- check if weapon will kill
-            if melee_willKill[category] then
+            local chanceKill = melee_willKill[category]
+            local chanceMightKill = melee_mightKill[category]
+            if chanceKill then
                 kill = true
                 mightKill = true
 
+                chanceToHit = chanceKill > chanceToHit and chanceKill or chanceToHit
+
             -- check if it might kill if not already the case
-            elseif not mightKill and melee_mightKill[category] then
+            elseif chanceMightKill then
                 mightKill = true
+                chanceToHit = chanceMightKill > chanceToHit and chanceMightKill or chanceToHit
+
             end
         end
     end
 
-    return kill, mightKill, shred
+    return kill, mightKill, shred, chanceToHit, reason
 end
 
 ImmersiveHunting.Hunt = function(player,huntTarget,baseIcon,weapon,square)
@@ -222,11 +225,6 @@ ImmersiveHunting.onFillSearchIconContextMenu = function(context, baseIcon)
     local huntTarget = ImmersiveHunting.ValidForageItems[itemType]
     if not huntTarget then return end
 
-    print("")
-    print("")
-    print("")
-    print("CONTEXT")
-
     local displayName = baseIcon.itemObj:getDisplayName()
     local options = context.options
     if options then
@@ -239,7 +237,6 @@ ImmersiveHunting.onFillSearchIconContextMenu = function(context, baseIcon)
 
                 -- replace the pick up option with our own option
                 if name == getText("IGUI_Pickup").." "..displayName then
-                    print("pickup")
                     context:removeOptionByName(name)
 
                     -- get informations on hunt
@@ -253,31 +250,56 @@ ImmersiveHunting.onFillSearchIconContextMenu = function(context, baseIcon)
 
                     -- create tooltip
                     local tooltip = ISWorldObjectContextMenu.addToolTip()
-                    local notAvailable,tooStrong
+                    local notAvailable
 
                     -- verify the character has a weapon
-                    print("")
                     if not weapon then
-                        print("no weapon")
                         notAvailable = true
                         tooltip.description = getText("Tooltip_ImmersiveHunting_NeedWeapon")
 
                     else
-                        -- get hunt information for persistent storing
-                        local HuntInformation = ImmersiveHunting.GetHuntInformations(square,huntTarget)
-
                         -- set the tool tip texture with the weapon
                         local texture = weapon:getTexture()
                         if texture then tooltip:setTexture(texture:getName()) end
 
-                        local range = weapon:getMaxRange(player)
+                        local kill,mightKill,shred,chanceToHit,reason = ImmersiveHunting.GetWeaponStats(weapon,huntTarget)
 
-                        local kill,mightKill,shred = ImmersiveHunting.GetWeaponStats(weapon,huntTarget)
+                        local weaponName = weapon:getDisplayName()
+                        local description = string.format("%s will be used to hunt.",weaponName)
+
+                        -- will kill ?
+                        if kill then
+                            description = description.."\n".."<GREEN> Weapon will kill target.\n"
+                        elseif not mightKill then
+                            description = description.."\n".."<RED> Weapon cannot kill target.\n"
+                            if reason and reason ~= "" then
+                                description = description.."Reason: "..reason
+                            end
+
+                            notAvailable = true
+                        end
+
+                        -- weapon not adapted
+                        if not kill and mightKill or shred then
+                            description = description.."\n".."<ORANGE> Weapon is not adapted to hunting:\n<INDENT:8>"
+
+                            -- can't kill
+                            if not kill and mightKill then
+                                description = description.."- Weapon might not kill target on hit\n"
+                            end
+
+                            -- will shred
+                            if shred then
+                                description = description.."- Weapon will shred target, leaving less meat to collect\n"
+                            end
+                        end
+
+                        tooltip.description = description
 
                         print(kill," ",mightKill," ",shred)
                     end
 
-                    option = context:addOptionOnTop(getText("ContextMenu_ImmersiveHunting_Hunt"..huntTarget),player,ImmersiveHunting["Hunt"],huntTarget,baseIcon,weapon,square)
+                    option = context:addOptionOnTop(getText("ContextMenu_ImmersiveHunting_Hunt"..huntTarget),player,ImmersiveHunting.Hunt,huntTarget,baseIcon,weapon,square)
 
                     -- set tooltip and if available
                     option.toolTip = tooltip

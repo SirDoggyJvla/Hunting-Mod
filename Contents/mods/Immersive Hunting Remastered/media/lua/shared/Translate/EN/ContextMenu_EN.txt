@@ -1,0 +1,5 @@
+ContextMenu_EN = {
+    ContextMenu_ImmersiveHunting_HuntBird = "Hunt bird",
+    ContextMenu_ImmersiveHunting_HuntSmallGame = "Hunt small game",
+    ContextMenu_ImmersiveHunting_HuntBigGame = "Hunt big game",
+}
