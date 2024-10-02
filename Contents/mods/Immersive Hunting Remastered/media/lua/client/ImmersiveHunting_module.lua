@@ -12,7 +12,13 @@ Module of Immersive Hunting Remastered.
 --[[ ================================================ ]]--
 
 ImmersiveHunting = {
-    HuntingConditions = {}
+    HuntingConditions = {},
+    highlightsSquares = {},
+    ValidForageItems = {
+        ["ImmersiveHunting.SIHSpottedBird"] = "Bird",
+        ["ImmersiveHunting.SIHTraceSmall"] = "SmallGame",
+        ["ImmersiveHunting.SIHTraceBig"] = "BigGame",
+    },
 }
 
 return ImmersiveHunting

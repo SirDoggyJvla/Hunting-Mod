@@ -8,5 +8,33 @@ Tooltip_EN = {
 	/* Hunting tooltip */
 	Tooltip_ImmersiveHunting_NeedWeapon = "<RED> Requires a weapon equiped to hunt.",
 	Tooltip_ImmersiveHunting_CurrentWeapon = "%1 will be used to hunt",
-	// Tooltip_ImmersiveHunting_
+
+	/* Impacts */
+	Tooltip_ImmersiveHunting_impacts = "Below are every impacts on the hunting chance. A value close to 0% will bring the overall hunt chance close to 0% while a value of 100% has no impact on the hunting chances and a value above 100% improves the hunting success.",
+	Tooltip_ImmersiveHunting_DayLightImpact = "Day light impact:",
+	Tooltip_ImmersiveHunting_FogImpact = "Fog impact:",
+	Tooltip_ImmersiveHunting_WindImpact = "Wind impact:",
+	Tooltip_ImmersiveHunting_ChanceToHit = "Chance to hit:",
+	Tooltip_ImmersiveHunting_ChanceToHunt = "Final chance to hunt target:",
+
+	/* Reasons */
+	Tooltip_ImmersiveHunting_noAmmoType = "No ammo type",
+	Tooltip_ImmersiveHunting_notRecognized = "Ammo type not recognized (report this on the mod page)",
+	Tooltip_ImmersiveHunting_badCaliber = "Can't hunt target with this caliber type",
+	Tooltip_ImmersiveHunting_badAiming = "Not good enough at aiming",
+	Tooltip_ImmersiveHunting_twoHandedImprovised = "Can't hunt this target with two handed improvised",
+	Tooltip_ImmersiveHunting_twoHandedSmallBlunt = "Can't hunt this target with two handed small blunt",
+	Tooltip_ImmersiveHunting_twoHandedBlunt = "Can't hunt this target with two handed blunt",
+	Tooltip_ImmersiveHunting_twoHandedAxe = "Can't hunt this target with two handed axe",
+	Tooltip_ImmersiveHunting_twoHandedSmallBlade = "Can't hunt this target with two handed small blade",
+	Tooltip_ImmersiveHunting_twoHandedLongBlade = "Can't hunt this target with two handed long blade",
+	Tooltip_ImmersiveHunting_twoHandedSpear = "Can't hunt this target with two handed spear",
+	Tooltip_ImmersiveHunting_notSkilledEnough = "Not skilled enough with this type of weapon",
+	Tooltip_ImmersiveHunting_notStrongEnough = "Not strong enough",
+
+	/* Impacts */
+	Tooltip_ImmersiveHunting_aimingImpact = "Aiming impact:",
+	Tooltip_ImmersiveHunting_gunImpact = "Gun impact:",
+	Tooltip_ImmersiveHunting_meleeImpact = "Melee weapon impact:",
+	Tooltip_ImmersiveHunting_strengthImpact = "Strength impact:",
 }

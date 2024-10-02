@@ -1,4 +1,19 @@
+--[[ ================================================ ]]--
+--[[  /~~\'      |~~\                  ~~|~    |      ]]--
+--[[  '--.||/~\  |   |/~\/~~|/~~|\  /    | \  /|/~~|  ]]--
+--[[  \__/||     |__/ \_/\__|\__| \/   \_|  \/ |\__|  ]]--
+--[[                     \__|\__|_/                   ]]--
+--[[ ================================================ ]]--
+--[[
+
+Adds the foraging of Immersive Hunting Remastered.
+
+]]--
+--[[ ================================================ ]]--
+
 require "Foraging/forageSystem"
+
+local dev = true
 
 Events.onAddForageDefs.Add(function()
 	local SIHTraceSmall = {
@@ -46,8 +61,13 @@ Events.onAddForageDefs.Add(function()
 		SIHSpottedBird.zones = { Forest=12, DeepForest=24, FarmLand=12, Farm=12, Vegitation=12, TrailerPark=12, TownZone=12, Nav=12 }
 	end
 
+	if dev then
+		SIHTraceSmall.zones = { Forest=100, DeepForest=100, FarmLand=100, Farm=100, Vegitation=100 }
+		SIHTraceBig.zones = { Forest=100, DeepForest=100, FarmLand=100, Farm=100, Vegitation=100 }
+		SIHSpottedBird.zones = { Forest=100, DeepForest=100, FarmLand=100, Farm=100, Vegitation=100, TrailerPark=100, TownZone=100, Nav=100 }
+	end
+
 	forageSystem.addItemDef(SIHTraceSmall)
 	forageSystem.addItemDef(SIHTraceBig)
 	forageSystem.addItemDef(SIHSpottedBird)
-
 end)

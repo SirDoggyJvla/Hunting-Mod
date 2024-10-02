@@ -6,21 +6,13 @@
 --[[ ================================================ ]]--
 --[[
 
-Main file of Immersive Hunting Remastered.
+Main file of Immersive Hunting Remastered. Needs to be loaded for addons.
 
 ]]--
 --[[ ================================================ ]]--
 
 -- requirements
 local ImmersiveHunting = require "ImmersiveHunting_module"
-
--- localy initialize player
-local client_player = getPlayer()
-local function initTLOU_OnGameStart(playerIndex, player_init)
-	client_player = getPlayer()
-end
-Events.OnCreatePlayer.Remove(initTLOU_OnGameStart)
-Events.OnCreatePlayer.Add(initTLOU_OnGameStart)
 
 ImmersiveHunting.AmmoTypes = {
 	--- Bullets
@@ -84,17 +76,37 @@ ImmersiveHunting.AmmoTypes = {
 	["Base.SlingShotAmmo_Marble"] 		= {AmmoType = "Other", NoHitTime = true, Emin = 0, Emax = 5, Diameter = 20,},
 }
 
-ImmersiveHunting.ValidForageItems = {
-    ["ImmersiveHunting.SIHTraceSmall"] = "SmallGame",
-    ["ImmersiveHunting.SIHTraceBig"] = "BigGame",
-    ["ImmersiveHunting.SIHSpottedBird"] = "Bird",
+ImmersiveHunting.AnimalTypes = {
+	["Bird"] = {
+		{item = "Base.DeadBird"},
+	},
+	["SmallGame"] = {
+		{item = "Base.DeadRabbit"},
+		{item = "Base.DeadRabbit"},
+	},
+	["BigGame"] = {
+		{item = "ImmersiveHunting.SIHPigCorpse"},
+		{item = "ImmersiveHunting.SIHDeerCorpse"},
+	},
 }
 
 ImmersiveHunting.HuntingConditions["Bird"] = {
-    distance = {min = 5, max = 15},
     huntingCaliber = {
-        ["Bullet"] = {Emin = 300,Emax = 1500,Diameter = 6},
-        ["Shotgun"] = {Diameter = 16,shredDiameter = 20,kill = true},
+        ["Bullet"] = {
+			Emin = 160,
+			Emax = 1500,
+			Diameter = 6,
+			impact = 5,
+		},
+        ["Shotgun"] = {
+			Diameter = 10,
+			shredDiameter = 20,
+			kill = true,
+			impact = 10,
+		},
+		["Other"] = {
+			impact = 5,
+		},
     },
     melee = {
         mightKill = {
@@ -107,7 +119,7 @@ ImmersiveHunting.HuntingConditions["Bird"] = {
             -- ["Spear"] = true,
         },
         willKill = {
-			-- ["Improvised"] = true,
+			-- ["Improvised"] = 3,
             ["SmallBlunt"] = 3,
             ["Blunt"] = 1,
             ["Axe"] = 1,
@@ -121,5 +133,101 @@ ImmersiveHunting.HuntingConditions["Bird"] = {
             ["LongBlade"] = true,
         },
     },
-    canBeShreded = true,
+    canBeShrededDiameter = true,
+	canBeShrededEnergy = true,
+}
+
+
+ImmersiveHunting.HuntingConditions["SmallGame"] = {
+    huntingCaliber = {
+        ["Bullet"] = {
+			Emin = 200,
+			Emax = 4500,
+			Diameter = 11.5,
+			impact = 9,
+		},
+        ["Shotgun"] = {
+			Diameter = 16,
+			shredDiameter = 20,
+			kill = true,
+			impact = 8,
+		},
+		["Other"] = {
+			impact = 5,
+		},
+    },
+    melee = {
+        mightKill = {
+            ["Improvised"] = 1,
+            -- ["SmallBlunt"] = true,
+            -- ["Blunt"] = true,
+            -- ["Axe"] = true,
+            -- ["SmallBlade"] = true,
+            -- ["LongBlade"] = true,
+            -- ["Spear"] = true,
+        },
+        willKill = {
+			-- ["Improvised"] = 3,
+            ["SmallBlunt"] = 3,
+            ["Blunt"] = 2,
+            ["Axe"] = 2,
+            ["SmallBlade"] = 7,
+            ["LongBlade"] = 4,
+            ["Spear"] = 10,
+        },
+        noMeleeTwoHanded = {
+            ["Blunt"] = true,
+            ["Axe"] = true,
+            -- ["LongBlade"] = true,
+        },
+    },
+    canBeShrededDiameter = true,
+	canBeShrededEnergy = true,
+}
+
+ImmersiveHunting.HuntingConditions["BigGame"] = {
+    huntingCaliber = {
+        ["Bullet"] = {
+			Emin = 400,
+			Emax = 4500,
+			Diameter = 16,
+			impact = 10,
+		},
+        ["Shotgun"] = {
+			Diameter = 16,
+			shredDiameter = 30,
+			kill = true,
+			impact = 6,
+		},
+		["Other"] = {
+			impact = 5,
+		},
+    },
+    melee = {
+        mightKill = {
+            ["Improvised"] = 1,
+            -- ["SmallBlunt"] = true,
+            -- ["Blunt"] = true,
+            -- ["Axe"] = true,
+            -- ["SmallBlade"] = true,
+            -- ["LongBlade"] = true,
+            -- ["Spear"] = true,
+        },
+        willKill = {
+			-- ["Improvised"] = 3,
+            ["SmallBlunt"] = 1,
+            ["Blunt"] = 1,
+            ["Axe"] = 6,
+            ["SmallBlade"] = 1,
+            ["LongBlade"] = 6,
+            ["Spear"] = 7,
+        },
+        noMeleeTwoHanded = {
+            ["Blunt"] = true,
+            -- ["Axe"] = true,
+            -- ["LongBlade"] = true,
+        },
+    },
+    canBeShrededDiameter = true,
+	canBeShrededEnergy = false,
 }

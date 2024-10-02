@@ -1,0 +1,74 @@
+StrengthSandbox_EN = {
+	/* Page names */
+	Sandbox_ImmersiveHunting = "Immersive Hunting Remastered",
+
+
+    /* Options */
+    Sandbox_ImmersiveHunting_YearsLater = "Years Later mode",
+    Sandbox_ImmersiveHunting_YearsLater_tooltip = "Animal spottings will be more common than normal in cities due to nature taking over in populated areas.",
+
+    Sandbox_ImmersiveHunting_ShowProbabilities = "Show hunting probabilities",
+    Sandbox_ImmersiveHunting_ShowProbabilities_tooltip = "Chance to hunt a spotting will be shown in the tooltip.",
+
+
+    /* Aiming impact */
+    Sandbox_ImmersiveHunting_AimingImpact = "Impact of the aiming level on hunting [%]",
+    Sandbox_ImmersiveHunting_AimingImpact_tooltip = "The user aiming skill will impact hunting conditions. ",
+
+    Sandbox_ImmersiveHunting_AimingImpactMinimumAimingLevelToHunt = "Minimum aiming level for minimum impact and to hunt",
+    Sandbox_ImmersiveHunting_AimingImpactMaximumAimingLevelToHunt_tooltip = "The minimum level in aiming required for a character to be able to hunt with a gun.",
+    Sandbox_ImmersiveHunting_AimingImpactMaximumAimingLevelToHunt = "Maximum aiming level for maximum impact",
+    Sandbox_ImmersiveHunting_AimingImpactMaximumAimingLevelToHunt_tooltip = "This won't make you unable to hunt, it will simply define the level needed to reach the maximum aiming impact value to hit a target.",
+
+    Sandbox_ImmersiveHunting_AimingImpactMinimumAimingImpact = "Minimum aiming impact on hunting [%]",
+    Sandbox_ImmersiveHunting_AimingImpactMinimumAimingImpact_tooltip = "If your aiming is the minimum level required to be able to hunt, the impact due to aiming on the hunting chance will be this value.",
+    Sandbox_ImmersiveHunting_AimingImpactMaximumAimingImpact = "Maximum aiming impact on hunting [%]",
+    Sandbox_ImmersiveHunting_AimingImpactMaximumAimingImpact_tooltip = "If your aiming is the maximum level (or more), the impact due to aiming on the hunting chance will be this value.",
+
+
+    /* Melee impact */
+    Sandbox_ImmersiveHunting_MeleeImpact = "Impact of the melee level on hunting [%]",
+    Sandbox_ImmersiveHunting_MeleeImpact_tooltip = "The user melee skill will impact hunting conditions. ",
+
+    Sandbox_ImmersiveHunting_MeleeImpactMinimumMeleeLevelToHunt = "Minimum melee level for minimum impact and to hunt",
+    Sandbox_ImmersiveHunting_MeleeImpactMaximumMeleeLevelToHunt_tooltip = "The minimum level in melee required for a character to be able to hunt with a gun.",
+    Sandbox_ImmersiveHunting_MeleeImpactMaximumMeleeLevelToHunt = "Maximum melee level for maximum impact",
+    Sandbox_ImmersiveHunting_MeleeImpactMaximumMeleeLevelToHunt_tooltip = "This won't make you unable to hunt, it will simply define the level needed to reach the maximum melee impact value to hit a target.",
+
+    Sandbox_ImmersiveHunting_MeleeImpactMinimumMeleeImpact = "Minimum aiming impact on hunting [%]",
+    Sandbox_ImmersiveHunting_MeleeImpactMinimumMeleeImpact_tooltip = "If your melee is the minimum level required to be able to hunt, the impact due to melee on the hunting chance will be this value.",
+    Sandbox_ImmersiveHunting_MeleeImpactMaximumMeleeImpact = "Maximum aiming impact on hunting [%]",
+    Sandbox_ImmersiveHunting_MeleeImpactMaximumMeleeImpact_tooltip = "If your melee is the maximum level (or more), the impact due to melee on the hunting chance will be this value.",
+
+
+    /* Strength impact */
+    Sandbox_ImmersiveHunting_StrengthImpact = "Impact of the strength level on hunting [%]",
+    Sandbox_ImmersiveHunting_StrengthImpact_tooltip = "The user strength skill will impact hunting conditions. ",
+
+    Sandbox_ImmersiveHunting_StrengthImpactMinimumStrengthLevelToHunt = "Minimum strength level for minimum impact and to hunt",
+    Sandbox_ImmersiveHunting_StrengthImpactMaximumStrengthLevelToHunt_tooltip = "The minimum level in strength required for a character to be able to hunt with a gun.",
+    Sandbox_ImmersiveHunting_StrengthImpactMaximumStrengthLevelToHunt = "Maximum strength level for maximum impact",
+    Sandbox_ImmersiveHunting_StrengthImpactMaximumStrengthLevelToHunt_tooltip = "This won't make you unable to hunt, it will simply define the level needed to reach the maximum strength impact value to hit a target.",
+
+    Sandbox_ImmersiveHunting_StrengthImpactMinimumStrengthImpact = "Minimum aiming impact on hunting [%]",
+    Sandbox_ImmersiveHunting_StrengthImpactMinimumStrengthImpact_tooltip = "If your strength is the minimum level required to be able to hunt, the impact due to strength on the hunting chance will be this value.",
+    Sandbox_ImmersiveHunting_StrengthImpactMaximumStrengthImpact = "Maximum aiming impact on hunting [%]",
+    Sandbox_ImmersiveHunting_StrengthImpactMaximumStrengthImpact_tooltip = "If your strength is the maximum level (or more), the impact due to strength on the hunting chance will be this value.",
+
+
+    /* Other impacts */
+    Sandbox_ImmersiveHunting_WeaponImpact = "Impact of the weapon on hunting [%]",
+    Sandbox_ImmersiveHunting_WeaponImpact_tooltip = "The weapon and the user aiming skill will impact hunting conditions. This can boost the hunting chance or decrease it.",
+
+    Sandbox_ImmersiveHunting_LightImpact = "Impact of day light on hunting [%]",
+    Sandbox_ImmersiveHunting_LightImpact_tooltip = "Lightness of the day will impact hunting conditions. This can boost the hunting chance or decrease it.",
+
+    Sandbox_ImmersiveHunting_FogImpact = "Impact of fog on hunting [%]",
+    Sandbox_ImmersiveHunting_FogImpact_tooltip = "Fog will impact hunting conditions. This can boost the hunting chance or decrease it.",
+
+    Sandbox_ImmersiveHunting_WindImpact = "Impact of wind on hunting [%]",
+    Sandbox_ImmersiveHunting_WindImpact_tooltip = "Wind will impact hunting conditions. This can boost the hunting chance or decrease it.",
+
+    Sandbox_ImmersiveHunting_BoostToHuntingChance = "Hunting chance multiplier [%]",
+    Sandbox_ImmersiveHunting_BoostToHuntingChance_tooltip = "Final chance of hunting a target will be boosted by this multiplier. 100% won't boost the hunting chance while a lower value will reduce overall chance of hunting and a higher value will increase the chance of hunting the target.",
+}

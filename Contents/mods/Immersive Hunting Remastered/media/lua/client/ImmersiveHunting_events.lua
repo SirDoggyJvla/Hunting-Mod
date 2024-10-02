@@ -16,3 +16,5 @@ local ImmersiveHunting = require "ImmersiveHunting_module"
 require "ImmersiveHunting_main"
 
 Events.onFillSearchIconContextMenu.Add(ImmersiveHunting.onFillSearchIconContextMenu)
+
+Events.OnPostRender.Add(ImmersiveHunting.RenderHighLights)

@@ -7,3 +7,206 @@ option ImmersiveHunting.YearsLater
 	page = ImmersiveHunting,
 	translation = ImmersiveHunting_YearsLater,
 }
+
+option ImmersiveHunting.ShowProbabilities
+{
+	type = boolean,
+	default = false,
+	page = ImmersiveHunting,
+	translation = ImmersiveHunting_ShowProbabilities,
+}
+
+
+
+/* Aiming impact */
+option ImmersiveHunting.AimingImpact
+{
+	type = boolean,
+	default = true,
+	page = ImmersiveHunting,
+	translation = ImmersiveHunting_AimingImpact,
+}
+
+option ImmersiveHunting.MinimumAimingLevelToHunt
+{
+	type = integer, 
+	min = 0, 
+	max = 10, 
+	default = 1,
+	page = ImmersiveHunting,
+	translation = ImmersiveHunting_AimingImpactMinimumAimingLevelToHunt,
+}
+
+option ImmersiveHunting.MaximumAimingLevelToHunt
+{
+	type = integer, 
+	min = 0, 
+	max = 10, 
+	default = 10,
+	page = ImmersiveHunting,
+	translation = ImmersiveHunting_AimingImpactMaximumAimingLevelToHunt,
+}
+
+option ImmersiveHunting.MinimumAimingImpact
+{
+	type = integer, 
+	min = 0, 
+	max = 500, 
+	default = 50,
+	page = ImmersiveHunting,
+	translation = ImmersiveHunting_AimingImpactMinimumAimingImpact,
+}
+
+option ImmersiveHunting.MaximumAimingImpact
+{
+	type = integer, 
+	min = 0, 
+	max = 500, 
+	default = 150,
+	page = ImmersiveHunting,
+	translation = ImmersiveHunting_AimingImpactMaximumAimingImpact,
+}
+
+
+/* Melee impact */
+option ImmersiveHunting.MinimumMeleeLevelToHunt
+{
+	type = integer, 
+	min = 0, 
+	max = 10, 
+	default = 1,
+	page = ImmersiveHunting,
+	translation = ImmersiveHunting_MeleeImpactMinimumMeleeLevelToHunt,
+}
+
+option ImmersiveHunting.MaximumMeleeLevelToHunt
+{
+	type = integer, 
+	min = 0, 
+	max = 10, 
+	default = 10,
+	page = ImmersiveHunting,
+	translation = ImmersiveHunting_MeleeImpactMaximumMeleeLevelToHunt,
+}
+
+option ImmersiveHunting.MinimumMeleeImpact
+{
+	type = integer, 
+	min = 0, 
+	max = 500, 
+	default = 50,
+	page = ImmersiveHunting,
+	translation = ImmersiveHunting_MeleeImpactMinimumMeleeImpact,
+}
+
+option ImmersiveHunting.MaximumMeleeImpact
+{
+	type = integer, 
+	min = 0, 
+	max = 500, 
+	default = 150,
+	page = ImmersiveHunting,
+	translation = ImmersiveHunting_MeleeImpactMaximumMeleeImpact,
+}
+
+
+/* Strength impact */
+option ImmersiveHunting.StrengthImpact
+{
+	type = boolean,
+	default = true,
+	page = ImmersiveHunting,
+	translation = ImmersiveHunting_StrengthImpact,
+}
+
+option ImmersiveHunting.MinimumStrengthLevelToHunt
+{
+	type = integer, 
+	min = 0, 
+	max = 10, 
+	default = 1,
+	page = ImmersiveHunting,
+	translation = ImmersiveHunting_StrengthImpactMinimumStrengthLevelToHunt,
+}
+
+option ImmersiveHunting.MaximumStrengthLevelToHunt
+{
+	type = integer, 
+	min = 0, 
+	max = 10, 
+	default = 10,
+	page = ImmersiveHunting,
+	translation = ImmersiveHunting_StrengthImpactMaximumStrengthLevelToHunt,
+}
+
+option ImmersiveHunting.MinimumStrengthImpact
+{
+	type = integer, 
+	min = 0, 
+	max = 500, 
+	default = 50,
+	page = ImmersiveHunting,
+	translation = ImmersiveHunting_StrengthImpactMinimumStrengthImpact,
+}
+
+option ImmersiveHunting.MaximumStrengthImpact
+{
+	type = integer, 
+	min = 0, 
+	max = 500, 
+	default = 150,
+	page = ImmersiveHunting,
+	translation = ImmersiveHunting_StrengthImpactMaximumStrengthImpact,
+}
+
+
+/* Other impacts */
+option ImmersiveHunting.WeaponImpact
+{
+	type = integer, 
+	min = 0, 
+	max = 500, 
+	default = 100,
+	page = ImmersiveHunting,
+	translation = ImmersiveHunting_WeaponImpact,
+}
+
+option ImmersiveHunting.LightImpact
+{
+	type = integer, 
+	min = 0, 
+	max = 500, 
+	default = 100,
+	page = ImmersiveHunting,
+	translation = ImmersiveHunting_LightImpact,
+}
+
+option ImmersiveHunting.FogImpact
+{
+	type = integer, 
+	min = 0, 
+	max = 500, 
+	default = 100,
+	page = ImmersiveHunting,
+	translation = ImmersiveHunting_FogImpact,
+}
+
+option ImmersiveHunting.WindImpact
+{
+	type = integer, 
+	min = 0, 
+	max = 500, 
+	default = 100,
+	page = ImmersiveHunting,
+	translation = ImmersiveHunting_WindImpact,
+}
+
+option ImmersiveHunting.BoostToHuntingChance
+{
+	type = integer, 
+	min = 0, 
+	max = 500, 
+	default = 100,
+	page = ImmersiveHunting,
+	translation = ImmersiveHunting_BoostToHuntingChance,
+}
