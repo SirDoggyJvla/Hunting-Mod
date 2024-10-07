@@ -1,19 +1,27 @@
 Tooltip_EN = {
-	-- Item tooltip
+	/* Item tooltip */
 	Tooltip_Recipe_TrackSmall = "Can be various indications of a small animal passing through this area.",
 	Tooltip_Recipe_TrackBig = "Can be various indications of a big animal passing through this area.",
 	Tooltip_Recipe_Hunt = "Animals can be hunted with several different guns.<br>Hunt success is determined by your skills, traits, weather and gun type.<br>Having a scope helps too.",
 	Tooltip_Recipe_Corpse = "Dead animal corpse.<br>Can be cut up to obtain meat.<br>Make sure you have plenty of room for it and means to preserve it.",
 
 	/* Hunting tooltip */
+	Tooltip_ImmersiveHunting_HuntTooltip = "%1 will be used to hunt:",
 	Tooltip_ImmersiveHunting_NeedWeapon = "<RED> Requires a weapon equiped to hunt.",
+	Tooltip_ImmersiveHunting_NoAmmo = "Need to reload.",
 	Tooltip_ImmersiveHunting_CurrentWeapon = "%1 will be used to hunt",
+	Tooltip_ImmersiveHunting_NoRoundChambered = "No round chambered",
 
 	/* Impacts */
 	Tooltip_ImmersiveHunting_impacts = "Below are every impacts on the hunting chance. A value close to 0% will bring the overall hunt chance close to 0% while a value of 100% has no impact on the hunting chances and a value above 100% improves the hunting success.",
 	Tooltip_ImmersiveHunting_DayLightImpact = "Day light impact:",
 	Tooltip_ImmersiveHunting_FogImpact = "Fog impact:",
 	Tooltip_ImmersiveHunting_WindImpact = "Wind impact:",
+	Tooltip_ImmersiveHunting_ScopeBonus = "Scope bonus:",
+	Tooltip_ImmersiveHunting_MoodleImpact = "Moodles impact:",
+	Tooltip_ImmersiveHunting_TraitImpact = "Traits impact:",
+	Tooltip_ImmersiveHunting_PositiveTraits = "Positive traits impacting chances:",
+	Tooltip_ImmersiveHunting_NegativeTraits = "Negative traits impacting chances:",
 	Tooltip_ImmersiveHunting_ChanceToHit = "Chance to hit:",
 	Tooltip_ImmersiveHunting_ChanceToHunt = "Final chance to hunt target:",
 
@@ -32,9 +40,14 @@ Tooltip_EN = {
 	Tooltip_ImmersiveHunting_notSkilledEnough = "Not skilled enough with this type of weapon",
 	Tooltip_ImmersiveHunting_notStrongEnough = "Not strong enough",
 
-	/* Impacts */
+	/* Weapon impacts */
 	Tooltip_ImmersiveHunting_aimingImpact = "Aiming impact:",
 	Tooltip_ImmersiveHunting_gunImpact = "Gun impact:",
 	Tooltip_ImmersiveHunting_meleeImpact = "Melee weapon impact:",
 	Tooltip_ImmersiveHunting_strengthImpact = "Strength impact:",
+	Tooltip_ImmersiveHunting_StealthImpact = "Stealth impact:",
+
+	/* Butcher */
+    Tooltip_ImmersiveHunting_ButcherAmount = "%1 pieces of meat left.",
+	Tooltip_ImmersiveHunting_NeedSharpKnife = "Need a sharp knife to butcher.",
 }

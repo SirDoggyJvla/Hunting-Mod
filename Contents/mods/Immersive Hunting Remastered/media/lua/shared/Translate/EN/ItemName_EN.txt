@@ -1,3 +1,5 @@
 ItemName_EN = {
     ItemName_Base.Steak = "Chunk of meat",
+    ItemName_ImmersiveHunting.SIHDeerCorpse = "Deer corpse",
+    ItemName_ImmersiveHunting.SIHPigCorpse = "Wild pig corpse",
 }
