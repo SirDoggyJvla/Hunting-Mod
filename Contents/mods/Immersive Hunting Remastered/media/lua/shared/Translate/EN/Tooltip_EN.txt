@@ -14,9 +14,9 @@ Tooltip_EN = {
 
 	/* Impacts */
 	Tooltip_ImmersiveHunting_impacts = "Below are every impacts on the hunting chance. A value close to 0% will bring the overall hunt chance close to 0% while a value of 100% has no impact on the hunting chances and a value above 100% improves the hunting success.",
-	Tooltip_ImmersiveHunting_DayLightImpact = "Day light impact:",
-	Tooltip_ImmersiveHunting_FogImpact = "Fog impact:",
-	Tooltip_ImmersiveHunting_WindImpact = "Wind impact:",
+	Tooltip_ImmersiveHunting_DayLightImpact = "Day light value:",
+	Tooltip_ImmersiveHunting_FogImpact = "Fog value:",
+	Tooltip_ImmersiveHunting_WindImpact = "Wind value:",
 	Tooltip_ImmersiveHunting_ScopeBonus = "Scope bonus:",
 	Tooltip_ImmersiveHunting_MoodleImpact = "Moodles impact:",
 	Tooltip_ImmersiveHunting_TraitImpact = "Traits impact:",

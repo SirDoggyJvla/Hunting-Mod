@@ -271,7 +271,7 @@ ImmersiveHunting.GetWeaponStats = function(player,weapon,huntTarget)
         -- or arrows, slingshots etc
         elseif ammoType == "Other" then
             -- verify such a caliber can kill
-            if huntingCaliberData.CanKill then
+            if bulletData.CanKill then
                 kill = true
                 mightKill = true
             end
