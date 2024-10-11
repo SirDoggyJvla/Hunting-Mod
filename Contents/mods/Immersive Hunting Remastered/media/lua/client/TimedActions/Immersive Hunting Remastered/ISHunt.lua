@@ -59,12 +59,23 @@ function ImmersiveHunting_ISHunt:stop()
 end
 
 function ImmersiveHunting_ISHunt:perform()
-	-- remove the foraging icon and data related to it
-	self.baseIcon:onClickDiscard()
-	self.square:getModData().HuntInformation = nil
-
 	-- get character
 	local character = self.character
+	local isRanged = self.isRanged
+
+	-- retrieve icon and manager to delete icon
+	local manager = ISSearchManager:new(character)
+	local baseIcon = self.baseIcon
+
+	--flag the icon for removal
+	baseIcon:setIsBeingRemoved(true)
+
+	--do the icon removal
+	manager:removeItem(baseIcon)
+	manager:removeIcon(baseIcon)
+
+	-- remove data on square
+	self.square:getModData().HuntInformation = nil
 
 	-- attack
 	local swingSound = self.weapon:getSwingSound()
@@ -78,9 +89,6 @@ function ImmersiveHunting_ISHunt:perform()
 
 	if test and kill then
 		character:Say(getText("IGUI_ImmersiveHunting_SuccessHunt"..tostring(random:random(1,8))))
-
-		-- show the square with the hunting target
-		ImmersiveHunting.AddHighlightSquare(self.squareTarget,{r=1,g=1,b=1},self.character)
 
 		-- determine the bonus size
 		local size
@@ -99,12 +107,11 @@ function ImmersiveHunting_ISHunt:perform()
 		item:setProteins(item:getProteins() * size)
 
 		-- if melee, spawn corpse on player
-		if self.isRanged then
-			self.squareTarget:AddWorldInventoryItem(item, 0, 0, 0)
-		else
-			self.square:AddWorldInventoryItem(item, 0, 0, 0)
-		end
+		local square = isRanged and self.squareTarget or self.square
+		square:AddWorldInventoryItem(item, 0, 0, 0)
 
+		-- show the square with the hunting target
+		ImmersiveHunting.AddHighlightSquare(square,{r=1,g=1,b=1},self.character)
 	else
 		character:Say(getText("IGUI_ImmersiveHunting_FailedHunt"..tostring(random:random(1,8))))
 	end
@@ -113,7 +120,7 @@ function ImmersiveHunting_ISHunt:perform()
 	local xpGain = SandboxVars.ImmersiveHunting.XPGainHunting
 	character:getXp():AddXP(Perks.PlantScavenging, xpGain)
 
-	if self.isRanged then
+	if isRanged then
 		character:getXp():AddXP(Perks.Aiming, xpGain)
 	else
 		local categories = self.weapon:getCategories()

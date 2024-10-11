@@ -16,17 +16,16 @@ local ImmersiveHunting = require "ImmersiveHunting_module"
 require "TimedActions/Immersive Hunting Remastered/ISHunt"
 -- local gametime = GameTime:getInstance()
 local climateManager = getClimateManager()
+local gametime = getGameTime()
 local random = newrandom()
 
 -- localy initialize player and values
 local client_player = getPlayer()
-local a_aiming,b_aiming,a_melee,b_melee,a_strength,b_strength,a_stealth,b_stealth
 local function initTLOU_OnGameStart(playerIndex, player_init)
 	client_player = getPlayer()
 
     -- determine a and b for y = ax + b for aiming impact
     local x1 = SandboxVars.ImmersiveHunting.MinimumAimingLevelToHunt
-    if not x1 then return end
     local x2 = SandboxVars.ImmersiveHunting.MaximumAimingLevelToHunt
     local y1 = SandboxVars.ImmersiveHunting.MinimumAimingImpact
     local y2 = SandboxVars.ImmersiveHunting.MaximumAimingImpact
@@ -42,8 +41,8 @@ local function initTLOU_OnGameStart(playerIndex, player_init)
         x2 = 10
     end
 
-    a_aiming = (y2-y1)/(x2-x1)/100
-    b_aiming = (x2*y1 - x1*y2)/(x2-x1)/100
+    ImmersiveHunting.a_aiming = (y2-y1)/(x2-x1)/100
+    ImmersiveHunting.b_aiming = (x2*y1 - x1*y2)/(x2-x1)/100
 
 
     -- determine a and b for y = ax + b for stength impact
@@ -63,8 +62,8 @@ local function initTLOU_OnGameStart(playerIndex, player_init)
         x2 = 10
     end
 
-    a_melee = (y2-y1)/(x2-x1)/100
-    b_melee = (x2*y1 - x1*y2)/(x2-x1)/100
+    ImmersiveHunting.a_melee = (y2-y1)/(x2-x1)/100
+    ImmersiveHunting.b_melee = (x2*y1 - x1*y2)/(x2-x1)/100
 
 
     -- determine a and b for y = ax + b for strength impact
@@ -84,8 +83,8 @@ local function initTLOU_OnGameStart(playerIndex, player_init)
         x2 = 10
     end
 
-    a_strength = (y2-y1)/(x2-x1)/100
-    b_strength = (x2*y1 - x1*y2)/(x2-x1)/100
+    ImmersiveHunting.a_strength = (y2-y1)/(x2-x1)/100
+    ImmersiveHunting.b_strength = (x2*y1 - x1*y2)/(x2-x1)/100
 
 
     -- determine a and b for y = ax + b for stealth impact
@@ -100,20 +99,22 @@ local function initTLOU_OnGameStart(playerIndex, player_init)
         y2 = 150
     end
 
-    a_stealth = (y2-y1)/(x2-x1)/100
-    b_stealth = (x2*y1 - x1*y2)/(x2-x1)/100
+    ImmersiveHunting.a_stealth = (y2-y1)/(x2-x1)/100
+    ImmersiveHunting.b_stealth = (x2*y1 - x1*y2)/(x2-x1)/100
 end
 Events.OnCreatePlayer.Remove(initTLOU_OnGameStart)
 Events.OnCreatePlayer.Add(initTLOU_OnGameStart)
 
----Retrieve the hunting informations on the target
+---Returns the hunting informations on the target, or initialize them if they aren't already.
 ---@param square IsoGridSquare
----@param huntTarget string
+---@param player IsoPlayer
 ---@return table
-ImmersiveHunting.GetHuntInformations = function(square,player,huntTarget)
-    -- define informations on the hunt target
+ImmersiveHunting.GetHuntInformations = function(square,player)
+    -- get options
     local HuntInformation = square:getModData().HuntInformation
-    if not HuntInformation or not HuntInformation.squareTarget or not HuntInformation.animal then
+
+    -- define informations on the hunt target
+    if not HuntInformation or not HuntInformation.squareTarget then
         -- get coordinates
         local p_x,p_y = player:getX(),player:getY()
         local s_x,s_y = square:getX(),square:getY()
@@ -148,21 +149,10 @@ ImmersiveHunting.GetHuntInformations = function(square,player,huntTarget)
             squareTarget = square
         end
 
-        -- determine animal to hunt
-        local animal
-        if type(huntTarget) == "string" then
-            local animals = ImmersiveHunting.AnimalTypes[huntTarget]
-            animal = animals[random:random(1,#animals)]
-        elseif type(huntTarget) == "table" then
-            animal = huntTarget
-        end
-
         square:getModData().HuntInformation = {
             squareTarget = squareTarget,
-            animal = animal,
         }
         HuntInformation = square:getModData().HuntInformation
-
     end
 
     return HuntInformation
@@ -172,42 +162,59 @@ end
 ---Determines whenever a weapon will kill or not. It also determines if
 ---the weapon might kill, which will be basically an extra roll if weapon
 ---hits hunting target.
+---@param player IsoPlayer
 ---@param weapon HandWeapon
 ---@param huntTarget string
----@return boolean kill
----@return boolean mightKill
----@return boolean shred
----@return number chanceToHit
----@return string|nil reason
----@return table impacts
+---@return boolean|nil canAttack
+---@return table results
+---@return string reason
 ImmersiveHunting.GetWeaponStats = function(player,weapon,huntTarget)
-    -- default values
-    local kill = false
-    local mightKill = false
-    local shred = false
-    local chanceToHit = 0
-    local impacts = {}
+    local canAttack = true
+    local results = {
+        kill = false,
+        mightKill = false,
+        shred = false,
+        chanceToHit = 0,
+        impacts = {},
+    }
+    local impacts = results.impacts
+    local reason = ""
 
     -- get data related to hunting type
-    local huntingConditions = ImmersiveHunting.HuntingConditions[huntTarget]
+    local targetConditions = ImmersiveHunting.HuntingConditions[huntTarget]
 
-    -- handle as ranged weapon
+    ------- hanndle as ranged -------
     if weapon:isRanged() then
+        -- check if jammed
+        if weapon:isJammed() then return false, results, "Tooltip_ImmersiveHunting_IsJammed" end
+
+        -- verify is loaded
+        if weapon:haveChamber() then
+            if not weapon:isRoundChambered() then return false, results, "Tooltip_ImmersiveHunting_NoRoundChambered" end
+        else
+            if weapon:getCurrentAmmoCount() == 0 then return false, results, "Tooltip_ImmersiveHunting_NoAmmo" end
+        end
+
         -- check ammo type
         local ammo = weapon:getAmmoType()
-        if not ammo then return false, true, false, chanceToHit, "Tooltip_ImmersiveHunting_noAmmoType", {} end
+        if not ammo then return false, results, "Tooltip_ImmersiveHunting_noAmmoType" end
+
+        -- ranged can attack
+        canAttack = true
 
         -- default to mightKill for non-compatible calibers
-        local bulletData = ImmersiveHunting.AmmoTypes[ammo]
-        if not bulletData then
-            return false, true, false, 80, "Tooltip_ImmersiveHunting_notRecognized", {}
+        local caliberDataBase = ImmersiveHunting.CaliberDataBase[ammo]
+        if not caliberDataBase then
+            results.chanceToHit = 80
+            results.mightKill = true
+            return canAttack, results, "Tooltip_ImmersiveHunting_notRecognized"
         end
 
         -- get huntingCaliber data
-        local ammoType = bulletData.AmmoType
-        local huntingCaliberData = huntingConditions.huntingCaliber[ammoType]
-        if not huntingCaliberData then
-            return false, false, false, 0, "Tooltip_ImmersiveHunting_badCaliber", {}
+        local ammoType = caliberDataBase.AmmoType
+        local targetLimits = targetConditions.huntingCaliber[ammoType]
+        if not targetLimits then
+            return canAttack, results, "Tooltip_ImmersiveHunting_badCaliber"
         end
 
         -- aiming impact
@@ -215,55 +222,55 @@ ImmersiveHunting.GetWeaponStats = function(player,weapon,huntTarget)
         if SandboxVars.ImmersiveHunting.AimingImpact then
             local aimingLevel = player:getPerkLevel(Perks.Aiming)
             if aimingLevel < SandboxVars.ImmersiveHunting.MinimumAimingLevelToHunt then
-                return false, false, false, 0, "Tooltip_ImmersiveHunting_badAiming", {}
+                return false, results, "Tooltip_ImmersiveHunting_badAiming"
             end
-            aimingImpact = aimingLevel*a_aiming + b_aiming
-            impacts.aimingImpact = aimingImpact
+            aimingImpact = aimingLevel*ImmersiveHunting.a_aiming + ImmersiveHunting.b_aiming
+            impacts.AimingImpact = aimingImpact
         end
 
         -- weapon impact
-        local gunImpact = 1 - (1 - huntingCaliberData.impact/10) * SandboxVars.ImmersiveHunting.WeaponImpact/100
-        impacts.gunImpact = gunImpact
+        local gunImpact = 1 - (1 - targetLimits.impact/10) * SandboxVars.ImmersiveHunting.WeaponImpact/100
+        impacts.WeaponImpact = gunImpact
 
         -- total chance to hit
-        chanceToHit = gunImpact * aimingImpact
+        results.chanceToHit = gunImpact * aimingImpact
 
         -- energy of bullet types is considered
         if ammoType == "Bullet" then
             -- verify bullet can kill
-            if bulletData.Emin > huntingCaliberData.Emin then
-                kill = true
-                mightKill = true
+            if caliberDataBase.Emin > targetLimits.Emin then
+                results.kill = true
+                results.mightKill = true
 
-            elseif bulletData.Emax > huntingCaliberData.Emin then
-                mightKill = true
+            elseif caliberDataBase.Emax > targetLimits.Emin then
+                results.mightKill = true
             end
 
             -- if hunting target is susceptible to shreding (losing value)
-            if huntingConditions.canBeShrededDiameter and bulletData.Diameter > huntingCaliberData.Diameter
-            or huntingConditions.canBeShrededEnergy and bulletData.Emax > huntingCaliberData.Emax
+            if targetConditions.canBeShrededDiameter and caliberDataBase.Diameter > targetLimits.Diameter
+            or targetConditions.canBeShrededEnergy and caliberDataBase.Emax > targetLimits.Emax
             then
-                shred = true
+                results.shred = true
             end
 
         -- energy is ignored here, suppose energy is the same and diameter is considered
         -- slug can kill big games, but shreds small birds, birds are one shot tho
         elseif ammoType == "Shotgun" then
             -- verify if hunting target should die from shotgun instantly (typically birds)
-            if huntingCaliberData.kill then
-                kill = true
-                mightKill = true
+            if targetLimits.kill then
+                results.kill = true
+                results.mightKill = true
 
             -- else calculate based on needed diameter of shotgun to kill
-            elseif bulletData.Diameter > huntingCaliberData.Diameter then
-                kill = true
-                mightKill = true
+            elseif caliberDataBase.Diameter > targetLimits.Diameter then
+                results.kill = true
+                results.mightKill = true
             end
 
             -- if hunting target is susceptible to shreding (losing value)
-            if huntingConditions.canBeShrededDiameter then
-                if bulletData.Diameter > huntingCaliberData.shredDiameter then
-                    shred = true
+            if targetConditions.canBeShrededDiameter then
+                if caliberDataBase.Diameter > targetLimits.shredDiameter then
+                    results.shred = true
                 end
             end
 
@@ -271,87 +278,91 @@ ImmersiveHunting.GetWeaponStats = function(player,weapon,huntTarget)
         -- or arrows, slingshots etc
         elseif ammoType == "Other" then
             -- verify such a caliber can kill
-            if bulletData.CanKill then
-                kill = true
-                mightKill = true
+            if caliberDataBase.CanKill then
+                results.kill = true
+                results.mightKill = true
             end
         end
 
-    -- handle as melee weapon
+
+    ------- handle as melee -------
     else
+        -- melee can always attack
+        canAttack = true
+
         -- get melee rules for this huntTarget
-        local melee = huntingConditions.melee
-        local melee_mightKill = melee.mightKill
-        local melee_willKill = melee.willKill
-        local melee_noMeleeTwoHanded = melee.noMeleeTwoHanded
+        local meleeConditions = targetConditions.melee
+        local melee_mightKill = meleeConditions.mightKill
+        local melee_willKill = meleeConditions.willKill
+        local melee_noMeleeTwoHanded = meleeConditions.noMeleeTwoHanded
 
         local twoHanded = weapon:isTwoHandWeapon()
 
         -- iterate through every categories and check every weapon types
         local categories = weapon:getCategories()
-        local category,perk,level,meleeImpact,chanceKill,chanceMightKill
+        local a_melee,b_melee = ImmersiveHunting.a_melee,ImmersiveHunting.b_melee
         for i = 0,categories:size() - 1 do
             -- get category
-            category = categories:get(i)
+            local category = categories:get(i)
 
             -- if weapon is two handed, verify if its category can be
             if melee_noMeleeTwoHanded and twoHanded then
                 -- if weapon can't be used to hunt bcs two handed, skip
                 if melee_noMeleeTwoHanded[category] then
-                    return false, false, false, 0, "Tooltip_ImmersiveHunting_twoHanded"..category, {}
+                    return true, results, "Tooltip_ImmersiveHunting_twoHanded"..category
                 end
             end
 
             -- get level in this weapon handling
-            perk = Perks[category]
-            level = perk and player:getPerkLevel(Perks[category]) or player:getPerkLevel(Perks.Maintenance)
-            meleeImpact = level*a_melee + b_melee
+            local perk = Perks[category]
+            local level = perk and player:getPerkLevel(Perks[category]) or player:getPerkLevel(Perks.Maintenance)
+            local meleeImpact = level*a_melee + b_melee
 
             -- get chance to kill or mightKill
-            chanceKill = melee_willKill[category]
+            local chanceKill = melee_willKill[category]
             chanceKill = chanceKill and chanceKill/10*meleeImpact
-            chanceMightKill = melee_mightKill[category]
+            local chanceMightKill = melee_mightKill[category]
             chanceMightKill = chanceMightKill and chanceMightKill/10*meleeImpact
 
             -- check if chance to kill or might kill is higher than precedent chance
             if chanceKill then
-                kill = true
-                mightKill = true
+                results.kill = true
+                results.mightKill = true
 
-                if chanceKill > chanceToHit then
-                    chanceToHit = chanceKill
-                    impacts.meleeImpact = meleeImpact
+                if chanceKill > results.chanceToHit then
+                    results.chanceToHit = chanceKill
+                    impacts.WeaponImpact = meleeImpact
                 end
 
             -- check if it might kill if not already the case
             elseif chanceMightKill then
-                mightKill = true
+                results.mightKill = true
 
-                if chanceMightKill > chanceToHit then
-                    chanceToHit = chanceMightKill
+                if chanceMightKill > results.chanceToHit then
+                    results.chanceToHit = chanceMightKill
                     impacts.meleeImpact = meleeImpact
                 end
             end
         end
 
         -- verify the character even has a single chance of hunting here
-        if chanceToHit == 0 then
-            return false, false, false, 0, "Tooltip_ImmersiveHunting_notSkilledEnough", {}
+        if results.chanceToHit == 0 then
+            return true, results, "Tooltip_ImmersiveHunting_notSkilledEnough"
         end
 
         -- strength impact
         if SandboxVars.ImmersiveHunting.StrengthImpact then
             local strengthLevel = player:getPerkLevel(Perks.Strength)
             if strengthLevel < SandboxVars.ImmersiveHunting.MinimumStrengthLevelToHunt then
-                return false, false, false, 0, "Tooltip_ImmersiveHunting_notStrongEnough", {}
+                return true, results, "Tooltip_ImmersiveHunting_notStrongEnough"
             end
-            local strengthImpact = strengthLevel*a_strength + b_strength
-            chanceToHit = chanceToHit * strengthImpact
-            impacts.strengthImpact = strengthImpact
+            local strengthImpact = strengthLevel*ImmersiveHunting.a_strength + ImmersiveHunting.b_strength
+            results.chanceToHit = results.chanceToHit * strengthImpact
+            impacts.StrengthImpact = strengthImpact
         end
     end
 
-    return kill, mightKill, shred, chanceToHit, nil, impacts
+    return canAttack, results, reason
 end
 
 ---Do the hunting.
@@ -363,12 +374,9 @@ end
 ---@param chanceToHunt number
 ---@param kill boolean
 ---@param shred boolean
-ImmersiveHunting.DoHunt = function(player,square,HuntInformation,baseIcon,weapon,chanceToHunt,kill,shred)
+ImmersiveHunting.DoHunt = function(player,square,squareTarget,animal,baseIcon,weapon,chanceToHunt,kill,shred)
     -- safeguard if a sneak bastard opens a new context menu for the icon during a precedent hunting
     if not square:getModData().HuntInformation then return end
-
-    local squareTarget = HuntInformation.squareTarget
-    local animal = HuntInformation.animal
 
     local x,y = player:getX() - square:getX(),player:getY() - square:getY()
     local d = (x*x + y*y)^0.5
@@ -422,6 +430,7 @@ end
 ---@param player IsoPlayer
 ---@return number
 ---@return number
+---@return number
 ---@return table
 ---@return table
 ImmersiveHunting.GetPlayerStatsChance = function(player)
@@ -453,7 +462,7 @@ ImmersiveHunting.GetPlayerStatsChance = function(player)
     moodle = moodle < 0 and moodle or moodle
 
     local stealthLevel = (player:getPerkLevel(Perks.Sneak) + player:getPerkLevel(Perks.Lightfoot))/2
-    local stealth = a_stealth * stealthLevel + b_stealth
+    local stealth = ImmersiveHunting.a_stealth * stealthLevel + ImmersiveHunting.b_stealth
 
     return trait, moodle, stealth, traits_positive, traits_negative
 end
@@ -477,262 +486,340 @@ ImmersiveHunting.onFillSearchIconContextMenu = function(context, baseIcon)
 
     -- verify it's one of our items
     local itemType = baseIcon.itemType
-    local huntTarget = ImmersiveHunting.ValidForageItems[itemType]
-    if not huntTarget then return end
+    local animal = ImmersiveHunting.ValidForageItems[itemType]
+    if not animal then return end
 
+    ImmersiveHunting.HandleIcon(context,baseIcon,itemType,animal)
+end
+
+ImmersiveHunting.CalculateWorldImpacts = function()
+    local impacts = {}
+
+    -- daylight
+    local daylightImpact = SandboxVars.ImmersiveHunting.LightImpact
+    if daylightImpact ~= 0 then
+        impacts.DayLightImpact = 1 - (gametime:getNight())*daylightImpact/100
+    end
+
+    -- fog
+    local fogImpact = SandboxVars.ImmersiveHunting.FogImpact
+    if fogImpact ~= 0 then
+        impacts.FogImpact = 1 - climateManager:getFogIntensity()*fogImpact/100
+    end
+
+    -- wind
+    local windImpact = SandboxVars.ImmersiveHunting.WindImpact
+    if windImpact ~= 0 then
+        impacts.WindImpact = 1 - climateManager:getWindIntensity()*windImpact/100
+    end
+
+    return impacts
+end
+
+ImmersiveHunting.HandleIcon = function(context,baseIcon,track,animal)
+    -- retrieve options and name
     local displayName = baseIcon.itemObj:getDisplayName()
     local options = context.options
-    if options then
-        local option,name
-        for i = #options, 1, -1 do
-            option = options[i]
+    if not options then return end
 
-            if option then
-                name = option.name
+    -- clean options with fresh ones
+    for i = #options, 1, -1 do
+        local option = options[i]
+        if option then
+            local name = option.name
+            context:removeOptionByName(name)
+        end
+    end
 
-                -- get informations on hunt
-                local player = baseIcon.character
-                local square = baseIcon.square
-                local HuntInformation = ImmersiveHunting.GetHuntInformations(square,player,huntTarget)
-                local animal = HuntInformation.animal
-                local animalName = getText(animal.name)
+    -- add our own options
 
-                -- get animal texture
-                -- local scriptItem = getScriptManager():FindItem(animal.dead)
-                -- local animalTexture = scriptItem and scriptItem:getNormalTexture()
+    -- get informations on hunt
+    local player = baseIcon.character
+    local square = baseIcon.square
+    local HuntInformation = ImmersiveHunting.GetHuntInformations(square,player)
 
-                local sprite = animal.sprite
-                local animalTexture
-                if sprite then
-                    animalTexture = Texture.trygetTexture(animal.sprite)
+    -- get informations on the animal
+    local animalName = getText(animal.name)
+    local sprite = animal.sprite
+    local huntTarget = animal.huntTarget
 
-                else
-                    -- get animal texture
-                    local scriptItem = getScriptManager():FindItem(animal.dead)
-                    animalTexture = scriptItem and scriptItem:getNormalTexture()
+    -- access the texture to show on the icon
+    local animalTexture
+    if sprite then
+        animalTexture = Texture.trygetTexture(animal.sprite)
 
+    -- get dead animal texture instead
+    else
+        local scriptItem = getScriptManager():FindItem(animal.dead)
+        animalTexture = scriptItem and scriptItem:getNormalTexture()
+    end
+
+    -- get dimensions
+    local width = animalTexture:getWidth()
+    local height = animalTexture:getHeight()
+    local ratio = width/height
+
+    -- adapt dimensions to icon
+    if width > height then
+        width = 32
+        height = width/ratio
+    else
+        height = 32
+        width = height*ratio
+    end
+
+    -- set the icon texture
+    local animalTexture_resized = Texture.new(animalTexture)
+    animalTexture_resized:setWidth(width)
+    animalTexture_resized:setHeight(height)
+    baseIcon.itemTexture = animalTexture_resized
+
+    -- get the animal texture in tooltip
+    local texture = string.gsub(animalTexture:getName(), "^.*media", "media")
+    height = 40
+    width = height*ratio
+    texture = "<IMAGECENTRE:"..texture..","..width..","..height..">"
+
+    -- initialize description
+    local description = "<CENTRE>"..texture.."\n"..animalName.."\n"
+
+    -- create tooltip
+    local tooltip = ISWorldObjectContextMenu.addToolTip()
+    local notAvailable,chanceToHunt,kill,shred
+
+    -- get player weapon
+    local weapon = player:getPrimaryHandItem()
+    if not instanceof(weapon,"HandWeapon") then
+        weapon = nil
+        description = description.."\n <RED>"..getText("Tooltip_ImmersiveHunting_NeedWeapon")
+
+    else
+        ---@cast weapon HandWeapon
+
+        -- set the tool tip texture with the weapon
+        local normalTexture = weapon:getTexture()
+
+        -- set the weapon texture in tooltip
+        texture = ""
+        if normalTexture then
+            -- get dimensions
+            width = normalTexture:getWidth()
+            height = normalTexture:getHeight()
+            ratio = width/height
+
+            -- normalize height
+            height = 40
+            width = height*ratio
+
+            -- prepare texture string
+            texture = string.gsub(normalTexture:getName(), "^.*media", "media")
+            texture = "\n<IMAGECENTRE:"..texture..","..width..","..height..">\n"
+        end
+
+        description = description..texture
+        .."<CENTRE>"..getText("Tooltip_ImmersiveHunting_CurrentWeapon",weapon:getDisplayName()).."\n"
+
+        -- get weapon ability to kill
+        local canAttack, results, reason = ImmersiveHunting.GetWeaponStats(player,weapon,huntTarget)
+        kill = results.kill
+        local mightKill = results.mightKill
+        shred = results.shred
+
+        -- verify the character has a weapon and can shoot with it
+        if not canAttack or reason ~= "" then
+            notAvailable = true
+            description = description.."Reason: "..getText(reason)
+
+        -- verify weapon has a chance to kill
+        elseif not kill and not mightKill then
+            notAvailable = true
+            description = description..getText("Tooltip_ImmersiveHunting_CannotKillTarget")
+
+        else
+
+            -- will kill ?
+            if kill then
+                description = description..getText("Tooltip_ImmersiveHunting_CanKill").."\n"
+            end
+
+            -- weapon not adapted
+            if not kill and mightKill or shred then
+                description = description.."\n"..getText("Tooltip_ImmersiveHunting_NotAdapted").."\n"
+
+                -- can't kill
+                if not kill and mightKill then
+                    description = description..getText("Tooltip_ImmersiveHunting_MightNotKill").."\n"
                 end
-                print(animalTexture)
 
-                -- set icon texture
-                local animalTexture_resized = animalTexture
-                animalTexture_resized:setWidth(32)
-                animalTexture_resized:setHeight(32)
-                baseIcon.itemTexture = animalTexture_resized
-
-                -- replace the pick up option with our own option
-                if name == getText("IGUI_Pickup").." "..displayName then
-                    context:removeOptionByName(name)
-
-                    -- get player weapon
-                    local weapon = player:getPrimaryHandItem()
-                    if not instanceof(weapon,"HandWeapon") then
-                        weapon = nil
-                    end
-
-                    -- create tooltip
-                    local tooltip = ISWorldObjectContextMenu.addToolTip()
-                    local notAvailable,chanceToHunt,description
-
-                    local kill, mightKill, shred, chanceToHit, impacts
-                    local canShoot, reason = ImmersiveHunting.CanShoot(weapon)
-                    -- verify the character has a weapon
-                    if canShoot == nil then
-                        notAvailable = true
-                        description = getText(reason)
-
-                    elseif not canShoot then
-                        notAvailable = true
-                        description = getText(reason)
-
-                    else
-                        ---@cast weapon HandWeapon
-
-                        -- set the tool tip texture with the weapon
-                        local normalTexture = weapon:getTexture()
-                        if normalTexture then tooltip:setTexture(normalTexture:getName()) end
-
-                        kill, mightKill, shred, chanceToHit, reason, impacts = ImmersiveHunting.GetWeaponStats(player,weapon,huntTarget)
-                        local weaponName = weapon:getDisplayName()
-
-                        -- set the animal texture icon
-                        local texture = ""
-                        if normalTexture then
-                            texture = string.gsub(animalTexture:getName(), "^.*media", "media")
-
-                            texture = "<IMAGECENTRE:"..texture..",40,40>"
-                        end
-
-                        description = "<CENTRE>"..getText("Tooltip_ImmersiveHunting_HuntTooltip",weaponName)
-                        description = description.."\n"..texture.."\n"..animalName
-
-                        -- will kill ?
-                        if kill then
-                            description = description.."\n".."<GREEN> Weapon will kill target.\n"
-                        elseif not mightKill then
-                            description = description.."\n".."<RED> Weapon cannot kill target.\n"
-                            notAvailable = true
-                        end
-
-                        if reason and reason ~= "" then
-                            description = description.."Reason: "..getText(reason)
-                        end
-
-                        -- weapon not adapted
-                        if not kill and mightKill or shred then
-                            description = description.."\n".."<ORANGE> Weapon is not adapted to hunting:\n<INDENT:8>"
-
-                            -- can't kill
-                            if not kill and mightKill then
-                                description = description.."- Weapon might not kill target on hit\n"
-                            end
-
-                            -- will shred
-                            if shred then
-                                description = description.."- Weapon will shred target, leaving less meat to collect\n"
-                            end
-                        end
-
-                        -- determine probability of hunting
-                        local dayLight = 1 - (1 - climateManager:getDayLightStrength())*SandboxVars.ImmersiveHunting.LightImpact/100
-                        dayLight = dayLight < 0 and 0 or dayLight
-
-                        local fog = 1 - climateManager:getFogIntensity()*SandboxVars.ImmersiveHunting.FogImpact/100
-                        fog = fog < 0 and fog or fog
-
-                        local wind = 1 - climateManager:getWindIntensity()*SandboxVars.ImmersiveHunting.WindImpact/100
-                        wind = wind < 0 and wind or wind
-
-                        local ranged = weapon:isRanged()
-                        local scope = 1
-                        if ranged and weapon:getScope() then
-                            scope = 1 + SandboxVars.ImmersiveHunting.ScopeBonus/100
-                        end
-
-                        local trait, moodle, stealth, traits_positive, traits_negative = ImmersiveHunting.GetPlayerStatsChance(player)
-
-                        chanceToHunt = chanceToHit*dayLight*fog*wind*scope*trait*moodle*stealth*SandboxVars.ImmersiveHunting.BoostToHuntingChance/100
-
-                        -- show probability if should
-                        if SandboxVars.ImmersiveHunting.ShowProbabilities then
-                            description = description.."\n\n<RGB:1,1,1>"..getText("Tooltip_ImmersiveHunting_impacts").."\n"
-
-                            local ValueToRGBTag = ImmersiveHunting.ValueToRGBTag
-
-                            -- daylight
-                            dayLight = dayLight*100
-                            dayLight = dayLight - dayLight%1
-                            local color = ValueToRGBTag(dayLight)
-                            description = description.."\n"..color..getText("Tooltip_ImmersiveHunting_DayLightImpact").." "..tostring(dayLight).."%"
-
-                            -- fog
-                            fog = fog*100
-                            fog = fog - fog%1
-                            color = ValueToRGBTag(fog)
-                            description = description.."\n"..color..getText("Tooltip_ImmersiveHunting_FogImpact").." "..tostring(fog).."%"
-
-                            -- wind
-                            wind = wind*100
-                            wind = wind - wind%1
-                            color = ValueToRGBTag(wind)
-                            description = description.."\n"..color..getText("Tooltip_ImmersiveHunting_WindImpact").." "..tostring(wind).."%"
-
-                            -- scope
-                            if ranged then
-                                scope = scope*100
-                                scope = scope - scope%1
-                                color = ValueToRGBTag(scope)
-                                description = description.."\n"..color..getText("Tooltip_ImmersiveHunting_ScopeBonus").." "..tostring(scope).."%"
-                            end
-
-                            local text
-                            for k,v in pairs(impacts) do
-                                text = getText("Tooltip_ImmersiveHunting_"..k)
-                                v = v*100
-                                v = v - v%1
-                                color = ValueToRGBTag(v)
-                                description = description.."\n"..color..text.." "..tostring(v).."%"
-                            end
-
-                            -- chance to hit
-                            local chance = chanceToHit*100
-                            chance = chance - chance%1
-                            color = ValueToRGBTag(chance)
-                            description = description.."\n"..color..getText("Tooltip_ImmersiveHunting_ChanceToHit").." "..tostring(chance).."%"
-
-                            -- stealth
-                            stealth = stealth*100
-                            stealth = stealth - stealth%1
-                            color = ValueToRGBTag(stealth)
-                            description = description.."\n\n"..color..getText("Tooltip_ImmersiveHunting_StealthImpact").." "..tostring(stealth).."%"
-
-                            -- moodles
-                            moodle = moodle*100
-                            moodle = moodle - moodle%1
-                            color = ValueToRGBTag(moodle)
-                            description = description.."\n"..color..getText("Tooltip_ImmersiveHunting_MoodleImpact").." "..tostring(moodle).."%"
-
-                            -- traits
-                            trait = trait*100
-                            trait = trait - trait%1
-                            color = ValueToRGBTag(trait)
-                            description = description.."\n"..color..getText("Tooltip_ImmersiveHunting_TraitImpact").." "..tostring(trait).."%"
-
-                            -- positive traits
-                            local size = #traits_positive
-                            if size > 0 then
-                                description = description.."\n\n<GREEN>"..getText("Tooltip_ImmersiveHunting_PositiveTraits").."\n"
-                                local item
-                                for j = 1,size do
-                                    item = traits_positive[j]
-                                    description = description..item
-                                    if j ~= size then
-                                        description = description..", "
-                                    end
-                                end
-                            end
-
-                            -- negative traits
-                            size = #traits_negative
-                            if size > 0 then
-                                description = description.."\n\n<RED>"..getText("Tooltip_ImmersiveHunting_NegativeTraits").."\n"
-                                local item
-                                for j = 1,size do
-                                    item = traits_negative[j]
-                                    description = description..item
-                                    if j ~= size then
-                                        description = description..", "
-                                    end
-                                end
-                            end
-
-                            -- total
-                            chance = chanceToHunt*100
-                            chance = chance - chance%1
-
-                            color = ValueToRGBTag(chance)
-                            description = description.."\n\n"..color..getText("Tooltip_ImmersiveHunting_ChanceToHunt").." "..tostring(chance).."%"
-                        end
-                    end
-
-                    tooltip.description = description
-
-                    option = context:addOptionOnTop(getText("ContextMenu_ImmersiveHunting_Hunt").." "..animalName,player,ImmersiveHunting.DoHunt,square,HuntInformation,baseIcon,weapon,chanceToHunt,kill,shred)
-
-                    -- set tooltip and if available
-                    option.toolTip = tooltip
-                    if notAvailable then
-                        option.notAvailable = true
-                    end
-
-                elseif name == getText("UI_foraging_DiscardItem").." "..displayName then
-                    context:removeOptionByName(name)
-
-                    option = context:addOption(getText("UI_foraging_DiscardItem").." "..animalName, baseIcon, baseIcon.onClickDiscard,square,player)
+                -- will shred
+                if shred then
+                    description = description..getText("Tooltip_ImmersiveHunting_WillShred").."\n"
                 end
+            end
+
+            -- intialize chances to hunt
+            chanceToHunt = 1
+
+            -- show probabilities ?
+            local showProbabilities = SandboxVars.ImmersiveHunting.ShowProbabilities
+            local ValueToRGBTag = ImmersiveHunting.ValueToRGBTag
+            if showProbabilities then
+                description = description.."\n<RGB:1,1,1>"..getText("Tooltip_ImmersiveHunting_impacts").."\n"
+            end
+
+            ------ weapon ability to hunt ------
+            local chanceToHit = results.chanceToHit
+
+            -- scope bonus
+            local scopeImpact = SandboxVars.ImmersiveHunting.ScopeBonus
+            local scopeBonus
+            if scopeImpact ~= 0 and weapon:isRanged() and weapon:getScope() then
+                scopeBonus = 1 + scopeImpact/100
+                chanceToHit = chanceToHit * scopeBonus
+            end
+
+            -- show weapon impact
+            if showProbabilities then
+                description = description.."\n"..getText("Tooltip_ImmersiveHunting_Weapon")
+
+                -- skill impact
+                for k,v in pairs(results.impacts) do
+                    local text = getText("Tooltip_ImmersiveHunting_"..k)
+                    v = v*100
+                    v = v - v%1
+                    local color = ValueToRGBTag(v)
+                    description = description.."\n"..color..text.." "..tostring(v).."%"
+                end
+
+                -- scope ability
+                if scopeBonus then
+                    local v = scopeBonus*100
+                    v = v - v%1
+                    local color = ValueToRGBTag(v)
+                    description = description.."\n"..color..getText("Tooltip_ImmersiveHunting_ScopeBonus").." "..tostring(v).."%"
+                end
+
+                -- final weapon probabilities
+                local v = chanceToHit*100
+                v = v - v%1
+                local color = ValueToRGBTag(v)
+                description = description.."\n"..color..getText("Tooltip_ImmersiveHunting_ChanceToHit").." "..tostring(v).."%\n"
+
+                -- world impact
+                description = description.."\n"..getText("Tooltip_ImmersiveHunting_World")
+            end
+
+            -- apply world stats to impact hunting chances
+            local impacts = ImmersiveHunting.CalculateWorldImpacts()
+            local chanceWorld = 1
+            for impactName,impact in pairs(impacts) do
+                impact = impact < 0 and 0 or impact
+                chanceWorld = chanceWorld * impact
+
+                -- format the probabilities to show in tooltip
+                if showProbabilities then
+                    local value = impact*100
+                    value = value - value%1
+                    local color = ValueToRGBTag(value)
+                    description = description.."\n"..color..getText("Tooltip_ImmersiveHunting_"..impactName).." "..tostring(value).."%"
+                end
+            end
+
+            -- apply character stats impact
+            local trait, moodle, stealth, traits_positive, traits_negative = ImmersiveHunting.GetPlayerStatsChance(player)
+            local chanceStats = trait*moodle*stealth
+
+            -- show weapon impact
+            if showProbabilities then
+                description = description.."\n\n"..getText("Tooltip_ImmersiveHunting_Stats")
+
+                -- traits impact
+                if trait ~= 1 then
+                    local v = trait*100
+                    v = v - v%1
+                    local color = ValueToRGBTag(v)
+                    description = description.."\n"..color..getText("Tooltip_ImmersiveHunting_TraitImpact").." "..tostring(v).."%"
+
+                    -- positive traits
+                    local size = #traits_positive
+                    if size > 0 then
+                        description = description.."\n\n<GREEN>"..getText("Tooltip_ImmersiveHunting_PositiveTraits").."\n"
+                        local item
+                        for j = 1,size do
+                            item = traits_positive[j]
+                            description = description..item
+                            if j ~= size then
+                                description = description..", "
+                            end
+                        end
+                    end
+
+                    -- negative traits
+                    local size = #traits_negative
+                    if size > 0 then
+                        description = description.."\n\n<RED>"..getText("Tooltip_ImmersiveHunting_NegativeTraits").."\n"
+                        local item
+                        for j = 1,size do
+                            item = traits_negative[j]
+                            description = description..item
+                            if j ~= size then
+                                description = description..", "
+                            end
+                        end
+                    end
+                end
+
+                -- moodle impact
+                if moodle ~= 1 then
+                    local v = moodle*100
+                    v = v - v%1
+                    local color = ValueToRGBTag(v)
+                    description = description.."\n"..color..getText("Tooltip_ImmersiveHunting_MoodleImpact").." "..tostring(v).."%"
+                end
+
+                -- stealth impact
+                local v = chanceStats*100
+                v = v - v%1
+                local color = ValueToRGBTag(v)
+                description = description.."\n"..color..getText("Tooltip_ImmersiveHunting_ChanceStats").." "..tostring(v).."%"
+            end
+
+            -- final chance of hunting target
+            chanceToHunt = chanceToHunt*chanceToHit*chanceWorld*chanceStats
+
+            if showProbabilities then
+                local v = chanceToHunt*100
+                v = v - v%1
+                local color = ValueToRGBTag(v)
+                description = description.."\n\n"..color..getText("Tooltip_ImmersiveHunting_FinalProbability").." "..tostring(v).."%"
             end
         end
     end
+
+    -- create the option
+    local option = context:addOptionOnTop(
+        getText("ContextMenu_ImmersiveHunting_Hunt").." "..animalName,
+        player,
+        ImmersiveHunting.DoHunt,
+        square,
+        HuntInformation.squareTarget,
+        animal,
+        baseIcon,
+        weapon,
+        chanceToHunt,
+        kill,
+        shred
+    )
+
+    -- set tooltip and if available
+    tooltip.description = description
+    option.toolTip = tooltip
+    if notAvailable then
+        option.notAvailable = true
+    end
+
+    -- add discard option
+    option = context:addOption(getText("UI_foraging_DiscardItem").." "..animalName, baseIcon, baseIcon.onClickDiscard,square,player)
 end
 
 --#region Functions to highlight squares

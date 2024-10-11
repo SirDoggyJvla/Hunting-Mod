@@ -14,29 +14,59 @@ Module of Immersive Hunting Remastered.
 ImmersiveHunting = {
     highlightsSquares = {},
     ValidForageItems = {
-        ["ImmersiveHunting.ImmersiveHuntingSpottedBird"] = "Bird",
-        ["ImmersiveHunting.ImmersiveHuntingTraceSmall"] = "SmallGame",
-        ["ImmersiveHunting.ImmersiveHuntingTraceBig"] = "BigGame",
+        -- Birds
+        ["ImmersiveHunting.Tracks_Robin"] = {
+            huntTarget = "Bird",
+            name = "IGUI_ImmersiveHunting_Robin",
+            sprite = "Item_Bird",
+            dead = "Base.DeadBird",
+        },
+
+        -- Tiny game
+        ["ImmersiveHunting.Tracks_Rat"] = {
+            huntTarget = "TinyGame",
+            name = "IGUI_ImmersiveHunting_Rat",
+            sprite = "Item_Rat",
+            dead = "Base.DeadRat",
+        },
+        ["ImmersiveHunting.Tracks_Mouse"] = {
+            huntTarget = "TinyGame",
+            name = "IGUI_ImmersiveHunting_Mouse",
+            sprite = "Item_Mouse",
+            dead = "Base.DeadMouse",
+        },
+        ["ImmersiveHunting.Tracks_Squirrel"] = {
+            huntTarget = "TinyGame",
+            name = "IGUI_ImmersiveHunting_Squirrel",
+            sprite = "Item_Squirrel",
+            dead = "Base.DeadSquirrel",
+        },
+
+        -- Small game
+        ["ImmersiveHunting.Tracks_Rabbit"] = {
+            huntTarget = "SmallGame",
+            name = "IGUI_ImmersiveHunting_Rabbit",
+            sprite = "Item_Rabbit",
+            dead = "Base.DeadRabbit",
+        },
+
+        -- Big game
+        ["ImmersiveHunting.Tracks_Pig"] = {
+            huntTarget = "BigGame",
+            name = "IGUI_ImmersiveHunting_Pig",
+            dead = "ImmersiveHunting.PigCorpse",
+            meat = "PorkChop",
+            fat = "Lard",
+        },
+        ["ImmersiveHunting.Tracks_Deer"] = {
+            huntTarget = "BigGame",
+            name = "IGUI_ImmersiveHunting_Deer",
+            dead = "ImmersiveHunting.DeerCorpse",
+            meat = "Steak",
+            fat = "Lard",
+        },
     },
     AnimalBodies = {},
-    TraitsToName = {
-        ["EagleEyed"] = getText("UI_trait_eagleeyed"),
-        ["Outdoorsman"] = getText("UI_trait_outdoorsman"),
-        ["Desensitized"] = getText("UI_trait_Desensitized"),
-        ["Formerscout"] = getText("UI_trait_Scout"),
-        ["Hunter"] = getText("UI_trait_Hunter"),
-        ["ShortSighted"] = getText("UI_trait_shortsigh"),
-        ["Clumsy"] = getText("UI_trait_clumsy"),
-    },
-    TraitsToCheck = {
-        ["EagleEyed"] = 0.2,
-        ["Outdoorsman"] = 0.1,
-        ["Desensitized"] = 0.1,
-        ["Formerscout"] = 0.1,
-        ["Hunter"] = 0.2,
-        ["ShortSighted"] = -0.2,
-        ["Clumsy"] = -0.2,
-    },
     AnimalTypes = {
         ["Bird"] = {
             {name = "IGUI_ImmersiveHunting_Bird", sprite = "Item_Bird", dead = "Base.DeadBird"},
@@ -53,6 +83,52 @@ ImmersiveHunting = {
         },
     },
     HuntingConditions = {
+        ["TinyGame"] = {
+            huntingCaliber = {
+                ["Bullet"] = {
+                    Emin = 160,
+                    Emax = 1500,
+                    Diameter = 6,
+                    impact = 5,
+                },
+                ["Shotgun"] = {
+                    Diameter = 10,
+                    shredDiameter = 20,
+                    kill = true,
+                    impact = 10,
+                },
+                ["Other"] = {
+                    impact = 5,
+                },
+            },
+            melee = {
+                mightKill = {
+                    ["Improvised"] = 1,
+                    -- ["SmallBlunt"] = true,
+                    -- ["Blunt"] = true,
+                    -- ["Axe"] = true,
+                    -- ["SmallBlade"] = true,
+                    -- ["LongBlade"] = true,
+                    -- ["Spear"] = true,
+                },
+                willKill = {
+                    -- ["Improvised"] = 3,
+                    ["SmallBlunt"] = 3,
+                    ["Blunt"] = 1,
+                    ["Axe"] = 1,
+                    ["SmallBlade"] = 8,
+                    ["LongBlade"] = 5,
+                    ["Spear"] = 10,
+                },
+                noMeleeTwoHanded = {
+                    ["Blunt"] = true,
+                    ["Axe"] = true,
+                    ["LongBlade"] = true,
+                },
+            },
+            canBeShrededDiameter = true,
+            canBeShrededEnergy = true,
+        },
         ["Bird"] = {
             huntingCaliber = {
                 ["Bullet"] = {
@@ -191,6 +267,26 @@ ImmersiveHunting = {
             canBeShrededDiameter = true,
             canBeShrededEnergy = false,
         },
+    },
+
+    -- traits impact
+    TraitsToName = {
+        ["EagleEyed"] = getText("UI_trait_eagleeyed"),
+        ["Outdoorsman"] = getText("UI_trait_outdoorsman"),
+        ["Desensitized"] = getText("UI_trait_Desensitized"),
+        ["Formerscout"] = getText("UI_trait_Scout"),
+        ["Hunter"] = getText("UI_trait_Hunter"),
+        ["ShortSighted"] = getText("UI_trait_shortsigh"),
+        ["Clumsy"] = getText("UI_trait_clumsy"),
+    },
+    TraitsToCheck = {
+        ["EagleEyed"] = 0.2,
+        ["Outdoorsman"] = 0.1,
+        ["Desensitized"] = 0.1,
+        ["Formerscout"] = 0.1,
+        ["Hunter"] = 0.2,
+        ["ShortSighted"] = -0.2,
+        ["Clumsy"] = -0.2,
     },
 }
 

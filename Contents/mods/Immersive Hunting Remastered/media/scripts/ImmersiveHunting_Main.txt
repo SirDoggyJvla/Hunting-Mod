@@ -6,6 +6,89 @@ module ImmersiveHunting
 		Base
 	}
 
+    /* Animal tracks */
+    /* Birds */
+    item Tracks_Robin
+    {
+        DisplayCategory = Literature,
+        Weight	=	15,
+        Type	=	Literature,
+        DisplayName	= Robin tracks,
+        Icon	=	ImmersiveHuntingBirdTrace,
+		ScaleWorldIcon = 0.01,
+		WorldStaticModel = Needle,
+    }
+
+    /* Tiny game */
+    item Tracks_Rat
+    {
+        DisplayCategory = Literature,
+        Weight	=	15,
+        Type	=	Literature,
+        DisplayName	= Rat tracks,
+        Icon	=	ImmersiveHuntingTrackTrace,
+		ScaleWorldIcon = 0.01,
+		WorldStaticModel = Needle,
+    }
+
+    item Tracks_Mouse
+    {
+        DisplayCategory = Literature,
+        Weight	=	15,
+        Type	=	Literature,
+        DisplayName	= Mouse tracks,
+        Icon	=	ImmersiveHuntingTrackTrace,
+		ScaleWorldIcon = 0.01,
+		WorldStaticModel = Needle,
+    }
+
+    item Tracks_Squirrel
+    {
+        DisplayCategory = Literature,
+        Weight	=	15,
+        Type	=	Literature,
+        DisplayName	= Squirrel tracks,
+        Icon	=	ImmersiveHuntingTrackTrace,
+		ScaleWorldIcon = 0.01,
+		WorldStaticModel = Needle,
+    }
+
+    /* Small game */
+    item Tracks_Rabbit
+    {
+        DisplayCategory = Literature,
+        Weight	=	15,
+        Type	=	Literature,
+        DisplayName	= Rabbit tracks,
+        Icon	=	ImmersiveHuntingTrackTrace,
+		ScaleWorldIcon = 0.01,
+		WorldStaticModel = Needle,
+    }
+
+    /* Big game */
+    item Tracks_Pig
+    {
+        DisplayCategory = Literature,
+        Weight	=	15,
+        Type	=	Literature,
+        DisplayName	= Pig tracks,
+        Icon	=	ImmersiveHuntingTrackTrace,
+		ScaleWorldIcon = 0.01,
+		WorldStaticModel = Needle,
+    }
+
+    item Tracks_Deer
+    {
+        DisplayCategory = Literature,
+        Weight	=	15,
+        Type	=	Literature,
+        DisplayName	= Deer tracks,
+        Icon	=	ImmersiveHuntingTrackTrace,
+		ScaleWorldIcon = 0.01,
+		WorldStaticModel = Needle,
+    }
+
+
     /* Tracks */
 	item ImmersiveHuntingTraceSmall
     {
@@ -42,7 +125,7 @@ module ImmersiveHunting
 	
 
     /* Animals */
-    item ImmersiveHuntingDeerCorpse
+    item DeerCorpse
     {
         HungerChange    =   -800,
         Weight  =   40.0,
@@ -59,11 +142,11 @@ module ImmersiveHunting
 		Proteins    = 4000,
 		Lipids      = 1700,
 		Calories    = 17000,
-		ScaleWorldIcon = 4,
-		Tooltip = Tooltip_Recipe_Corpse,
+		ScaleWorldIcon = 1.5,
+		Tooltip = Tooltip_Recipe_Deer,
     }
  
-    item ImmersiveHuntingPigCorpse
+    item PigCorpse
     {
         HungerChange    =   -1200,
         Weight  =   60.0,
@@ -80,7 +163,7 @@ module ImmersiveHunting
 		Proteins    = 2000,
 		Lipids      = 1000,
 		Calories    = 10000,
-		ScaleWorldIcon = 3,
-		Tooltip = Tooltip_Recipe_Corpse,
+		ScaleWorldIcon = 1.5,
+		Tooltip = Tooltip_Recipe_Pig,
 	}
 }

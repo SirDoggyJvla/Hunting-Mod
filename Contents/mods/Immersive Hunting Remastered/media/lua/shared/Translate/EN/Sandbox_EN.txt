@@ -19,6 +19,9 @@ StrengthSandbox_EN = {
     Sandbox_ImmersiveHunting_BirdsForage = "Bird spawn boost [%]",
 	Sandbox_ImmersiveHunting_BirdsForage_tooltip = "Boost to spawns of bird tracks.",
 
+    Sandbox_ImmersiveHunting_TinyGameForage = "Tiny game spawn boost [%]",
+	Sandbox_ImmersiveHunting_TinyGameForage_tooltip = "Boost to spawns of tiny game tracks.",
+
     Sandbox_ImmersiveHunting_SmallGameForage = "Small game spawn boost [%]",
 	Sandbox_ImmersiveHunting_SmallGameForage_tooltip = "Boost to spawns of small game tracks.",
 

@@ -1,5 +1,5 @@
 IGUI_EN = {
-    IGUI_ImmersiveHunting_Bird = "Bird",
+    IGUI_ImmersiveHunting_Robin = "Robin",
     IGUI_ImmersiveHunting_Rabbit = "Rabbit",
     IGUI_ImmersiveHunting_Rat = "Rat",
     IGUI_ImmersiveHunting_Mouse = "Mouse",

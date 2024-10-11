@@ -14,7 +14,7 @@ Main file of Immersive Hunting Remastered. Needs to be loaded for addons.
 -- requirements
 local ImmersiveHunting = require "ImmersiveHunting_module"
 
-ImmersiveHunting.AmmoTypes = {
+ImmersiveHunting.CaliberDataBase = {
 --- Vanilla
 	["Base.Bullets38"              ]	=	{ AmmoType = "Bullet" ,	Emin =   300,	Emax =   450,	Diameter =  9.06,	CanKill = true, },
 	["Base.223Bullets"             ]	=	{ AmmoType = "Bullet" ,	Emin =  1670,	Emax =  1890,	Diameter =  5.69,	CanKill = true, },

@@ -32,34 +32,7 @@ if not ImmersiveHunting.zoneData then
     end
 end
 
-
-ImmersiveHunting.PrepareAnimals = function()
-    local animalsList = table.newarray()
-
-    local animal,track
-    for huntingType,animals in pairs(ImmersiveHunting.AnimalTypes) do
-        for i = 1,#animals do
-            animal = animals[i]
-
-            for k,v in pairs(ImmersiveHunting.ValidForageItems) do
-                if v == huntingType then
-                    track = k
-                    break
-                end
-            end
-
-            table.insert(animalsList,{track = track, animal = animal})
-        end
-    end
-
-    return animalsList
-end
-
-ImmersiveHunting.AnimalsList = ImmersiveHunting.PrepareAnimals()
-
 ImmersiveHunting.CreateForageIcon = function(player,square,itemType,animal)
-    print("spawn")
-    print(animal.dead)
     -- scufffed from vanilla code
     local _zoneData = ImmersiveHunting.zoneData
     if not _zoneData then
@@ -123,8 +96,6 @@ ImmersiveHunting.CreateForageIcon = function(player,square,itemType,animal)
             end
         end
     end
-
-    ImmersiveHunting.GetHuntInformations(square,player,animal)
 end
 
 ImmersiveHunting.OnFillWorldObjectContextMenu = function(playerIndex, context, worldObjects, test)
@@ -142,7 +113,7 @@ ImmersiveHunting.OnFillWorldObjectContextMenu = function(playerIndex, context, w
     if not square then return end
 
     -- create the submenu for Immersive Hunting debug
-    local option = context:addOption(getText("ContextMenu_ImmersiveHunting_DebugMenu"))
+    local option = context:addOptionOnTop(getText("ContextMenu_ImmersiveHunting_DebugMenu"))
     local subMenu = context:getNew(context)
     context:addSubMenu(option, subMenu)
 
@@ -161,15 +132,21 @@ ImmersiveHunting.OnFillWorldObjectContextMenu = function(playerIndex, context, w
     -- retrieve player
 	local player = getSpecificPlayer(playerIndex)
 
-    local animalsList = ImmersiveHunting.AnimalsList
-    if not animalsList then return end
+    -- add options for each animals
+    for tracks,animal in pairs(ImmersiveHunting.ValidForageItems) do
+        local option = subSubMenu:addOption(getText(animal.name),player,ImmersiveHunting.CreateForageIcon,square,tracks,animal)
+        -- access the texture to show on the icon
+        local animalTexture
+        local sprite = animal.sprite
+        if sprite then
+            animalTexture = Texture.trygetTexture(animal.sprite)
 
-    local animal_i,itemType,animal
-    for i = 1,#animalsList do
-        animal_i = animalsList[i]
-        itemType = animal_i.track
-        animal = animal_i.animal
+        -- get dead animal texture instead
+        else
+            local scriptItem = getScriptManager():FindItem(animal.dead)
+            animalTexture = scriptItem and scriptItem:getNormalTexture()
+        end
 
-        option = subSubMenu:addOption(getText(animal.name),player,ImmersiveHunting.CreateForageIcon,square,itemType,animal)
+        option.iconTexture = animalTexture
     end
 end

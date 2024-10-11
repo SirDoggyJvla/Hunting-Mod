@@ -32,6 +32,16 @@ option ImmersiveHunting.BirdsForage
 	translation = ImmersiveHunting_BirdsForage,
 }
 
+option ImmersiveHunting.TinyGameForage
+{
+	type = integer, 
+	min = 0, 
+	max = 500, 
+	default = 100,
+	page = ImmersiveHunting,
+	translation = ImmersiveHunting_TinyGameForage,
+}
+
 option ImmersiveHunting.SmallGameForage
 {
 	type = integer, 

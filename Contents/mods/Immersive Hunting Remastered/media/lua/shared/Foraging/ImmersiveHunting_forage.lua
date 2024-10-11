@@ -12,167 +12,240 @@ Adds the foraging of Immersive Hunting Remastered.
 --[[ ================================================ ]]--
 
 require "Foraging/forageSystem"
+require "Foraging/forageDefinitions"
+
+-- replace animal require skill to view it to 0
+forageCategories["Animals"].identifyCategoryLevel = 0
 
 local dev = getDebug() and false
 
-local options = {
-	"NatureAreas",
-	"HumanAreas",
-	"Birds",
-	"SmallGame",
-	"BigGame",
-}
-
 local areas = {
-	Forest			= {		baseChance = 4, 	option = "NatureAreas"	},
-	DeepForest		= {		baseChance = 8, 	option = "NatureAreas"	},
-	FarmLand		= {		baseChance = 2, 	option = "NatureAreas"	},
-	Vegitation		= {		baseChance = 2, 	option = "NatureAreas"	},
-
-	TrailerPark		= { 	baseChance = 2, 	option = "HumanAreas"	},
-	TownZone		= { 	baseChance = 2, 	option = "HumanAreas"	},
-	Nav				= { 	baseChance = 2, 	option = "HumanAreas"	},
+	Forest			= "NatureAreas",
+	DeepForest		= "NatureAreas",
+	FarmLand		= "NatureAreas",
+	Vegitation		= "NatureAreas",
+	TrailerPark		= "HumanAreas",
+	TownZone		= "HumanAreas",
+	Nav				= "HumanAreas",
 }
 
-local zones = {
-	["ImmersiveHunting.ImmersiveHuntingTraceSmall"] = {
-		"Forest",
-		"DeepForest",
-		"FarmLand",
-		"Vegitation",
-	},
-	["ImmersiveHunting.ImmersiveHuntingTraceBig"] = {
-		"Forest",
-		"DeepForest",
-		"FarmLand",
-		"Vegitation",
-	},
-	["ImmersiveHunting.ImmersiveHuntingSpottedBird"] = {
-		"Forest",
-		"DeepForest",
-		"FarmLand",
-		"Vegitation",
-		"TrailerPark",
-		"TownZone",
-		"Nav",
-	},
-}
-
-local forage = {
-	{
-		type="ImmersiveHunting.ImmersiveHuntingTraceSmall",
+local forages = {
+	-- Birds
+	Tracks_Robin = {
+		type="ImmersiveHunting.Tracks_Robin",
 		snowChance = -20,
 		rainChance = -20,
 		minCount=1,
 		maxCount=1,
-		xp=10,
 		skill=0,
 		categories = { "Animals" },
 		bonusMonths = { 6, 7, 8 },
-		zones = {},
+		zones = {
+			Forest = 12,
+			DeepForest = 16,
+			FarmLand = 2,
+			Vegitation = 4,
+			TrailerPark = 2,
+			TownZone = 2,
+			Nav = 2,
+		},
+
+		option = "Birds",
+	},
+
+	-- Tiny game
+	Tracks_Rat = {
+		type="ImmersiveHunting.Tracks_Rat",
+		snowChance = -20,
+		rainChance = -20,
+		minCount=1,
+		maxCount=1,
+		skill=0,
+		categories = { "Animals" },
+		bonusMonths = { 6, 7, 8 },
+		zones = {
+			Forest = 4,
+			DeepForest = 4,
+			FarmLand = 12,
+			Farm = 12,
+			Vegitation = 4,
+			TrailerPark = 12,
+			TownZone = 8,
+			Nav = 2,
+		},
+
+		option = "TinyGame",
+	},
+	Tracks_Mouse = {
+		type="ImmersiveHunting.Tracks_Mouse",
+		snowChance = -20,
+		rainChance = -20,
+		minCount=1,
+		maxCount=1,
+		skill=0,
+		categories = { "Animals" },
+		bonusMonths = { 6, 7, 8 },
+		zones = {
+			Forest = 4,
+			DeepForest = 4,
+			FarmLand = 12,
+			Farm = 12,
+			Vegitation = 4,
+			TrailerPark = 12,
+			TownZone = 8,
+			Nav = 2,
+		},
+
+		option = "TinyGame",
+	},
+	Tracks_Squirrel = {
+		type="ImmersiveHunting.Tracks_Squirrel",
+		snowChance = -20,
+		rainChance = -20,
+		minCount=1,
+		maxCount=1,
+		skill=0,
+		categories = { "Animals" },
+		bonusMonths = { 6, 7, 8 },
+		zones = {
+			Forest = 8,
+			DeepForest = 12,
+			FarmLand = 2,
+			Vegitation = 4,
+		},
+
+		option = "TinyGame",
+	},
+
+	-- Small game
+	Tracks_Rabbit = {
+		type="ImmersiveHunting.Tracks_Rabbit",
+		snowChance = -20,
+		rainChance = -20,
+		minCount=1,
+		maxCount=1,
+		skill=0,
+		categories = { "Animals" },
+		bonusMonths = { 6, 7, 8 },
+		zones = {
+			Forest = 8,
+			DeepForest = 12,
+			FarmLand = 8,
+			Farm = 8,
+			Vegitation = 2,
+		},
 
 		option = "SmallGame",
 	},
-	{
-		type="ImmersiveHunting.ImmersiveHuntingTraceBig",
+
+	-- Big game
+	Tracks_Pig = {
+		type="ImmersiveHunting.Tracks_Pig",
 		snowChance = -20,
 		rainChance = -20,
 		minCount=1,
 		maxCount=1,
-		xp=20,
 		skill=0,
 		categories = { "Animals" },
 		bonusMonths = { 6, 7, 8 },
-		zones = {},
+		zones = {
+			Forest = 4,
+			DeepForest = 8,
+			FarmLand = 2,
+			Farm = 2,
+			Vegitation = 2,
+		},
 
 		option = "BigGame",
 	},
-	{
-		type="ImmersiveHunting.ImmersiveHuntingSpottedBird",
+	Tracks_Deer = {
+		type="ImmersiveHunting.Tracks_Deer",
 		snowChance = -20,
 		rainChance = -20,
 		minCount=1,
 		maxCount=1,
-		xp=10,
 		skill=0,
 		categories = { "Animals" },
 		bonusMonths = { 6, 7, 8 },
-		zones = {},
+		zones = {
+			Forest = 4,
+			DeepForest = 8,
+			FarmLand = 2,
+			Farm = 2,
+			Vegitation = 2,
+		},
 
-		option = "Birds",
+		option = "BigGame",
 	},
 }
 
 Events.onAddForageDefs.Add(function()
-	local option
-	for i = 1,#options do
-		option = options[i]
-		options[option] = SandboxVars.ImmersiveHunting[option.."Forage"]/100
-	end
-
+	-- increase the chances for big games to be seen in human areas, and make them appear in city areas
 	if SandboxVars.ImmersiveHunting.YearsLater then
-		zones["ImmersiveHunting.ImmersiveHuntingTraceSmall"] = {
-			"Forest",
-			"DeepForest",
-			"FarmLand",
-			"Vegitation",
-			"TrailerPark",
-			"TownZone",
-			"Nav",
-		}
-		zones["ImmersiveHunting.ImmersiveHuntingTraceBig"] = {
-			"Forest",
-			"DeepForest",
-			"FarmLand",
-			"Vegitation",
-			"TrailerPark",
-			"TownZone",
-			"Nav",
-		}
+		-- robin
+		local zones = forages.Tracks_Robin.zones
+		zones.Vegitation = 4
+		zones.TrailerPark = 4
+		zones.TownZone = 4
+		zones.Nav = 4
+
+		-- squirrel
+		local zones = forages.Tracks_Squirrel.zones
+		zones.Vegitation = 4
+		zones.TrailerPark = 4
+		zones.TownZone = 4
+		zones.Nav = 4
+
+		-- rabbit
+		local zones = forages.Tracks_Rabbit.zones
+		zones.Vegitation = 4
+		zones.TrailerPark = 4
+		zones.TownZone = 4
+		zones.Nav = 4
+
+		-- pig
+		local zones = forages.Tracks_Pig.zones
+		zones.FarmLand = 4
+		zones.Vegitation = 4
+		zones.TrailerPark = 4
+		zones.TownZone = 4
+		zones.Nav = 4
+
+		-- deer
+		local zones = forages.Tracks_Deer.zones
+		zones.FarmLand = 4
+		zones.Vegitation = 4
+		zones.TrailerPark = 4
+		zones.TownZone = 4
+		zones.Nav = 4
 	end
 
 	-- increase the chances to a very high level if dev mode
 	if dev then
-		for _,v in pairs(areas) do
-			v.baseChance = 1000
+		for _,forage in pairs(forages) do
+			for _,value in pairs(forage.zones) do
+				value = 1000
+			end
+		end
+
+	-- not in dev mode, apply the sandbox options
+	else
+		for _,forage in pairs(forages) do
+			local option = forage.option
+			local animal_boost = option and SandboxVars.ImmersiveHunting[option.."Forage"]/100 or 1
+			for zone,value in pairs(forage.zones) do
+				local area = areas[zone]
+				local area_boost = area and SandboxVars.ImmersiveHunting[area.."Forage"]/100 or 1
+
+				value = value * animal_boost * area_boost
+			end
 		end
 	end
 
-	-- setup zone chances
-	local forage_item
-	local forage_item_type
-	local zones_type
-	local animal_boost
-	local zones_type_data
-	local areas_zone
-	local baseChance
-	local zone_boost
-
-	for i = 1,#forage do
-		-- retrieve item to add
-		forage_item = forage[i]
-		forage_item_type = forage_item.type
-
-		-- retrieve its zones
-		zones_type = zones[forage_item_type]
-
-		-- get animal option boost
-		animal_boost = options[forage_item.option]
-
-		-- go through every zones for this animal
-		for j = 1,#zones_type do
-			-- zone item
-			zones_type_data = zones_type[j]
-
-			-- get data of this zone
-			areas_zone = areas[zones_type_data]
-			baseChance = areas_zone.baseChance
-
-			zone_boost = options[areas_zone.option]
-
-			forage_item.zones[zones_type_data] = baseChance * zone_boost * animal_boost
-		end
-
-		forageSystem.addItemDef(forage_item)
+	-- add the items to spawn as foraging
+	for _,forage in pairs(forages) do
+		forage.option = nil
+		forageSystem.addItemDef(forage)
 	end
+
 end)

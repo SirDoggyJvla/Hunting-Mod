@@ -46,7 +46,8 @@ function ImmersiveHunting_ISButcher:perform()
 	local carcass = self.carcass
 	local character = self.character
 	local amountHarvest = self.amountHarvest
-	local meatItem = self.meatItem
+	local animal = self.animal
+	local meatItem = animal.meat
 	local hungerAmount = self.hungerAmount
 	local square = character:getSquare()
 
@@ -117,7 +118,7 @@ function ImmersiveHunting_ISButcher:perform()
 		carcass:setProteins(proteins*amountHarvest)
 
 		-- queue another butchering
-		ISTimedActionQueue.add(ImmersiveHunting_ISButcher:new(character,carcass,meatItem,hungerAmount_carcass,amountHarvest,200))
+		ISTimedActionQueue.add(ImmersiveHunting_ISButcher:new(character,carcass,animal,hungerAmount_carcass,amountHarvest,200))
 	end
 
 	-- update container to show meat items or carcass removed
@@ -128,7 +129,7 @@ function ImmersiveHunting_ISButcher:perform()
 end
 
 
-function ImmersiveHunting_ISButcher:new(character,carcass,meatItem,hungerAmount,amountHarvest,time)
+function ImmersiveHunting_ISButcher:new(character,carcass,animal,hungerAmount,amountHarvest,time)
 	local o = {}
 	setmetatable(o, self)
 	self.__index = self
@@ -139,7 +140,7 @@ function ImmersiveHunting_ISButcher:new(character,carcass,meatItem,hungerAmount,
 
 	-- custom fields
 	o.carcass = carcass
-	o.meatItem = meatItem
+	o.animal = animal
 	o.hungerAmount = hungerAmount
 	o.amountHarvest = amountHarvest
 	return o
