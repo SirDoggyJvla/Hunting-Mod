@@ -20,6 +20,21 @@ local random = newrandom()
 ImmersiveHunting_ISButcher = ISBaseTimedAction:derive("ImmersiveHunting_ISButcher")
 
 function ImmersiveHunting_ISButcher:isValid()
+	local carcass = self.carcass
+	local carcassWorld = carcass:getWorldItem()
+
+	-- verify item is still on the floor, if not means it can't be accessed by the player
+	if not carcassWorld then
+		return false
+	end
+
+	-- verify the hunger amount was not changed during butchering, possibly meaning another player 
+	-- just butchered a piece (so cancel the other player action)
+	local amountHarvest = math.ceil(-carcass:getHungChange())
+	if amountHarvest ~= self.amountHarvest then
+		return false
+	end
+
 	return true
 end
 
@@ -32,7 +47,11 @@ function ImmersiveHunting_ISButcher:update()
 end
 
 function ImmersiveHunting_ISButcher:start()
+	-- set animation
 	self:setActionAnim("SawLog")
+
+	-- play sound
+	self.sound = self.character:getEmitter():playSound("PZ_FoodSwoosh")
 
 	self.worldItem = self.carcass:getWorldItem()
 end
@@ -79,6 +98,7 @@ function ImmersiveHunting_ISButcher:perform()
 	local meatItemInventory = InventoryItemFactory.CreateItem(meatItem) ---@cast meatItemInventory Food
 
 	-- set the meatItem food values
+	meatItemInventory:setBaseHunger(hungerAmount_unique)
 	meatItemInventory:setHungChange(hungerAmount_unique)
 	meatItemInventory:setCalories(calories)
 	meatItemInventory:setLipids(lipids)
@@ -111,6 +131,7 @@ function ImmersiveHunting_ISButcher:perform()
 	else
 		-- update carcass food values
 		local hungerAmount_carcass = hungerAmount_unique*amountHarvest
+		carcass:setBaseHunger(hungerAmount_carcass)
 		carcass:setHungChange(hungerAmount_carcass)
 		carcass:setCalories(calories*amountHarvest)
 		carcass:setLipids(lipids*amountHarvest)

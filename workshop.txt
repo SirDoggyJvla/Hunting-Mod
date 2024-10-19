@@ -1,17 +1,15 @@
 version=1
 id=3343809645
 title=Immersive Hunting Remastered
-description=This mod is a rework of [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2970858855]Immersive Hunting[/url] by Spoon.
-description=
 description=[quote]
 description=A complete new take on hunting while we wait for B42 to come out. Find traces of animals while foraging and hunt them. Multiple factors can impact your chance of hunting the target such as daylight, wind or the fog, as well as your gun caliber, your traits or the animal type.
 description=
 description=[h1]Features:[/h1]
 description=[list]
-description=[*] Forage for animal tracks.
+description=[*] Forage for animal tracks
 description=[*] Deleted requirement to use the crafting menu ! Any weapon can be used to hunt based on some criteria
 description=[*] Adapt your weapon to the target, a shotgun will be better suited to hunt birds while a rifle would be used for bigger targets. Using a caliber too powerful can shred the target and leave less meat
-description=[*] Some melee weapons can be used but the more agile is the target, the less effective the weapon will be (you wouldn't use a sledgehammer to hunt right ?). Spears tend to be the best at this job.
+description=[*] Some melee weapons can be used but the more agile is the target, the less effective the weapon will be (you wouldn't use a sledgehammer to hunt right ?). Spears tend to be the best at this job
 description=[*] Butcher deers and pigs corpses for chunks of meat and leather. Also get bones when [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2890748284]Food Preservation Plus[/url] is installed
 description=[*] Years Later mode in the sandbox options to make deers, pigs and rabbits spawn in areas with human activity
 description=[*] Sandbox options to tweak anything, you can deactivate a few parameters by setting their impact to 0%

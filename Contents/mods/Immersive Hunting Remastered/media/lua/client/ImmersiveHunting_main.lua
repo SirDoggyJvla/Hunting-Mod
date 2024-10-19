@@ -368,7 +368,8 @@ end
 ---Do the hunting.
 ---@param player IsoPlayer
 ---@param square IsoGridSquare
----@param HuntInformation table
+---@param squareTarget IsoGridSquare
+---@param animal table
 ---@param baseIcon table
 ---@param weapon HandWeapon
 ---@param chanceToHunt number
@@ -387,7 +388,7 @@ ImmersiveHunting.DoHunt = function(player,square,squareTarget,animal,baseIcon,we
     end
 
     -- equip gun if player tried to cheat and put it away
-    if player:getPrimaryHandType() ~= weapon then
+    if player:getPrimaryHandItem() ~= weapon then
         ISTimedActionQueue.add(ISEquipWeaponAction:new(player, weapon, 50, true))
     end
 
@@ -592,6 +593,7 @@ ImmersiveHunting.HandleIcon = function(context,baseIcon,track,animal)
     if not instanceof(weapon,"HandWeapon") then
         weapon = nil
         description = description.."\n <RED>"..getText("Tooltip_ImmersiveHunting_NeedWeapon")
+        notAvailable = true
 
     else
         ---@cast weapon HandWeapon
