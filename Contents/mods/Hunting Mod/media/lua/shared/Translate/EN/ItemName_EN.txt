@@ -1,0 +1,7 @@
+ItemName_EN = {
+    ItemName_Base.Steak = "Chunk of meat",
+    ItemName_HuntingMod.SIHDeerCorpse = "Deer corpse",
+    ItemName_HuntingMod.SIHPigCorpse = "Wild pig corpse",
+
+    ItemName_Base.DeadBird = "Dead Robin",
+}

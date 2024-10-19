@@ -1,0 +1,170 @@
+StrengthSandbox_EN = {
+/*---------------------------------------------------------------------
+-- Page names
+---------------------------------------------------------------------*/
+	Sandbox_HuntingMod = "Hunting Mod",
+
+    Sandbox_HuntingMod_Separation_EmptyBox = "",
+    Sandbox_HuntingMod_Separation_EmptyBox_tooltip = "<RED> <CENTRE> [THIS OPTION DOES NOT DO ANYTHING]",
+
+/*---------------------------------------------------------------------
+-- Forage Spawns
+---------------------------------------------------------------------*/
+	Sandbox_HuntingMod_Separation_ForageSpawn = "_______________ Forage Spawns _______________",
+	Sandbox_HuntingMod_Separation_ForageSpawn_tooltip = "<RED> <CENTRE> [THIS OPTION DOES NOT DO ANYTHING] <BR> <LEFT> <RGB:1,1,1> Customize the chance for tracks of animals to spawn.",
+
+    Sandbox_HuntingMod_YearsLater = "Years Later mode",
+    Sandbox_HuntingMod_YearsLater_tooltip = "Bird spottings will be more common than normal in cities due to nature taking over in populated areas. Small and big animals will also be present in cities thanks to this setting.",
+
+    Sandbox_HuntingMod_BirdsForage = "Bird spawn boost [%]",
+	Sandbox_HuntingMod_BirdsForage_tooltip = "Boost to spawns of bird tracks.",
+
+    Sandbox_HuntingMod_TinyGameForage = "Tiny game spawn boost [%]",
+	Sandbox_HuntingMod_TinyGameForage_tooltip = "Boost to spawns of tiny game tracks.",
+
+    Sandbox_HuntingMod_SmallGameForage = "Small game spawn boost [%]",
+	Sandbox_HuntingMod_SmallGameForage_tooltip = "Boost to spawns of small game tracks.",
+
+    Sandbox_HuntingMod_BigGameForage = "Big game spawn boost [%]",
+	Sandbox_HuntingMod_BigGameForage_tooltip = "Boost to spawns of big games tracks.",
+
+    Sandbox_HuntingMod_NatureAreasForage = "Nature areas spawn boost [%]",
+	Sandbox_HuntingMod_NatureAreasForage_tooltip = "Boost to spawns of tracks in nature areas such as forests and deep forests.",
+
+    Sandbox_HuntingMod_HumanAreasForage = "Human areas spawn boost [%]",
+	Sandbox_HuntingMod_HumanAreasForage_tooltip = "Boost to spawns of tracks in areas with human activity such as cities, farms and roads.",
+
+
+/*---------------------------------------------------------------------
+-- General
+---------------------------------------------------------------------*/
+	Sandbox_HuntingMod_Separation_General = "_______________ General _______________",
+	Sandbox_HuntingMod_Separation_General_tooltip = "<RED> <CENTRE> [THIS OPTION DOES NOT DO ANYTHING] <BR> <LEFT> <RGB:1,1,1> Set the general options.",
+    
+    Sandbox_HuntingMod_ShowProbabilities = "Show hunting probabilities",
+    Sandbox_HuntingMod_ShowProbabilities_tooltip = "Chance to hunt a spotting will be shown in the tooltip.",
+
+    Sandbox_HuntingMod_MinimumBonusSize = "Minimum bonus prey size [%]",
+    Sandbox_HuntingMod_MinimumBonusSize_tooltip = "Preys will have their minimum food value be this percentage of their default food value.",
+
+    Sandbox_HuntingMod_MaximumBonusSize = "Maximum bonus prey size [%]",
+    Sandbox_HuntingMod_MaximumBonusSize_tooltip = "Preys will have their maximum food value be this percentage of their default food value.",
+
+    Sandbox_HuntingMod_MinimumBonusSizeShred = "Minimum bonus prey size when shred [%]",
+    Sandbox_HuntingMod_MinimumBonusSizeShred_tooltip = "When shred due to a gun too powerful, preys will have their minimum food value be this percentage of their default food value.",
+
+    Sandbox_HuntingMod_MaximumBonusSizeShred = "Maximum bonus prey size when shred [%]",
+    Sandbox_HuntingMod_MaximumBonusSizeShred_tooltip = "When shred due to a gun too powerful, preys will have their maximum food value be this percentage of their default food value.",
+
+    Sandbox_HuntingMod_XPGainHunting = "XP Gain from hunting",
+    Sandbox_HuntingMod_XPGainHunting_tooltip = "Hunting gives XP in the category of the weapon used (aiming for guns, and for melee weapons their respective skills). This value is not exact and depends on your experience boost in the skill category of the weapon. It also gives XP in foraging.",
+
+    Sandbox_HuntingMod_XPGainDiscard = "XP Gain from discarding a hunt",
+    Sandbox_HuntingMod_XPGainDiscard_tooltip = "Discarding a hunt gives XP in foraging.",
+
+
+/*---------------------------------------------------------------------
+-- Aiming impact
+---------------------------------------------------------------------*/
+	Sandbox_HuntingMod_Separation_AimingImpact = "_______________ Aiming impact _______________",
+	Sandbox_HuntingMod_Separation_AimingImpact_tooltip = "<RED> <CENTRE> [THIS OPTION DOES NOT DO ANYTHING] <BR> <LEFT> <RGB:1,1,1> Set the impact of aiming on hunting. Some guns are more adapted for certain types of targets, such as shotguns for birds and rifles or small or big game.",
+    
+    Sandbox_HuntingMod_AimingImpact = "Impact of the aiming level on hunting [%]",
+    Sandbox_HuntingMod_AimingImpact_tooltip = "The user aiming skill will impact hunting conditions. ",
+
+    Sandbox_HuntingMod_AimingImpactMinimumAimingLevelToHunt = "Minimum aiming level for minimum impact and to hunt",
+    Sandbox_HuntingMod_AimingImpactMaximumAimingLevelToHunt_tooltip = "The minimum level in aiming required for a character to be able to hunt with a gun.",
+    Sandbox_HuntingMod_AimingImpactMaximumAimingLevelToHunt = "Maximum aiming level for maximum impact",
+    Sandbox_HuntingMod_AimingImpactMaximumAimingLevelToHunt_tooltip = "This won't make you unable to hunt, it will simply define the level needed to reach the maximum aiming impact value to hit a target.",
+
+    Sandbox_HuntingMod_AimingImpactMinimumAimingImpact = "Minimum aiming impact on hunting [%]",
+    Sandbox_HuntingMod_AimingImpactMinimumAimingImpact_tooltip = "If your aiming is the minimum level required to be able to hunt, the impact due to aiming on the hunting chance will be this value.",
+    Sandbox_HuntingMod_AimingImpactMaximumAimingImpact = "Maximum aiming impact on hunting [%]",
+    Sandbox_HuntingMod_AimingImpactMaximumAimingImpact_tooltip = "If your aiming is the maximum level (or more), the impact due to aiming on the hunting chance will be this value.",
+
+
+/*---------------------------------------------------------------------
+-- Melee impact
+---------------------------------------------------------------------*/
+	Sandbox_HuntingMod_Separation_MeleeImpact = "_______________ Melee impact _______________",
+	Sandbox_HuntingMod_Separation_MeleeImpact_tooltip = "<RED> <CENTRE> [THIS OPTION DOES NOT DO ANYTHING] <BR> <LEFT> <RGB:1,1,1> Set the impact of melee on hunting. Depends on the category of the weapon (blunt, spear, long blade...)",
+    
+    Sandbox_HuntingMod_MeleeImpact = "Impact of the melee level on hunting [%]",
+    Sandbox_HuntingMod_MeleeImpact_tooltip = "The user melee skill will impact hunting conditions. ",
+
+    Sandbox_HuntingMod_MeleeImpactMinimumMeleeLevelToHunt = "Minimum melee level for minimum impact and to hunt",
+    Sandbox_HuntingMod_MeleeImpactMaximumMeleeLevelToHunt_tooltip = "The minimum level in melee skills required for a character to be able to hunt with a melee weapon.",
+    Sandbox_HuntingMod_MeleeImpactMaximumMeleeLevelToHunt = "Maximum melee level for maximum impact",
+    Sandbox_HuntingMod_MeleeImpactMaximumMeleeLevelToHunt_tooltip = "This won't make you unable to hunt, it will simply define the level needed to reach the maximum melee impact value to hit a target.",
+
+    Sandbox_HuntingMod_MeleeImpactMinimumMeleeImpact = "Minimum aiming impact on hunting [%]",
+    Sandbox_HuntingMod_MeleeImpactMinimumMeleeImpact_tooltip = "If your melee is the minimum level required to be able to hunt, the impact due to melee on the hunting chance will be this value.",
+    Sandbox_HuntingMod_MeleeImpactMaximumMeleeImpact = "Maximum aiming impact on hunting [%]",
+    Sandbox_HuntingMod_MeleeImpactMaximumMeleeImpact_tooltip = "If your melee is the maximum level (or more), the impact due to melee on the hunting chance will be this value.",
+
+
+/*---------------------------------------------------------------------
+-- Strength impact
+---------------------------------------------------------------------*/
+	Sandbox_HuntingMod_Separation_StrengthImpact = "_______________ Strength impact _______________",
+	Sandbox_HuntingMod_Separation_StrengthImpact_tooltip = "<RED> <CENTRE> [THIS OPTION DOES NOT DO ANYTHING] <BR> <LEFT> <RGB:1,1,1> Set the impact of strength on hunting, only impacts melee.",
+    
+    Sandbox_HuntingMod_StrengthImpact = "Impact of the strength level on hunting [%]",
+    Sandbox_HuntingMod_StrengthImpact_tooltip = "The user strength skill will impact hunting conditions. ",
+
+    Sandbox_HuntingMod_StrengthImpactMinimumStrengthLevelToHunt = "Minimum strength level for minimum impact and to hunt",
+    Sandbox_HuntingMod_StrengthImpactMaximumStrengthLevelToHunt_tooltip = "The minimum level in strength required for a character to be able to hunt with a melee weapon.",
+    Sandbox_HuntingMod_StrengthImpactMaximumStrengthLevelToHunt = "Maximum strength level for maximum impact",
+    Sandbox_HuntingMod_StrengthImpactMaximumStrengthLevelToHunt_tooltip = "This won't make you unable to hunt, it will simply define the level needed to reach the maximum strength impact value to hit a target.",
+
+    Sandbox_HuntingMod_StrengthImpactMinimumStrengthImpact = "Minimum strength impact on hunting [%]",
+    Sandbox_HuntingMod_StrengthImpactMinimumStrengthImpact_tooltip = "If your strength is the minimum level required to be able to hunt, the impact due to strength on the hunting chance will be this value.",
+    Sandbox_HuntingMod_StrengthImpactMaximumStrengthImpact = "Maximum strength impact on hunting [%]",
+    Sandbox_HuntingMod_StrengthImpactMaximumStrengthImpact_tooltip = "If your strength is the maximum level (or more), the impact due to strength on the hunting chance will be this value.",
+
+
+/*---------------------------------------------------------------------
+-- Stealth impact
+---------------------------------------------------------------------*/
+	Sandbox_HuntingMod_Separation_StealthImpact = "_______________ Stealth impact _______________",
+	Sandbox_HuntingMod_Separation_StealthImpact_tooltip = "<RED> <CENTRE> [THIS OPTION DOES NOT DO ANYTHING] <BR> <LEFT> <RGB:1,1,1> Set the impact of stealth on hunting. Sneaking and lightfoot count towards your stealth skills (mean between sneaking and lightfoot).",
+    
+    Sandbox_HuntingMod_StealthImpact = "Impact of the stealth level on hunting [%]",
+    Sandbox_HuntingMod_StealthImpact_tooltip = "The user stealth skills will impact hunting conditions. ",
+
+    Sandbox_HuntingMod_StealthImpactMinimumStealthImpact = "Minimum stealth impact on hunting [%]",
+    Sandbox_HuntingMod_StealthImpactMinimumStealthImpact_tooltip = "The impact due to stealth on the hunting chance will be this value when at stealth of 0 (mean between sneaking and lightfoot).",
+    Sandbox_HuntingMod_StealthImpactMaximumStealthImpact = "Maximum stealth impact on hunting [%]",
+    Sandbox_HuntingMod_StealthImpactMaximumStealthImpact_tooltip = "The impact due to stealth on the hunting chance will be this value when at stealth of 10 (mean between sneaking and lightfoot).",
+
+
+/*---------------------------------------------------------------------
+-- Other impact
+---------------------------------------------------------------------*/
+	Sandbox_HuntingMod_Separation_OtherImpact = "_______________ Other impacts _______________",
+	Sandbox_HuntingMod_Separation_OtherImpact_tooltip = "<RED> <CENTRE> [THIS OPTION DOES NOT DO ANYTHING] <BR> <LEFT> <RGB:1,1,1> Set the impact of other conditions on hunting.",
+    
+    Sandbox_HuntingMod_ScopeBonus = "Bonus from having a scope [%]",
+    Sandbox_HuntingMod_ScopeBonus_tooltip = "When having a scope on the gun used to hunt, it will boost the hunting chance by this amount.",
+
+    Sandbox_HuntingMod_WeaponImpact = "Impact of the weapon on hunting [%]",
+    Sandbox_HuntingMod_WeaponImpact_tooltip = "The weapon and the user aiming skill will impact hunting conditions. This can boost the hunting chance or decrease it.",
+
+    Sandbox_HuntingMod_LightImpact = "Impact of day light on hunting [%]",
+    Sandbox_HuntingMod_LightImpact_tooltip = "Lightness of the day will impact hunting conditions. This can boost the hunting chance or decrease it.",
+
+    Sandbox_HuntingMod_FogImpact = "Impact of fog on hunting [%]",
+    Sandbox_HuntingMod_FogImpact_tooltip = "Fog will impact hunting conditions. This can boost the hunting chance or decrease it.",
+
+    Sandbox_HuntingMod_WindImpact = "Impact of wind on hunting [%]",
+    Sandbox_HuntingMod_WindImpact_tooltip = "Wind will impact hunting conditions. This can boost the hunting chance or decrease it.",
+
+    Sandbox_HuntingMod_TraitImpact = "Impact of traits on hunting [%]",
+    Sandbox_HuntingMod_TraitImpact_tooltip = "Traits will impact hunting conditions. This can boost the hunting chance or decrease it.",
+
+    Sandbox_HuntingMod_MoodleImpact = "Impact of moodles on hunting [%]",
+    Sandbox_HuntingMod_MoodleImpact_tooltip = "Moodles will impact hunting conditions: cold, hypothermia. This can boost the hunting chance or decrease it.",
+
+    Sandbox_HuntingMod_BoostToHuntingChance = "Hunting chance multiplier [%]",
+    Sandbox_HuntingMod_BoostToHuntingChance_tooltip = "Final chance of hunting a target will be boosted by this multiplier. 100% won't boost the hunting chance while a lower value will reduce overall chance of hunting and a higher value will increase the chance of hunting the target.",
+}

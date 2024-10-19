@@ -1,8 +1,0 @@
-ContextMenu_EN = {
-    ContextMenu_ImmersiveHunting_Hunt = "Hunt",
-
-    ContextMenu_ImmersiveHunting_Butcher = "Butcher",
-
-    ContextMenu_ImmersiveHunting_DebugMenu = "Immersive Hunting: Debug Menu",
-    ContextMenu_ImmersiveHunting_SpawnAnimal = "Spawn animal tracks",
-}

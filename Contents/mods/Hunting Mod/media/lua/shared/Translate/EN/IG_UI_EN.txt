@@ -1,0 +1,27 @@
+IGUI_EN = {
+    IGUI_HuntingMod_Robin = "Robin",
+    IGUI_HuntingMod_Rabbit = "Rabbit",
+    IGUI_HuntingMod_Rat = "Rat",
+    IGUI_HuntingMod_Mouse = "Mouse",
+    IGUI_HuntingMod_Squirrel = "Squirrel",
+    IGUI_HuntingMod_Pig = "Pig",
+    IGUI_HuntingMod_Deer = "Deer",
+
+    IGUI_HuntingMod_SuccessHunt1 = "Got it !",
+    IGUI_HuntingMod_SuccessHunt2 = "Right in the eye !",
+    IGUI_HuntingMod_SuccessHunt3 = "We're eating good tonight !",
+    IGUI_HuntingMod_SuccessHunt4 = "Bullseye, just like that!",
+    IGUI_HuntingMod_SuccessHunt5 = "Perfect hit, won't feel a thing!",
+    IGUI_HuntingMod_SuccessHunt6 = "Down in one!",
+    IGUI_HuntingMod_SuccessHunt7 = "Meat's back on the menu!",
+    IGUI_HuntingMod_SuccessHunt8 = "That'll feed us for days!",
+
+    IGUI_HuntingMod_FailedHunt1 = "Missed it by a mile!",
+    IGUI_HuntingMod_FailedHunt2 = "Dang it, so close!",
+    IGUI_HuntingMod_FailedHunt3 = "How did I miss that?!",
+    IGUI_HuntingMod_FailedHunt4 = "It slipped away!",
+    IGUI_HuntingMod_FailedHunt5 = "Ugh, missed it!",
+    IGUI_HuntingMod_FailedHunt6 = "I won't miss the next one!",
+    IGUI_HuntingMod_FailedHunt7 = "That one's gone for good.",
+    IGUI_HuntingMod_FailedHunt8 = "Missed... Better luck next time!",
+}

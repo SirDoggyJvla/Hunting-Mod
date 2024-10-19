@@ -1,0 +1,485 @@
+VERSION = 1,
+
+/*---------------------------------------------------------------------
+-- General
+---------------------------------------------------------------------*/
+option HuntingMod.Separation_EmptyBox0
+{
+	type = boolean, default = false,
+	page = HuntingMod, translation = HuntingMod_Separation_EmptyBox,
+}
+option HuntingMod.Separation_ForageSpawn
+{
+	type = boolean, default = false,
+	page = HuntingMod, translation = HuntingMod_Separation_ForageSpawn,
+}
+
+option HuntingMod.YearsLater
+{
+	type = boolean,
+	default = false,
+	page = HuntingMod,
+	translation = HuntingMod_YearsLater,
+}
+
+option HuntingMod.BirdsForage
+{
+	type = integer, 
+	min = 0, 
+	max = 500, 
+	default = 100,
+	page = HuntingMod,
+	translation = HuntingMod_BirdsForage,
+}
+
+option HuntingMod.TinyGameForage
+{
+	type = integer, 
+	min = 0, 
+	max = 500, 
+	default = 100,
+	page = HuntingMod,
+	translation = HuntingMod_TinyGameForage,
+}
+
+option HuntingMod.SmallGameForage
+{
+	type = integer, 
+	min = 0, 
+	max = 500, 
+	default = 100,
+	page = HuntingMod,
+	translation = HuntingMod_SmallGameForage,
+}
+
+option HuntingMod.BigGameForage
+{
+	type = integer, 
+	min = 0, 
+	max = 500, 
+	default = 100,
+	page = HuntingMod,
+	translation = HuntingMod_BigGameForage,
+}
+
+option HuntingMod.NatureAreasForage
+{
+	type = integer, 
+	min = 0, 
+	max = 500, 
+	default = 100,
+	page = HuntingMod,
+	translation = HuntingMod_NatureAreasForage,
+}
+
+option HuntingMod.HumanAreasForage
+{
+	type = integer, 
+	min = 0, 
+	max = 500, 
+	default = 100,
+	page = HuntingMod,
+	translation = HuntingMod_HumanAreasForage,
+}
+
+
+/*---------------------------------------------------------------------
+-- General
+---------------------------------------------------------------------*/
+option HuntingMod.Separation_EmptyBox1
+{
+	type = boolean, default = false,
+	page = HuntingMod, translation = HuntingMod_Separation_EmptyBox,
+}
+option HuntingMod.Separation_General
+{
+	type = boolean, default = false,
+	page = HuntingMod, translation = HuntingMod_Separation_General,
+}
+
+option HuntingMod.ShowProbabilities
+{
+	type = boolean,
+	default = true,
+	page = HuntingMod,
+	translation = HuntingMod_ShowProbabilities,
+}
+
+option HuntingMod.MinimumBonusSize
+{
+	type = integer, 
+	min = 0, 
+	max = 500, 
+	default = 80,
+	page = HuntingMod,
+	translation = HuntingMod_MinimumBonusSize,
+}
+
+option HuntingMod.MaximumBonusSize
+{
+	type = integer, 
+	min = 0, 
+	max = 500, 
+	default = 150,
+	page = HuntingMod,
+	translation = HuntingMod_MaximumBonusSize,
+}
+
+option HuntingMod.MinimumBonusSizeShred
+{
+	type = integer, 
+	min = 0, 
+	max = 500, 
+	default = 10,
+	page = HuntingMod,
+	translation = HuntingMod_MinimumBonusSizeShred,
+}
+
+option HuntingMod.MaximumBonusSizeShred
+{
+	type = integer, 
+	min = 0, 
+	max = 500, 
+	default = 20,
+	page = HuntingMod,
+	translation = HuntingMod_MaximumBonusSizeShred,
+}
+
+option HuntingMod.XPGainHunting
+{
+	type = integer, 
+	min = 0, 
+	max = 200, 
+	default = 30,
+	page = HuntingMod,
+	translation = HuntingMod_XPGainHunting,
+}
+
+option HuntingMod.XPGainDiscard
+{
+	type = integer, 
+	min = 0, 
+	max = 200, 
+	default = 30,
+	page = HuntingMod,
+	translation = HuntingMod_XPGainDiscard,
+}
+
+
+/*---------------------------------------------------------------------
+-- Aiming impact
+---------------------------------------------------------------------*/
+option HuntingMod.Separation_EmptyBox2
+{
+	type = boolean, default = false,
+	page = HuntingMod, translation = HuntingMod_Separation_EmptyBox,
+}
+option HuntingMod.Separation_AimingImpact
+{
+	type = boolean, default = false,
+	page = HuntingMod, translation = HuntingMod_Separation_AimingImpact,
+}
+
+option HuntingMod.AimingImpact
+{
+	type = boolean,
+	default = true,
+	page = HuntingMod,
+	translation = HuntingMod_AimingImpact,
+}
+
+option HuntingMod.MinimumAimingLevelToHunt
+{
+	type = integer, 
+	min = 0, 
+	max = 10, 
+	default = 0,
+	page = HuntingMod,
+	translation = HuntingMod_AimingImpactMinimumAimingLevelToHunt,
+}
+
+option HuntingMod.MaximumAimingLevelToHunt
+{
+	type = integer, 
+	min = 0, 
+	max = 10, 
+	default = 10,
+	page = HuntingMod,
+	translation = HuntingMod_AimingImpactMaximumAimingLevelToHunt,
+}
+
+option HuntingMod.MinimumAimingImpact
+{
+	type = integer, 
+	min = 0, 
+	max = 500, 
+	default = 50,
+	page = HuntingMod,
+	translation = HuntingMod_AimingImpactMinimumAimingImpact,
+}
+
+option HuntingMod.MaximumAimingImpact
+{
+	type = integer, 
+	min = 0, 
+	max = 500, 
+	default = 150,
+	page = HuntingMod,
+	translation = HuntingMod_AimingImpactMaximumAimingImpact,
+}
+
+
+/*---------------------------------------------------------------------
+-- Melee impact
+---------------------------------------------------------------------*/
+option HuntingMod.Separation_EmptyBox3
+{
+	type = boolean, default = false,
+	page = HuntingMod, translation = HuntingMod_Separation_EmptyBox,
+}
+option HuntingMod.Separation_MeleeImpact
+{
+	type = boolean, default = false,
+	page = HuntingMod, translation = HuntingMod_Separation_MeleeImpact,
+}
+
+option HuntingMod.MinimumMeleeLevelToHunt
+{
+	type = integer, 
+	min = 0, 
+	max = 10, 
+	default = 0,
+	page = HuntingMod,
+	translation = HuntingMod_MeleeImpactMinimumMeleeLevelToHunt,
+}
+
+option HuntingMod.MaximumMeleeLevelToHunt
+{
+	type = integer, 
+	min = 0, 
+	max = 10, 
+	default = 10,
+	page = HuntingMod,
+	translation = HuntingMod_MeleeImpactMaximumMeleeLevelToHunt,
+}
+
+option HuntingMod.MinimumMeleeImpact
+{
+	type = integer, 
+	min = 0, 
+	max = 500, 
+	default = 50,
+	page = HuntingMod,
+	translation = HuntingMod_MeleeImpactMinimumMeleeImpact,
+}
+
+option HuntingMod.MaximumMeleeImpact
+{
+	type = integer, 
+	min = 0, 
+	max = 500, 
+	default = 150,
+	page = HuntingMod,
+	translation = HuntingMod_MeleeImpactMaximumMeleeImpact,
+}
+
+
+/*---------------------------------------------------------------------
+-- Strength impact
+---------------------------------------------------------------------*/
+option HuntingMod.Separation_EmptyBox4
+{
+	type = boolean, default = false,
+	page = HuntingMod, translation = HuntingMod_Separation_EmptyBox,
+}
+option HuntingMod.Separation_StrengthImpact
+{
+	type = boolean, default = false,
+	page = HuntingMod, translation = HuntingMod_Separation_StrengthImpact,
+}
+
+option HuntingMod.StrengthImpact
+{
+	type = boolean,
+	default = true,
+	page = HuntingMod,
+	translation = HuntingMod_StrengthImpact,
+}
+
+option HuntingMod.MinimumStrengthLevelToHunt
+{
+	type = integer, 
+	min = 0, 
+	max = 10, 
+	default = 1,
+	page = HuntingMod,
+	translation = HuntingMod_StrengthImpactMinimumStrengthLevelToHunt,
+}
+
+option HuntingMod.MaximumStrengthLevelToHunt
+{
+	type = integer, 
+	min = 0, 
+	max = 10, 
+	default = 10,
+	page = HuntingMod,
+	translation = HuntingMod_StrengthImpactMaximumStrengthLevelToHunt,
+}
+
+option HuntingMod.MinimumStrengthImpact
+{
+	type = integer, 
+	min = 0, 
+	max = 500, 
+	default = 50,
+	page = HuntingMod,
+	translation = HuntingMod_StrengthImpactMinimumStrengthImpact,
+}
+
+option HuntingMod.MaximumStrengthImpact
+{
+	type = integer, 
+	min = 0, 
+	max = 500, 
+	default = 150,
+	page = HuntingMod,
+	translation = HuntingMod_StrengthImpactMaximumStrengthImpact,
+}
+
+
+/*---------------------------------------------------------------------
+-- Stealth impact
+---------------------------------------------------------------------*/
+option HuntingMod.Separation_EmptyBox5
+{
+	type = boolean, default = false,
+	page = HuntingMod, translation = HuntingMod_Separation_EmptyBox,
+}
+option HuntingMod.Separation_StealthImpact
+{
+	type = boolean, default = false,
+	page = HuntingMod, translation = HuntingMod_Separation_StealthImpact,
+}
+
+option HuntingMod.StealthImpact
+{
+	type = boolean,
+	default = true,
+	page = HuntingMod,
+	translation = HuntingMod_StealthImpact,
+}
+
+option HuntingMod.MinimumStealthImpact
+{
+	type = integer, 
+	min = 0, 
+	max = 500, 
+	default = 70,
+	page = HuntingMod,
+	translation = HuntingMod_StealthImpactMinimumStealthImpact,
+}
+
+option HuntingMod.MaximumStealthImpact
+{
+	type = integer, 
+	min = 0, 
+	max = 500, 
+	default = 150,
+	page = HuntingMod,
+	translation = HuntingMod_StealthImpactMaximumStealthImpact,
+}
+
+
+/*---------------------------------------------------------------------
+-- Other impact
+---------------------------------------------------------------------*/
+option HuntingMod.Separation_EmptyBox6
+{
+	type = boolean, default = false,
+	page = HuntingMod, translation = HuntingMod_Separation_EmptyBox,
+}
+option HuntingMod.Separation_OtherImpact
+{
+	type = boolean, default = false,
+	page = HuntingMod, translation = HuntingMod_Separation_OtherImpact,
+}
+
+option HuntingMod.ScopeBonus
+{
+	type = integer, 
+	min = 0, 
+	max = 200,
+	default = 30,
+	page = HuntingMod,
+	translation = HuntingMod_ScopeBonus,
+}
+
+option HuntingMod.WeaponImpact
+{
+	type = integer, 
+	min = 0, 
+	max = 500, 
+	default = 100,
+	page = HuntingMod,
+	translation = HuntingMod_WeaponImpact,
+}
+
+option HuntingMod.LightImpact
+{
+	type = integer, 
+	min = 0, 
+	max = 500, 
+	default = 100,
+	page = HuntingMod,
+	translation = HuntingMod_LightImpact,
+}
+
+option HuntingMod.FogImpact
+{
+	type = integer, 
+	min = 0, 
+	max = 500, 
+	default = 100,
+	page = HuntingMod,
+	translation = HuntingMod_FogImpact,
+}
+
+option HuntingMod.WindImpact
+{
+	type = integer, 
+	min = 0, 
+	max = 500, 
+	default = 100,
+	page = HuntingMod,
+	translation = HuntingMod_WindImpact,
+}
+
+option HuntingMod.TraitImpact
+{
+	type = integer, 
+	min = 0, 
+	max = 500, 
+	default = 100,
+	page = HuntingMod,
+	translation = HuntingMod_TraitImpact,
+}
+
+option HuntingMod.MoodleImpact
+{
+	type = integer, 
+	min = 0, 
+	max = 500, 
+	default = 100,
+	page = HuntingMod,
+	translation = HuntingMod_MoodleImpact,
+}
+
+option HuntingMod.BoostToHuntingChance
+{
+	type = integer, 
+	min = 0, 
+	max = 500, 
+	default = 100,
+	page = HuntingMod,
+	translation = HuntingMod_BoostToHuntingChance,
+}

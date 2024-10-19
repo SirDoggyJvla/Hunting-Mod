@@ -1,0 +1,67 @@
+Tooltip_EN = {
+	/* Item tooltip */
+	Tooltip_Recipe_Deer = "Dead deer corpse.<BR>Can be cut up to obtain meat with a knife.",
+	Tooltip_Recipe_Pig = "Dead wild pig corpse.<BR>Can be cut up to obtain meat with a knife.",
+
+	/* Hunting tooltip */
+	Tooltip_HuntingMod_CurrentWeapon = "%1 will be used to hunt:",
+	Tooltip_HuntingMod_CanKill = "<GREEN> Weapon will kill target.",
+	Tooltip_HuntingMod_NotAdapted = "<ORANGE> Weapon is not adapted to hunting this animal:",
+	Tooltip_HuntingMod_MightNotKill = "- Weapon might not kill target on hit",
+	Tooltip_HuntingMod_WillShred = "- Weapon will shred target, leaving less meat to collect",
+
+	/* Not valid to hunt */
+	Tooltip_HuntingMod_NeedWeapon = "<RED> Requires a weapon equiped to hunt.",
+	Tooltip_HuntingMod_NoAmmo = "Need to reload.",
+	Tooltip_HuntingMod_NoRoundChambered = "No round chambered",
+	Tooltip_HuntingMod_CannotKillTarget = "<RED> Weapon cannot kill target.",
+
+	/* Impact explanation */
+	Tooltip_HuntingMod_impacts = "A value near 0% will make the chance of hunting go towards 0% too, while a high value above 100% will increase the hunting chances.",
+
+	/* Weapon impacts */
+	Tooltip_HuntingMod_Weapon = "<RGB:1,1,1>Weapon's impact on final hunting chance",
+	Tooltip_HuntingMod_ScopeBonus = "Scope bonus:",
+	Tooltip_HuntingMod_WeaponImpact = "Weapon adaptation to target:",
+	Tooltip_HuntingMod_AimingImpact = "Aiming skill:",
+	Tooltip_HuntingMod_StrengthImpact = "Strength skill:",
+	Tooltip_HuntingMod_ChanceToHit = "Total weapon's ability to hunt target:",
+
+	/* World Impacts */
+	Tooltip_HuntingMod_World = "<RGB:1,1,1>World's impact on final hunting chance",
+	Tooltip_HuntingMod_DayLightImpact = "Day time value:",
+	Tooltip_HuntingMod_FogImpact = "Fog value:",
+	Tooltip_HuntingMod_WindImpact = "Wind value:",
+	Tooltip_HuntingMod_ChanceWorld = "Total climate's impact on hunting the target:",
+
+	/* Player skill impacts */
+	Tooltip_HuntingMod_Stats = "<RGB:1,1,1>Character stats's impact on final hunting chance",
+	Tooltip_HuntingMod_StealthImpact = "Stealth skill:",
+	Tooltip_HuntingMod_MoodleImpact = "Moodles impact:",
+	Tooltip_HuntingMod_TraitImpact = "Traits impact:",
+	Tooltip_HuntingMod_PositiveTraits = "Positive traits impacting chances:",
+	Tooltip_HuntingMod_NegativeTraits = "Negative traits impacting chances:",
+	Tooltip_HuntingMod_ChanceStats = "Total character's ability to hunt:",
+
+	/* Final chances */
+	Tooltip_HuntingMod_FinalProbability = "Total chance of successfully hunting the target:",
+
+	/* Reasons */
+	Tooltip_HuntingMod_noAmmoType = "No ammo type",
+	Tooltip_HuntingMod_notRecognized = "Ammo type not recognized (report this on the mod page)",
+	Tooltip_HuntingMod_badCaliber = "Can't hunt target with this caliber type",
+	Tooltip_HuntingMod_badAiming = "Not good enough at aiming",
+	Tooltip_HuntingMod_twoHandedImprovised = "Can't hunt this target with two handed improvised",
+	Tooltip_HuntingMod_twoHandedSmallBlunt = "Can't hunt this target with two handed small blunt",
+	Tooltip_HuntingMod_twoHandedBlunt = "Can't hunt this target with two handed blunt",
+	Tooltip_HuntingMod_twoHandedAxe = "Can't hunt this target with two handed axe",
+	Tooltip_HuntingMod_twoHandedSmallBlade = "Can't hunt this target with two handed small blade",
+	Tooltip_HuntingMod_twoHandedLongBlade = "Can't hunt this target with two handed long blade",
+	Tooltip_HuntingMod_twoHandedSpear = "Can't hunt this target with two handed spear",
+	Tooltip_HuntingMod_notSkilledEnough = "Not skilled enough with this type of weapon",
+	Tooltip_HuntingMod_notStrongEnough = "Not strong enough",
+
+	/* Butcher */
+    Tooltip_HuntingMod_ButcherAmount = "%1 pieces of meat left.",
+	Tooltip_HuntingMod_NeedSharpKnife = "Need a sharp knife to butcher.",
+}
