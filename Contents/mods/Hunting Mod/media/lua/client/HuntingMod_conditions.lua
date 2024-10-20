@@ -31,6 +31,9 @@ HuntingMod.CaliberDataBase = {
 	["Base.22Bullets"                         ]	=	{ AmmoType = "Bullet"    ,	Emin =   140,	Emax =   280,	Diameter =  5.56,	CanKill = true, },
 	["Base.308BulletsLinked"                  ]	=	{ AmmoType = "Bullet"    ,	Emin =  2500,	Emax =  3800,	Diameter =  7.82,	CanKill = true, },
 
+--- VFE Stalker
+	["Base.545Bullets"                        ]	=	{ AmmoType = "Bullet"    ,	Emin =  1390,	Emax =  1890,	Diameter =   5.6,	CanKill = true, },
+
 --- Brita
 	["Base.Bullets45LC"                       ]	=	{ AmmoType = "Bullet"    ,	Emin =   663,	Emax =   844,	Diameter = 11.43,	CanKill = true, },
 	["Base.Bullets357"                        ]	=	{ AmmoType = "Bullet"    ,	Emin =   780,	Emax =  1090,	Diameter =  9.06,	CanKill = true, },
@@ -137,5 +140,43 @@ HuntingMod.CaliberDataBase = {
 --- Crossbow (Lactose)
 	["LactoseCrossbow.LCCrossbowBoltAluminium"]	=	{ AmmoType = "Projectile",	Emin =   200,	Emax =   350,	Diameter =  7.62,	CanKill = true, },
 	["LactoseCrossbow.CrossbowBolt"           ]	=	{ AmmoType = "Projectile",	Emin =   200,	Emax =   350,	Diameter =  7.62,	CanKill = true, },
+
+--- Totally's Historical Firearms Core
+	["Base.Bullets9x18mm"                     ]	=	{ AmmoType = "Bullet"    ,	Emin =   300,	Emax =   450,	Diameter =  9.27,	CanKill = true, },
+	["Base.Bullets303   "                     ]	=	{ AmmoType = "Bullet"    ,	Emin =  3000,	Emax =  3600,	Diameter =  7.92,	CanKill = true, },
+	["Base.Bullets30Cal "                     ]	=	{ AmmoType = "Bullet"    ,	Emin =  1200,	Emax =  1700,	Diameter =  7.62,	CanKill = true, },
+
+--- Totally's Historical Firearms Axis
+	["Base.8mmKurtz"                          ]	=	{ AmmoType = "Bullet"    ,	Emin =  1700,	Emax =  2000,	Diameter =  8.22,	CanKill = true, },
+	["Base.8mmMauser"                         ]	=	{ AmmoType = "Bullet"    ,	Emin =  3800,	Emax =  4000,	Diameter =  8.22,	CanKill = true, },
+	["Base.6x5Bullets"                        ]	=	{ AmmoType = "Bullet"    ,	Emin =  2200,	Emax =  2600,	Diameter =   6.8,	CanKill = true, },
+	["Base.9x25_Mauser_Bullets"               ]	=	{ AmmoType = "Bullet"    ,	Emin =   480,	Emax =   550,	Diameter =  9.01,	CanKill = true, },
+	["Base.65x50_Bullets"                     ]	=	{ AmmoType = "Bullet"    ,	Emin =  2400,	Emax =  2800,	Diameter =  6.63,	CanKill = true, },
+
+--- Totally's Historical Firearms Arms of The 3rd Republic
+	["Base.8mmLEBEL_Bullets"                  ]	=	{ AmmoType = "Bullet"    ,	Emin =  2800,	Emax =  3600,	Diameter =   8.3,	CanKill = true, },
+	["Base.Bullets32"                         ]	=	{ AmmoType = "Bullet"    ,	Emin =   170,	Emax =   300,	Diameter =  7.85,	CanKill = true, },
+	["Base.75x54_French_Bullets"              ]	=	{ AmmoType = "Bullet"    ,	Emin =  2600,	Emax =  3200,	Diameter =  7.84,	CanKill = true, },
+	["Base.Bullets8mmFO"                      ]	=	{ AmmoType = "Bullet"    ,	Emin =   170,	Emax =   300,	Diameter =  8.38,	CanKill = true, },
+
+--- Totally's Historical Firearms Eastern Bloc
+	["Base.762x54Bullets"                     ]	=	{ AmmoType = "Bullet"    ,	Emin =  2600,	Emax =  2800,	Diameter =  7.92,	CanKill = true, },
+
+--- Z Life Stalker PSA Weapons Pack
+	["Base.Bullets762Tokarev"                 ]	=	{ AmmoType = "Bullet"    ,	Emin =   500,	Emax =   700,	Diameter =   7.7,	CanKill = true, },
+	["Base.Bullets762Nagant"                  ]	=	{ AmmoType = "Bullet"    ,	Emin =   200,	Emax =   400,	Diameter =   7.8,	CanKill = true, },
+	["Base.23x75ShotgunShells"                ]	=	{ AmmoType = "Shotgun"   ,	Emin =  5000,	Emax =  5500,	Diameter =  23.0,	CanKill = true, },
+	["Base.Bullets939"                        ]	=	{ AmmoType = "Bullet"    ,	Emin =   700,	Emax =  1000,	Diameter =  9.25,	CanKill = true, },
+
+--- Totally's Scavenged Firearms
+	["Base.BulletsDirtyMagnum"                ]	=	{ AmmoType = "Bullet"    ,	Emin =   480,	Emax =   790,	Diameter =  9.06,	CanKill = true, },
+	["Base.BulletsDirty556   "                ]	=	{ AmmoType = "Bullet"    ,	Emin =  1070,	Emax =  1290,	Diameter =  5.56,	CanKill = true, },
+	["Base.BulletsDirty308  "                 ]	=	{ AmmoType = "Bullet"    ,	Emin =  1750,	Emax =  2660,	Diameter =  7.82,	CanKill = true, },
+
+--- Post-Soviet Armory
+	["Base.Bullets545   "                     ]	=	{ AmmoType = "Bullet"    ,	Emin =  1390,	Emax =  1890,	Diameter =   5.6,	CanKill = true, },
+	["Base.Bullets762AK "                     ]	=	{ AmmoType = "Bullet"    ,	Emin =  2300,	Emax =  2500,	Diameter =  7.92,	CanKill = true, },
+	["Base.Bullets22LR  "                     ]	=	{ AmmoType = "Bullet"    ,	Emin =   140,	Emax =   280,	Diameter =  5.56,	CanKill = true, },
+	["Base.Bullets762PKM"                     ]	=	{ AmmoType = "Bullet"    ,	Emin =  2600,	Emax =  2800,	Diameter =  7.92,	CanKill = true, },
 
 }
