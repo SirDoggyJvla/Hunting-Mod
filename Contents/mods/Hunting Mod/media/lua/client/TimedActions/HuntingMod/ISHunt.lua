@@ -97,8 +97,8 @@ function HuntingMod_ISHunt:perform()
 		else
 			size = random:random(SandboxVars.HuntingMod.MinimumBonusSize,SandboxVars.HuntingMod.MaximumBonusSize)/100
 		end
-		local item = InventoryItemFactory.CreateItem(self.animal.dead);
-		---@cast item Food
+		local animal = self.animal
+		local item = InventoryItemFactory.CreateItem(animal.dead) --[[@as Food]]
 
 		item:setHungChange(item:getHungChange() * size)
 		item:setCalories(item:getCalories() * size)
@@ -108,7 +108,29 @@ function HuntingMod_ISHunt:perform()
 
 		-- if melee, spawn corpse on player
 		local square = isRanged and self.squareTarget or self.square
-		square:AddWorldInventoryItem(item, 0, 0, 0)
+
+		-- initialize fat amount
+		local fat = animal.fat
+		local fatAmount
+		if fat then
+			fatAmount = random:random(animal.fatAmountMin*10000,animal.fatAmountMax*10000)/10000
+			fatAmount = -fatAmount * item:getHungChange()
+			fatAmount = fatAmount - fatAmount%1 + 1
+
+			local fatItemInventory = InventoryItemFactory.CreateItem(fat) --[[@as Food]]
+
+			item:setCalories(item:getCalories() + fatItemInventory:getCalories()*fatAmount)
+			item:setLipids(item:getLipids() + fatItemInventory:getLipids()*fatAmount)
+			item:setCarbohydrates(item:getCarbohydrates() + fatItemInventory:getCarbohydrates()*fatAmount)
+			item:setProteins(item:getProteins() + fatItemInventory:getProteins()*fatAmount)
+		end
+
+		local carcass = square:AddWorldInventoryItem(item, 0, 0, 0)
+		if fatAmount then
+			carcass:getModData().HuntingMod = {
+				fatLeft = fatAmount
+			}
+		end
 
 		-- show the square with the hunting target
 		HuntingMod.AddHighlightSquare(square,{r=1,g=1,b=1},self.character)

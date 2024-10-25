@@ -1,7 +1,7 @@
 Tooltip_EN = {
 	/* Item tooltip */
-	Tooltip_Recipe_Deer = "Dead deer corpse.<BR>Can be cut up to obtain meat with a knife.",
-	Tooltip_Recipe_Pig = "Dead wild pig corpse.<BR>Can be cut up to obtain meat with a knife.",
+	Tooltip_Recipe_Deer = "Dead deer corpse. Can be butchered to obtain deer venison and a small amount of fat and leather.",
+	Tooltip_Recipe_Pig = "Dead wild pig corpse. Can be butchered to obtain pork chops and a large amount of fat and leather.",
 
 	/* Hunting tooltip */
 	Tooltip_HuntingMod_CurrentWeapon = "%1 will be used to hunt:",
@@ -62,6 +62,9 @@ Tooltip_EN = {
 	Tooltip_HuntingMod_notStrongEnough = "Not strong enough",
 
 	/* Butcher */
-    Tooltip_HuntingMod_ButcherAmount = "%1 pieces of meat left.",
+	Tooltip_HuntingMod_No = "No",
+    Tooltip_HuntingMod_ButcherAmount = "%1 pieces of %2 left.",
+	Tooltip_HuntingMod_FatAmount = "%1 pieces of %2 left.",
+	Tooltip_HuntingMod_KnifeToButcher = "%1 will be used to butcher.",
 	Tooltip_HuntingMod_NeedSharpKnife = "Need a sharp knife to butcher.",
 }

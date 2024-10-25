@@ -66,7 +66,6 @@ function HuntingMod_ISButcher:perform()
 	local character = self.character
 	local amountHarvest = self.amountHarvest
 	local animal = self.animal
-	local meatItem = animal.meat
 	local hungerAmount = self.hungerAmount
 	local square = character:getSquare()
 
@@ -88,22 +87,65 @@ function HuntingMod_ISButcher:perform()
 	character:getXp():AddXP(Perks.Cooking, 10)
 	character:getXp():AddXP(Perks.SmallBlade, 10)
 
-	-- get food values
-	local hungerAmount_unique = hungerAmount/amountHarvest
-	local calories = carcass:getCalories()/amountHarvest
-	local lipids = carcass:getLipids()/amountHarvest
-	local carbohydrates = carcass:getCarbohydrates()/amountHarvest
-	local proteins = carcass:getProteins()/amountHarvest
+	-- get meat item food values
+	local hungerAmount_meatItem = hungerAmount/amountHarvest
+	local calories_meatItem = carcass:getCalories()/amountHarvest
+	local lipids_meatItem = carcass:getLipids()/amountHarvest
+	local carbohydrates_meatItem = carcass:getCarbohydrates()/amountHarvest
+	local proteins_meatItem = carcass:getProteins()/amountHarvest
 
-	local meatItemInventory = InventoryItemFactory.CreateItem(meatItem) ---@cast meatItemInventory Food
+	-- store copies of food values for the update of carcass food values
+	local hungerAmount_left = hungerAmount_meatItem
+	local calories_left = calories_meatItem
+	local lipids_left = lipids_meatItem
+	local carbohydrates_left = carbohydrates_meatItem
+	local proteins_left = proteins_meatItem
+
+	-- create fat item
+	local fat = animal.fat
+	if fat then
+		local carcass_modData = carcass:getModData().HuntingMod
+		if carcass_modData then
+			local fatLeft = carcass_modData.fatLeft
+			if fatLeft > 0 then
+				carcass_modData.fatLeft = fatLeft - 1
+
+				local fatItemInventory = InventoryItemFactory.CreateItem(fat) --[[@as Food]]
+
+				-- remove food value from meatItem food values
+				hungerAmount_meatItem = hungerAmount_meatItem - fatItemInventory:getBaseHunger()
+				calories_meatItem = calories_meatItem - fatItemInventory:getCalories()
+				lipids_meatItem = lipids_meatItem - fatItemInventory:getLipids()
+				carbohydrates_meatItem = carbohydrates_meatItem - fatItemInventory:getCarbohydrates()
+				proteins_meatItem = proteins_meatItem - fatItemInventory:getProteins()
+
+				-- safeguard in case value gets lower than 0
+				calories_meatItem = calories_meatItem >= 0 and calories_meatItem or 0
+				lipids_meatItem = lipids_meatItem >= 0 and lipids_meatItem or 0
+				carbohydrates_meatItem = carbohydrates_meatItem >= 0 and carbohydrates_meatItem or 0
+				proteins_meatItem = proteins_meatItem >= 0 and proteins_meatItem or 0
+
+				square:AddWorldInventoryItem(fatItemInventory, 0, 0, 0)
+			end
+		end
+	end
+
+	-- create the meat item
+	local meatItemInventory = InventoryItemFactory.CreateItem(animal.meat) --[[@as Food]]
+
+	-- set meat item's name to meatName if exists
+	local meatName = animal.meatName
+	if meatName then
+		meatItemInventory:setName(getText(meatName))
+	end
 
 	-- set the meatItem food values
-	meatItemInventory:setBaseHunger(hungerAmount_unique)
-	meatItemInventory:setHungChange(hungerAmount_unique)
-	meatItemInventory:setCalories(calories)
-	meatItemInventory:setLipids(lipids)
-	meatItemInventory:setCarbohydrates(carbohydrates)
-	meatItemInventory:setProteins(proteins)
+	meatItemInventory:setBaseHunger(hungerAmount_meatItem)
+	meatItemInventory:setHungChange(hungerAmount_meatItem)
+	meatItemInventory:setCalories(calories_meatItem)
+	meatItemInventory:setLipids(lipids_meatItem)
+	meatItemInventory:setCarbohydrates(carbohydrates_meatItem)
+	meatItemInventory:setProteins(proteins_meatItem)
 	meatItemInventory:setCooked(carcass:isCooked())
 	square:AddWorldInventoryItem(meatItemInventory, 0, 0, 0)
 
@@ -130,13 +172,13 @@ function HuntingMod_ISButcher:perform()
 		worldItem:removeFromSquare()
 	else
 		-- update carcass food values
-		local hungerAmount_carcass = hungerAmount_unique*amountHarvest
+		local hungerAmount_carcass = hungerAmount_left*amountHarvest
 		carcass:setBaseHunger(hungerAmount_carcass)
 		carcass:setHungChange(hungerAmount_carcass)
-		carcass:setCalories(calories*amountHarvest)
-		carcass:setLipids(lipids*amountHarvest)
-		carcass:setCarbohydrates(carbohydrates*amountHarvest)
-		carcass:setProteins(proteins*amountHarvest)
+		carcass:setCalories(calories_left*amountHarvest)
+		carcass:setLipids(lipids_left*amountHarvest)
+		carcass:setCarbohydrates(carbohydrates_left*amountHarvest)
+		carcass:setProteins(proteins_left*amountHarvest)
 
 		-- queue another butchering
 		ISTimedActionQueue.add(HuntingMod_ISButcher:new(character,carcass,animal,hungerAmount_carcass,amountHarvest,200))

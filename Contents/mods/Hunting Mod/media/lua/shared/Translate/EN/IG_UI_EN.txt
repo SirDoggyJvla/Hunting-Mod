@@ -6,6 +6,7 @@ IGUI_EN = {
     IGUI_HuntingMod_Squirrel = "Squirrel",
     IGUI_HuntingMod_Pig = "Pig",
     IGUI_HuntingMod_Deer = "Deer",
+    IGUI_HuntingMod_DeerVenison = "Deer Venison",
 
     IGUI_HuntingMod_SuccessHunt1 = "Got it !",
     IGUI_HuntingMod_SuccessHunt2 = "Right in the eye !",

@@ -16,6 +16,7 @@ local HuntingMod = require "HuntingMod_module"
 local climateManager = getClimateManager()
 local gametime = getGameTime()
 local random = newrandom()
+local isDebug = getDebug()
 
 -- localy initialize player and values
 local client_player = getPlayer()
@@ -801,8 +802,30 @@ HuntingMod.HandleIcon = function(context,baseIcon,animal)
         end
     end
 
+    -- add debug hunting option
+    if isDebug then
+        local option = context:addOption(
+            "DEBUG MODE: Force Hunt".." "..animalName,
+            player,
+            HuntingMod.DoHunt,
+            square,
+            HuntInformation.squareTarget,
+            animal,
+            baseIcon,
+            weapon,
+            1000,
+            true,
+            false
+        )
+
+        -- set tooltip and if available
+        local debug_tooltip = ISWorldObjectContextMenu.addToolTip()
+        debug_tooltip.description = "<CENTRE><RED> DEBUG MODE, FORCE HUNT <RGB:1,1,1>\n"..description
+        option.toolTip = debug_tooltip
+    end
+
     -- create the option
-    local option = context:addOptionOnTop(
+    local option = context:addOption(
         getText("ContextMenu_HuntingMod_Hunt").." "..animalName,
         player,
         HuntingMod.DoHunt,
