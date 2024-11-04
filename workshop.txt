@@ -1,78 +1,79 @@
 version=1
 id=3351307837
 title=Doggy's Hunting Mod
-description=[quote=SirDoggyJvla]
-description=Hello everyone,
-description=
-description=This is a reupload of my mod [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3343809645]Immersive Hunting Remastered[/url] due to reasons that are explained there (own identity, nothing to do with the original mod...).
-description=
-description=Future updates will be released on this version and my old hunting mod is now deprecated.
-description=[/quote]
-description=
-description=[quote]
-description=A complete new take on hunting while we wait for B42 to come out. Find traces of animals while foraging and hunt them. Multiple factors can impact your chance of hunting the target such as daylight, wind or the fog, as well as your gun caliber, your traits or the animal type.
-description=
-description=[h1]Features:[/h1]
-description=[list]
-description=[*] Forage for animal tracks
-description=[*] Deleted requirement to use the crafting menu ! Any weapon can be used to hunt based on some criteria
-description=[*] Adapt your weapon to the target, a shotgun will be better suited to hunt birds while a rifle would be used for bigger targets. Using a caliber too powerful can shred the target and leave less meat
-description=[*] Some melee weapons can be used but the more agile is the target, the less effective the weapon will be (you wouldn't use a sledgehammer to hunt right ?). Spears tend to be the best at this job
-description=[*] Butcher deers and pigs corpses for chunks of meat and leather. Also get bones when [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2890748284]Food Preservation Plus[/url] is installed
-description=[*] Years Later mode in the sandbox options to make deers, pigs and rabbits spawn in areas with human activity
-description=[*] Sandbox options to tweak anything, you can deactivate a few parameters by setting their impact to 0%
-description=[/list]
-description=
-description=
-description=[h1]Compatibility:[/h1]
-description=[b]Can be added mid save safely[/b] !
-description=
-description=Ammo calibers are used to define the ability for a gun to hunt. A list of ammunitions in vanilla game and mods is used for compatibility but some might be missing. This system bases itself on the energy and the diameter of bullets but it will be flawed, mostly because it won't actually consider the weapon's caracteristics.
-description=
-description=[b]THE MOD IS COMPATIBLE WITH ANY FIREARM MOD.[/b]
-description=
-description=And if you use a gun which has a caliber not recognized, it should tell it in the tooltip of the hunting context menu option. Report it with the mod name and the ammunition name in the description of my mod.
-description=
-description=The bow and arrow mod will possibly not be made compatible, due to it having a weird system. I'll see what I can do.
-description=
-description=
-description=[h1]Disclaimer:[/h1]
-description=[b]No animals are actually visible, it is just an illusion ![/b] While it is technically doable, I will not bother doing such a detailed system due to the near release of B42.
-description=
-description=The mod might need some balancing on some aspects. Don't hesitate to give some feedback on it, I did some testing to see how rare the animal tracks would be, but I did not test enough the hunting system if it is fair or not. You can tweak almost every values so don't hesitate to.
-description=[/quote]
-description=
-description=[hr][/hr]
-description=
-description=[table]
-description=[tr]
-description=[td] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2890748284] [img]https://steamuserimages-a.akamaihd.net/ugc/1940516923186263562/1C6AB8A26154AC0A1A8A9D13350FBCFE871D2BDC/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false[/img] [/url] [/td]
-description=[td]Native compatibility with [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2890748284]Food Preservation Plus[/url] ! Butchering deers and pigs will drop bones. [/td]
-description=[/tr]
-description=[/table]
-description=
-description=[hr][/hr]
-description=
-description=[h1]Check out Project Overgrown other mods ![/h1]
-description=[table]
-description=[tr]
-description=[td] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3248766883] [img]https://steamuserimages-a.akamaihd.net/ugc/2482131851436500023/D846A1158220487FAF0BA6BD62DE826A7F0F7E9E/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false[/img] [/url] [/td]
-description=[td]Play against [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3248766883]The Last of Us Infected[/url] and try to survive a low population scenario against hardcore zombies ! [/td]
-description=[/tr]
-description=[tr]
-description=[td] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3302729836] [img]https://steamuserimages-a.akamaihd.net/ugc/2483257116309986571/A31945257F7BC26F774A6AF78AA45D28B6C61F11/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false[/img] [/url] [/td]
-description=[td]Use the guns of The Last of Us thanks to [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3302729836]The Last of Guns Remastered[/url] ! [/td]
-description=[/tr]
-description=[tr]
-description=[td] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3332296598] [img]https://steamuserimages-a.akamaihd.net/ugc/2414581210988532828/381EE3517232E165DF3C17A7797590C467F663ED/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false[/img] [/url] [/td]
-description=[td]Test yourself or your friends for infections thanks to the [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3332296598]Infection Scanner[/url] ! [/td]
-description=[/tr]
-description=[/table]
-description=
-description=[hr][/hr]
-description=
-description=[url=https://discord.gg/SReMnbV4V7][img]https://raw.githubusercontent.com/Chuckleberry-Finn/chuckImages/main/PZmodCommBanner1.png[/img][/url]
-description=
-description=[url=https://discord.gg/VteSYrd4mW][img]https://raw.githubusercontent.com/SirDoggyJvla/Project-Overgrown/main/images/banners/server_banner.png[/img][/url]
+description=[quote=SirDoggyJvla]
+description=Hello everyone,
+description=
+description=This is a reupload of my mod [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3343809645]Immersive Hunting Remastered[/url] due to reasons that are explained there (own identity, nothing to do with the original mod...).
+description=
+description=Future updates will be released on this version and my old hunting mod is now deprecated.
+description=[/quote]
+description=
+description=[quote]
+description=A complete new take on hunting while we wait for B42 to come out. Find traces of animals while foraging and hunt them. Multiple factors can impact your chance of hunting the target such as daylight, wind or the fog, as well as your gun caliber, your traits or the animal type.
+description=
+description=[h1]Features:[/h1]
+description=[list]
+description=[*] Forage for animal tracks
+description=[*] Deleted requirement to use the crafting menu ! Any weapon can be used to hunt based on some criteria
+description=[*] Adapt your weapon to the target, a shotgun will be better suited to hunt birds while a rifle would be used for bigger targets. Using a caliber too powerful can shred the target and leave less meat
+description=[*] Some melee weapons can be used but the more agile is the target, the less effective the weapon will be (you wouldn't use a sledgehammer to hunt right ?). Spears tend to be the best at this job
+description=[*] Butcher deers and pigs corpses for chunks of meat and leather. Also get bones when [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2890748284]Food Preservation Plus[/url] is installed
+description=[*] Years Later mode in the sandbox options to make deers, pigs and rabbits spawn in areas with human activity
+description=[*] Sandbox options to tweak anything, you can deactivate a few parameters by setting their impact to 0%
+description=[/list]
+description=
+description=
+description=[h1]Compatibility:[/h1]
+description=[b]Can be added mid save safely[/b] !
+description=
+description=Ammo calibers are used to define the ability for a gun to hunt. A list of ammunitions in vanilla game and mods is used for compatibility but some might be missing. This system bases itself on the energy and the diameter of bullets but it will be flawed, mostly because it won't actually consider the weapon's caracteristics.
+description=
+description=[b]THE MOD IS COMPATIBLE WITH ANY FIREARM MOD.[/b]
+description=BUT Arsenal 26 seems to break knives (vanilla ones at least) and these might not be recognized by the mod. I can't do anything about it, it's their fault for removing a vital tag on items "SharpKnife" which is used to recognize knives used in butchering, even vanilla butchering crafts (maybe they patch those ?).
+description=
+description=And if you use a gun which has a caliber not recognized, it should tell it in the tooltip of the hunting context menu option. Report it with the mod name and the ammunition name in the description of my mod.
+description=
+description=The bow and arrow mod will possibly not be made compatible, due to it having a weird system. I'll see what I can do.
+description=
+description=
+description=[h1]Disclaimer:[/h1]
+description=[b]No animals are actually visible, it is just an illusion ![/b] While it is technically doable, I will not bother doing such a detailed system due to the near release of B42.
+description=
+description=The mod might need some balancing on some aspects. Don't hesitate to give some feedback on it, I did some testing to see how rare the animal tracks would be, but I did not test enough the hunting system if it is fair or not. You can tweak almost every values so don't hesitate to.
+description=[/quote]
+description=
+description=[hr][/hr]
+description=
+description=[table]
+description=[tr]
+description=[td] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2890748284] [img]https://steamuserimages-a.akamaihd.net/ugc/1940516923186263562/1C6AB8A26154AC0A1A8A9D13350FBCFE871D2BDC/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false[/img] [/url] [/td]
+description=[td]Native compatibility with [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2890748284]Food Preservation Plus[/url] ! Butchering deers and pigs will drop bones. [/td]
+description=[/tr]
+description=[/table]
+description=
+description=[hr][/hr]
+description=
+description=[h1]Check out Project Overgrown other mods ![/h1]
+description=[table]
+description=[tr]
+description=[td] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3248766883] [img]https://steamuserimages-a.akamaihd.net/ugc/2482131851436500023/D846A1158220487FAF0BA6BD62DE826A7F0F7E9E/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false[/img] [/url] [/td]
+description=[td]Play against [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3248766883]The Last of Us Infected[/url] and try to survive a low population scenario against hardcore zombies ! [/td]
+description=[/tr]
+description=[tr]
+description=[td] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3302729836] [img]https://steamuserimages-a.akamaihd.net/ugc/2483257116309986571/A31945257F7BC26F774A6AF78AA45D28B6C61F11/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false[/img] [/url] [/td]
+description=[td]Use the guns of The Last of Us thanks to [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3302729836]The Last of Guns Remastered[/url] ! [/td]
+description=[/tr]
+description=[tr]
+description=[td] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3332296598] [img]https://steamuserimages-a.akamaihd.net/ugc/2414581210988532828/381EE3517232E165DF3C17A7797590C467F663ED/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false[/img] [/url] [/td]
+description=[td]Test yourself or your friends for infections thanks to the [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3332296598]Infection Scanner[/url] ! [/td]
+description=[/tr]
+description=[/table]
+description=
+description=[hr][/hr]
+description=
+description=[url=https://discord.gg/SReMnbV4V7][img]https://raw.githubusercontent.com/Chuckleberry-Finn/chuckImages/main/PZmodCommBanner1.png[/img][/url]
+description=
+description=[url=https://discord.gg/VteSYrd4mW][img]https://raw.githubusercontent.com/SirDoggyJvla/Project-Overgrown/main/images/banners/server_banner.png[/img][/url]
 tags=Build 41;Food;Items;Misc
 visibility=public

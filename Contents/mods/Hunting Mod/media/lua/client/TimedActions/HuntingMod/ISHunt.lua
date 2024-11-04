@@ -184,6 +184,9 @@ function HuntingMod_ISHunt:new(character,square,squareTarget,animal,chanceToHunt
 	o.stopOnRun = true
 	o.maxTime = time
 
+	-- default to fake knife if no weapon
+	weapon = weapon or InventoryItemFactory.CreateItem("Base.HuntingKnife")
+
 	-- custom fields
 	o.square = square
 	o.squareTarget = squareTarget

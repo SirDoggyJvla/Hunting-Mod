@@ -138,8 +138,12 @@ HuntingMod.GetHuntInformations = function(square,player)
             x = distance * math.cos(angle)
             y = distance * math.sin(angle)
             squareTarget = getSquare(s_x + x, s_y + y, 0)
-            if squareTarget and squareTarget:isBlockedTo(square) then
-                squareTarget = nil
+            if squareTarget then
+                if squareTarget:isBlockedTo(square)
+                or squareTarget:getFloor():getSprite():getProperties():Is(IsoFlagType.water)
+                then
+                    squareTarget = nil
+                end
             end
         end
 

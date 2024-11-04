@@ -6,25 +6,29 @@
 --[[ ================================================ ]]--
 --[[
 
-Patches to vanilla functions of Hunting Mod.
+Patches needed for Hunting Mod.
 
 ]]--
 --[[ ================================================ ]]--
 
 -- requirements
 local HuntingMod = require "HuntingMod_module"
-require "Foraging/ISForageIcon"
 
-local old_ISForageIcon_new = ISForageIcon.new
-function ISForageIcon:new(_manager, _forageIcon, _zoneData)
-    local o = old_ISForageIcon_new(self,_manager, _forageIcon, _zoneData)
+-- Patches forage action to not be able to pick up animal tracks
 
-    -- verify it's one of our items
-    local itemType = _forageIcon.itemType
-    local huntTarget = HuntingMod.ForageAnimalTracks[itemType]
-    if huntTarget then
-        o.onMouseDoubleClick = function(...) end
+require "Foraging/ISForageAction"
+
+local old_ISForageAction_start = ISForageAction.start
+function ISForageAction:start()
+    -- if not discard, so we can properly discard with the discard option
+    if not self.discardItems then
+        -- verify it's one of our items
+        local itemType = self.forageIcon.itemType
+        local huntTarget = HuntingMod.ForageAnimalTracks[itemType]
+        if huntTarget then
+            ISTimedActionQueue.clear(self.character)
+        else
+            old_ISForageAction_start(self)
+        end
     end
-
-    return o
 end
