@@ -168,6 +168,7 @@ function HuntingMod_ISButcher:perform()
 	amountHarvest = amountHarvest - 1
 	if amountHarvest <= 0 then
 		local worldItem = self.worldItem
+		worldItem:getSquare():transmitRemoveItemFromSquare(worldItem)
 		worldItem:removeFromWorld()
 		worldItem:removeFromSquare()
 	else

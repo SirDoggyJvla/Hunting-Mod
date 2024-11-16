@@ -126,7 +126,8 @@ HuntingMod.OnFillInventoryObjectContextMenu = function(playerIndex, context, ite
             end
 
             -- meat item description
-            local meatName = getText(animal.meatName) or scriptItem_meat:getDisplayName()
+            local meatItemName = animal.meatName
+            local meatName = meatItemName and getText(meatItemName) or scriptItem_meat:getDisplayName()
             meatName = string.lower(meatName)
 
             -- prepare tooltip texture of meat item
